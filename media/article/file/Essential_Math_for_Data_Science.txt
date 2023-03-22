@@ -1,0 +1,128 @@
+Mathematics is the bedrock of any contemporary discipline of science. Almost all the techniques of modern data science, including machine learning, have a deep mathematical underpinning.
+
+It goes without saying that you will absolutely need all the other pearls of knowledge—programming ability, some amount of business acumen, and your unique analytical and inquisitive mindset—about the data to function as a top data scientist. But it always pays to know the machinery under the hood, rather than just being the person behind the wheel with no knowledge about the car. Therefore, a solid understanding of the mathematical machinery behind the cool algorithms will give you an edge among your peers.
+
+The knowledge of this essential math is particularly important for newcomers arriving at data science from other professions: hardware engineering, retail, the chemical process industry, medicine and health care, business management, etc. Although such fields may require experience with spreadsheets, numerical calculations, and projections, the math skills required in data science can be significantly different.
+
+Consider a web developer or business analyst. They may be dealing with a lot of data and information on a daily basis, but there may not be an emphasis on rigorous modeling of that data. Often, the emphasis is on using the data for an immediate need and moving on, rather than on deep scientific exploration. Data science, on the other hand, should always be about the science (not the data). Following that thread, certain tools and techniques become indispensable. Most are the hallmarks of the sound scientific process:
+
+Modeling a process (physical or informational) by probing the underlying dynamics
+Constructing hypotheses
+Rigorously estimating the quality of the data source
+Quantifying the uncertainty around the data and predictions
+Identifying the hidden pattern from the stream of information
+Understanding the limitation of a model
+Understanding mathematical proof and the abstract logic behind it
+Data science, by its very nature, is not tied to a particular subject area and may deal with phenomena as diverse as cancer diagnoses and social behavior analysis. This produces the possibility of a dizzying array of n-dimensional mathematical objects, statistical distributions, optimization objective functions, etc.
+
+Here are my suggestions for the topics to study to be at the top of the game in data science.
+
+
+Functions, Variables, Equations, and Graphs
+This area of math covers the basics, from the equation of a line to the binomial theorem and everything in between:
+
+Logarithm, exponential, polynomial functions, rational numbers
+Basic geometry and theorems, trigonometric identities
+Real and complex numbers, basic properties
+Series, sums, inequalities
+Graphing and plotting, Cartesian and polar coordinates, conic sections
+Where You Might Use It
+If you want to understand how a search runs faster on a million-item database after you’ve sorted it, you will come across the concept of “binary search.” To understand the dynamics of it, you need to understand logarithms and recurrence equations. Or, if you want to analyze a time series, you may come across concepts like “periodic functions” and “exponential decay.”
+
+Where You Can Learn It
+Coursera: Data science math skills
+edX: Introduction to algebra
+Khan Academy: Algebra I
+Statistics
+
+Credit: geralt/Pixabay/CC0
+The importance of having a solid grasp over essential concepts of statistics and probability cannot be overstated. Many practitioners in the field actually consider classical (non-neural network) machine learning to be nothing but statistical learning. The subject is vast, and focused planning is critical to cover the most essential concepts:
+
+Data summaries and descriptive statistics, central tendency, variance, covariance, correlation
+Basic probability: basic idea, expectation, probability calculus, Bayes’ theorem, conditional probability
+Probability distribution functions: uniform, normal, binomial, chi-square, Student's t-distribution, central limit theorem
+Sampling, measurement, error, random number generation
+Hypothesis testing, A/B testing, confidence intervals, p-values
+ANOVA, t-test
+Linear regression, regularization
+Where You Might Use It
+In interviews. If you can show you’ve mastered these concepts, you will impress the other side of the table fast. And you will use them nearly every day as a data scientist.
+
+Where You Can Learn It
+Coursera: Statistics with R specialization
+Coursera: Business statistics and analysis specialization
+edX: Statistics and probability in data science using Python
+Linear Algebra
+
+This is an essential branch of mathematics for understanding how machine-learning algorithms work on a stream of data to create insight. Everything from friend suggestions on Facebook, to song recommendations on Spotify, to transferring your selfie to a Salvador Dali-style portrait using deep transfer learning involves matrices and matrix algebra. Here are the essential topics to learn:
+
+Basic properties of matrix and vectors: scalar multiplication, linear transformation, transpose, conjugate, rank, determinant
+Inner and outer products, matrix multiplication rule and various algorithms, matrix inverse
+Special matrices: square matrix, identity matrix, triangular matrix, idea about sparse and dense matrix, unit vectors, symmetric matrix, Hermitian, skew-Hermitian and unitary matrices
+Matrix factorization concept/LU decomposition, Gaussian/Gauss-Jordan elimination, solving Ax=b linear system of equation
+Vector space, basis, span, orthogonality, orthonormality, linear least square
+Eigenvalues, eigenvectors, diagonalization, singular value decomposition
+Where You Might Use It
+If you have used the dimensionality reduction technique principal component analysis, then you have likely used the singular value decomposition to achieve a compact dimension representation of your data set with fewer parameters. All neural network algorithms use linear algebra techniques to represent and process network structures and learning operations.
+
+Where You Can Learn It
+edX: Linear algebra: foundations to frontiers
+Coursera: Mathematics for machine learning: linear algebra
+Calculus
+
+Whether you loved or hated it in college, calculus pops up in numerous places in data science and machine learning. It lurks behind the simple-looking analytical solution of an ordinary least squares problem in linear regression or embedded in every back-propagation your neural network makes to learn a new pattern. It is an extremely valuable skill to add to your repertoire. Here are the topics to learn:
+
+Functions of a single variable, limit, continuity, differentiability
+Mean value theorems, indeterminate forms, L’Hospital’s rule
+Maxima and minima
+Product and chain rule
+Taylor’s series, infinite series summation/integration concepts
+Fundamental and mean value-theorems of integral calculus, evaluation of definite and improper integrals
+Beta and gamma functions
+Functions of multiple variables, limit, continuity, partial derivatives
+Basics of ordinary and partial differential equations
+Where You Might Use It
+Ever wondered how exactly a logistic regression algorithm is implemented? There is a high chance it uses a method called “gradient descent” to find the minimum loss function. To understand how this works, you need to use concepts from calculus: gradient, derivatives, limits, and chain rule.
+
+Where You Can Learn It
+edX: Pre-university calculus
+Khan Academy: Calculus I
+Coursera: Mathematics for machine learning: multivariable calculus
+Discrete Math
+
+This area is not discussed as often in data science, but all modern data science is done with the help of computational systems, and discrete math is at the heart of such systems. A refresher in discrete math will include concepts critical to daily use of algorithms and data structures in analytics project:
+
+Sets, subsets, power sets
+Counting functions, combinatorics, countability
+Basic proof techniques: induction, proof by contradiction
+Basics of inductive, deductive, and propositional logic
+Basic data structures: stacks, queues, graphs, arrays, hash tables, trees
+Graph properties: connected components, degree, maximum flow/minimum cut concepts, graph coloring
+Recurrence relations and equations
+Growth of functions and O(n) notation concept
+Where You Might Use It
+In any social network analysis, you need to know the properties of a graph and fast algorithm to search and traverse the network. In any choice of algorithm, you need to understand the time and space complexity—i.e., how the running time and space requirement grows with input data size, by using O(n) (Big-Oh) notation.
+
+Where You Can Learn It
+Coursera: Introduction to discrete mathematics for computer science specialization
+Coursera: Introduction to mathematical thinking
+Udemy: Master discrete mathematics: sets, math logic, and more
+Optimization and Operation Research Topics
+
+These topics are most relevant in specialized fields like theoretical computer science, control theory, or operation research. But a basic understanding of these powerful techniques can also be fruitful in the practice of machine learning. Virtually every machine-learning algorithm aims to minimize some kind of estimation error subject to various constraints—which is an optimization problem. Here are the topics to learn:
+
+Basics of optimization, how to formulate the problem
+Maxima, minima, convex function, global solution
+Linear programming, simplex algorithm
+Integer programming
+Constraint programming, knapsack problem
+Randomized optimization techniques: hill climbing, simulated annealing, genetic algorithms
+Where You Might Use It
+Simple linear regression problems using least-square loss function often have an exact analytical solution, but logistic regression problems don’t. To understand the reason, you need to be familiar with the concept of “convexity” in optimization. This line of investigation will also illuminate why we must remain satisfied with “approximate” solutions in most machine-learning problems.
+
+Where You Can Learn It
+edX: Optimization methods in business analytics
+Coursera: Discrete optimization
+edX: Deterministic optimization
+Some Parting Words
+Please don’t feel overwhelmed. Though there are a lot of things to learn, there are excellent resources online. After a refresher on these topics (which you probably studied as an undergrad) and learning new concepts, you will be empowered to hear the hidden music in your daily data analysis and machine-learning projects. And that’s a big leap toward becoming an amazing data scientist.

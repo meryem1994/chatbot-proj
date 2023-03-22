@@ -1,0 +1,255 @@
+Computer vision (CV) is a field of Artificial Intelligence (AI) that processes all types of digital images or videos, extracting the relevant information and allowing us to identify some of the elements or objects in those images/videos. To identify these elements, we apply mathematical models that struggle with the pixel positions, color layers, and the relations between every different neighborhood or color of the pixel. All of these tasks are made by different algorithmic structures, like decision trees, hashes, neural networks (NN), or graphs, and other techniques, like greedy algorithms, divide and conquer, dynamic algorithms, searching techniques, sorting techniques, etc.
+
+Introduction
+Computer vision reaches out by providing a high-level of understanding from images/videos, and to do that we have found the following techniques:
+
+Image classification — where you assign a reveal class label to the entire image.
+Object detection — where you identify multiple individual objects (a dog, cycle, car) in the image by creating bounding boxes around them.
+Semantic segmentation — where you define bounding pixels in each object instead of rectangle boxes because they are not accurate enough, so each pixel is assigned a class to identify it as a mask on the object, allowing you to separate it from the background. Here the same type of object (a dog, cycle, car) is in the same class.
+Instance segmentation — where you distinguish between objects from the same class that are identified in the semantic segmentation process, which, for example, means you can locate different dog breeds in the same image.
+Pose estimation — where you can locate, identify and track the relative position of some specific key points, such as the elbow or knee of the human body.
+
+These techniques have many applications in the industry, such as robotic, self-driving cars, the optical recognition of scanned documents (OCR), surgery assistants, facial recognition for monitoring consumer reaction, as well as automating customer stores or automating inventory management in the retail industry, automation testing, predictive maintenance, augmented reality, and so on.
+
+Interested in AWS technology for your business? Our experts can give you an assessment for FREE!
+
+As mentioned previously, Computer vision is a field of Artificial Intelligence and, therefore, it is permeated by another field called Machine Learning (ML), which studies the way that machines are capable of learning. Among the various techniques that ML uses are:
+
+Supervised learning — we typically provide some samples of input data here, and the system uses algorithms to extract relevant information from them (training) and learns how to identify similar new incoming data. The learning is saved into a structure called a model. This could be a mathematical model or function that applies its predefined rules, which are defined in the training phase to identify or classify the incoming data. This ML technique is used for classification or regression problems. The first one answers the question: what class or label can we assign? And these classes or labels are discrete values. The second one tries to answer the same question, but in this case, the output is a continuous class or label, i.e. a function that represents the relationship between the data that always gets a float number when it is evaluated.
+In unsupervised learning — where the input does not fit some predefined classes or labels. The algorithms used try to extract inference information that can help to classify the data in classes or labels because they have some common characteristics that need to be fitted on them. Maybe the best-known problem here is clustering, which involves finding groups in the data.
+Reinforcement learning — sometimes called rewards-based learning. Algorithms perform actions in order to get feedback from the environment and learn from the ones that got good results. This seems like game playing, where we get points for achieving some goal.
+Given the complexity of data, the current systems use hybrid techniques, such as semi-supervised learning (a combination of a small amount of labelled data and a large amount of unlabeled data), self-supervised learning (an unsupervised learning problem that is formulated as a supervised learning problem to apply supervised learning algorithms), and multi-instance learning (individual samples are unlabeled but groups of them are). There are many variants and new approaches that come out every year and the CV techniques use many of these hybrid methods.
+
+We must give a special mention to Deep learning, which is a type of ML algorithm that uses multiple layer Neural Networks (NN), especially Convolutional Neural Networks (CNN). These have become relevant nowadays in the building of successful autonomous systems, like self-driven cars. It is clear this is not the only technology behind these great systems, we also have statistical learning algorithms (inductive, deductive, transductive), multi-task, active, transfer, as well as ensemble learning algorithms and many other fields of study.
+
+AWS Machine Learning stack
+Anyone who wants to implement all these techniques, algorithms, and Amazon Web Services (AWS) has a complete tool suite you can use to experiment and build systems with all of the techniques mentioned. Therefore, we started to explore this AWS ML stack when we found there were services, frameworks, and infrastructure to run tasks about ML and other AI services.
+
+
+AI services are focused on quickly developing applications for computer vision. Rekognition, for example, can be used for predefined services, such as text detection, face detection, or pathing, among others. We as developers have not much direct interaction with the techniques or algorithms, almost all of them are set to build the application quickly. We only need to provide the data and change the values in the hyperparameters. Amazon Polly is a service that is used to convert audio to text and vice versa in several languages. As you see, there are many services in this section, so feel free to explore them as long as you wish.
+
+ML services include SageMaker, which is a set of tools that help to build, train and tune up the model to solve our problem, i.e. it provides an online IDE with all kinds of ML algorithms and ML frameworks. It optimizes and deploys tools for the generated model (Neo); automated ML (Autopilot), which is an interesting technique that automates the search process of the model’s best predictive performance. There are many pre-packaged tools in this section, so feel free to explore for as long as you wish in the AWS ML marketplace.
+
+We have special hardware in the ML infrastructure that is designed to process huge amounts of data, such as optimized CPU; EC2 instances with GPU (And Cuda toolkit preinstalled), or EC2 instances with FPGAs (Inferentia). Feel free to explore as long as you wish in this section.
+
+We have third-party frameworks available In the ML frameworks, like TensorFlow, PyTorch or Keras, or a distributed deep learning training framework, such as Horovod, and AWS frameworks, like Apache MXNet and Gluon (GluonCV, GluonNPL, GluonTS). In this post, we are going to give a brief description of MXNet and GluonCV for Computer Vision applications, and then we will use these tools to code an example.
+
+MXNet and GluonCV with Python
+MXNet (or “mix-net”) is a multi-language ML library that eases the development of ML algorithms, especially for deep neural networks. It allows you to maximize efficiency and productivity by mixing symbolic and imperative programming. GluonCV is a set of scripts that provides implementations of deep learning models in computer vision.
+
+These AWS ML frameworks are Open Source, so a standalone installation can be made on our computer and then move our work to AWS Services for production. Let’s start setting up our development environment:
+
+In this case, we are going to use a Jupyter Docker container:
+
+Jupyter is an interactive development environment for Python and other programming languages. We use it because we need it for both documenting and programming. The docker volume location eases the sharing of resources between host and container.
+
+Enter the container as the root user:
+
+Install the MXNet and GluonCV in the container. Here we need to have in mind the following considerations:
+
+Are you going to use just a CPU in your computer? If so, then install:
+
+Are you going to use a CPU plus plug a graphic card to optimize the computation? If so, then install:
+
+Before the MXNet 1.7 version, the package was known as mxnet-mkl.
+
+Are you going to use a GPU plus CUDA? If so, then install:
+
+In this case, you must have installed and configured the CUDA toolkit.
+
+We are now going to use the second option: CPU plus plugged graphic card.
+
+Install GluonCV in the container:
+
+Recheck the versions of the packages that have been installed:
+
+From now on, we are going to use a Jupyter notebook which you can find on Github repository (demo_object_detection.ipynb file). But you can also test it locally. The steps are:
+
+1.Locate the image to process from any location:
+
+
+This instruction will save the image in the local path of Jupyter installation or the directory where you are working.
+
+2. Load the image and get some information:
+
+
+The image type shows that the image is loaded as an MXNet ndarray.
+
+The image shape shows we have a data layout in HWC format, i.e. the image has a height of 576 pixels and width of 768 pixels, and it’s a colored image with three channels.
+
+3. Transform the image: We need to transform the image to send it to the network or apply the CV model to it. We need to add N as a fourth dimension to the HWC format in order to transform it to NCHW (N: batch C: channel H: height W: width).
+
+
+4. Download and load the pre-trained model: We’ll use the YOLOv3 (You Only Look Once) network, which is the most popular algorithm for object detection, with a darknet53 backbone that has been trained on Microsoft’s COCO image dataset. Our network parameters are 237 megabytes size and stored in the mxnet cache, i.e. ~/.mxnet/models/ is the path where we can find the downloaded models.
+
+
+5. Make a prediction
+
+
+a). Predicted objects
+
+
+The first detected object has a predicted class with number 16, and we see more objects with classes 1, 7, 2, 13, and 0. After this, we have many objects with a class index of -1, where -1 is a particular class index that is used to indicate there is no detected object. We have six detected objects in total, with the remaining 94 potential objects being padded with -1 values.
+
+The first object with number 16 is a ‘dog’ predicted class.
+
+b). Object probabilities
+
+
+If we use the confidence threshold of 50%, then we can say that the first three objects were detected. The -1 values mean there is no confidence in those classes (image categories).
+
+The first probability means that we have 99% confidence that the object with number 17 is a ‘dog’.
+
+c). Object boundings
+
+
+These are coordinates of the bounding boxes for each object detected. They specify the coordinates for the top-left corner and the bottom-right corner.
+
+6. Visualize the prediction
+
+
+We can see that our network has done a good job of detecting the objects. We have detected a dog, a bike and a truck. Our network missed the tree in the background, but that’s because we’re using a model that’s been pre-trained on COCO, which doesn’t have an object class for trees.
+
+If you want more details, please go to Jupyter notebook on Github (demo_object_detection.ipynb file).
+
+MXNet and GluonCV using AWS and Python
+Now we have learned how MXNet and GluonCV works, we are ready to develop the same example, but in this case on AWS SageMaker. Here, there are many possible ways to deploy the CV model to production, but we are going to use Jupyter notebooks.
+
+1.Go to the AWS SageMaker service
+
+
+2. In the left menu, select Notebook instances and click on Create notebook instance
+
+
+3. Configure the notebook instance
+
+
+The ml.t2.medium is the minimum EC2 instance for CV demonstration, and we do not need an optimized instance so the Elastic Inference option should be left at “none”.
+
+a). In the permissions option, please create a new role with the option of “Any S3 bucket” access:
+
+
+b). We leave the rest options by default.
+
+4. Finally, click on the “Create notebook instance” button.
+
+5. After some minutes, the following instance is created.
+
+
+6. As you can see, we have two options to open this notebook, with classic Jupyter or JupyterLab; in our case, we will use the classic one. In this notebook, we then create a directory:
+
+
+7. In the top right corner, select the “New” option to choose the kernel. If you know what kernel is, choose one of your preferences or please select “conda_mxnet_p36”, which means that this kernel has a Python conda tool with the MXNet ML framework over Python 3.6.
+
+
+From now on, we are going to use a Jupyter notebook, so please take a look at the code on Github repository (deploy_mxnet_sagemaker.ipynb file). In general, these are the steps to take:
+
+1.Update MxNet and GluonCV tools
+
+
+2. Import AWS SageMaker tools and create an S3 bucket:
+
+
+3. Load the pre-trained from GluonCV library, as before:
+
+
+Just to verify, it has eighty classes.
+
+4. We now make a test prediction, just to verify:
+
+
+5. Deploy the detection server
+
+a). We need to save the loaded model locally (in the same location as the notebook)
+
+
+b). Then, compress the model
+
+
+c). And load the compressed model into AWS S3 bucket
+
+
+6. Now, we need to write the detection model in the SageMaker MXNet specifications. AWS SageMaker provides the serving containers for Sklearn, TensorFlow, PyTorch, and Apache MXNet. These containers are convenient because we don’t have to write the web server code as the server is already written, i.e. it provides all the YAML specifications to create a docker image (with our project and dependencies), and then registers it into the ECR to create the container and deploy it.
+
+To do this, we need to provide some specific python functions, which are:
+
+input processing with input_fn(request_body, request_content_type, model)
+load model with model_fn(model_dir)
+prediction with predict_fn(input_object, model)
+output processing with output_fn(prediction, content_type)
+
+The entire content script is in the Github repository (deploy_mxnet_sagemaker.ipynb file).
+
+7. Next, we need to instantiate the model
+
+
+This code is like the YAML docker specification that was used to create the image.
+
+8. Deploy the model
+
+
+This code will create the image and the docker container that is to be deployed in the EC2 instance specified. This step will take approx. ten minutes.
+
+a). After the deploy model step is finished, we can go to the AWS Console and look at what it has created. Go to the SageMaker service and in the left menu, locate the “Endpoints” entry:
+
+
+The status must be “InService”, which indicates that the service is ready to use. If you click on the name of the endpoint you will get the HTTP URL to make requests to the model (cool, isn’t it?):
+
+
+But we must bear in mind that this endpoint is not public. This means we need an AWS authorization to access it, i.e. a user with Access and Secret keys to make secure REST or HTTP query protocol requests.
+
+9. Testing the server
+
+a). From inside of AWS, i.e. calls from SageMaker Notebook.
+
+i) Create a predictor
+
+
+ii) Load the image to test
+
+
+iii) Run the prediction
+
+
+iv) Just to verify, we plot the result
+
+
+In this case, we only display objects with a confidence threshold of more than 90%.
+
+b). From outside AWS, i.e. code that could be in a web application or mobile service, etc., since we have got an endpoint to use our object detection model.
+
+i) Using the Postman tool. In step number eight (8) we got an HTTP URL from SageMaker deployment, so we will now use it.
+
+(1) Load the image as the body of the request
+
+
+(2) Add the AWS authentication. To get these credentials, enable the “Access keys” on the AWS IAM service for the user
+
+
+(3) Send the request
+
+
+As you can see, we have got an object of arrays where each position has the class id (1.0), probability (0.98), and bounding coordinates (75.9, 92.6, 418,2, 308.3). This information can be conveniently used in your application, in the way you wish it to be.
+
+(4) Generate code in many languages. Postman can generate those code snippets and use them as a glimpse of our projects.
+And that’s it. We have finally got a detection model server that we can use to send an image and get a prediction of the objects in that image, but obviously, this only applies to objects in those categories of the COCO dataset.
+
+Related posts …
+
+Python in AWS Lambda Function with Layers and Deployed with AWS CDK
+Serverless architecture is a cloud computing execution model where we do not worry about specific machines, their…
+codescrum.medium.com
+
+Considerations for a production environment
+Since this post is an introduction to the AWS ML stack you can see all the user credentials exposed, so it is not useful for real applications. Perhaps a better way is to create an API Gateway and lambda function as the authorizer to secure the communication with our server and avoid any abuse of the request.
+
+As you see, in step number 9a (from inside AWS) you might use a Lambda function to create and call the predictor, and write some logic of your application but you must take into account the SageMaker Python SDK and its dependencies.
+
+GitHub repository. The example application described above has been made available in the following repository https://github.com/edycop/aws_cv_python, where you can find:
+
+demo_object_detection.ipynb file which is the code related to MXNet and GluonCV with Python section of this post
+deploy_mxnet_sagemaker.ipynb, which is the code associated with MXNet and GluonCV using AWS and the Python section of this post.
+Thank you for reading and stay tuned for our next technical post!
+
+Remember that from Codescrum we manage several technologies as AWS, if you have any doubt or comment about this topic, do not hesitate to contact us!
+

@@ -1,0 +1,22 @@
+Descriptive Statistics is used to describe the Data.
+
+Statistics is one of the most important areas of Mathematics relevant to Data Science, and Descriptive Statistics is a fundamental component of it.
+Descriptive Statistics is used to describe and summarize data by organizing, presenting, and analyzing it.
+☞ Note that we deal with Sample Statistics here as the data we work with is usually a sample from the population(A whole & complete set).
+
+Three Types of Descriptive Statistics :
+It is usually of three types, based on measures -
+
+Measure of Frequency
+Measure of Central Tendency
+Measure of Variation
+Measure of Frequency : Understanding the Data Distribution
+This measure deals with how the data is distributed. It is also understood as the quantity of times a data point occurs.Here we can check if the data is distributed uniformly, normally or is skewed. One of the most easiest ways to observe this is by visualizing our data by using charts like histograms. In the second part of the blog, I will use python seaborn package to visualize the data.
+
+Measure of Central Tendency : Finding the Centre of the Data
+In this measure, the aim is to find the centre of the data. This helps in identifying the most common value in the data set. The three measures of central tendency are Mean, Median, and Mode. It is important to understand that different measures of central tendency should be used for different data distributions. For example, if a data set is normally distributed then the mean can be used, but if a data set is skewed, then median should be used.
+
+Measure of Variation : The Spread
+Here, we deal with how varied the data is… It helps us in understanding the dispersion within the data. The most common measures of variability are Range, Variance, and Standard Deviation.Range is the simplest measure of variability and helps in understanding the difference between the highest and lowest values. Variance and Standard Deviation are measures that help in understanding how much data is spread out from the mean. These complex terms will all become clear in the next part where you will be exposed to the mathematics of it.
+
+In the 2nd Part, we will delve into the practical application of these three measures using Python. Understanding these concepts and techniques are crucial for data analysts, data scientists and business professionals alike to make informed decisions based on data. So buckle up and get ready to uncover the secrets of your data!

@@ -1,0 +1,109 @@
+What is ASP.NET?
+
+ASP.NET is an open source, server-side web application framework created by Microsoft that runs on Windows. ASP.NET allows developers to create web applications, web services, and dynamic content-driven websites.
+
+The base platform provides components that apply to all different types of apps. Additional frameworks, such as ASP.NET, extend .NET with components for building specific types of apps.
+
+What is ASP.NET Core?
+
+ASP.NET Core is a new version of ASP.NET that runs on every major computing platform, including Windows, MacOS and Linux. Like ASP.NET, it is open source, created by Microsoft and allows developers to create web applications, web services, and dynamic content-driven websites. ASP.NET Core is relatively new, but is a stable alternative to Windows-hosted ASP.NET web applications. Developers who know ASP.NET can leverage their existing knowledge of C# and can quickly pick up the framework differences introduced in ASP.NET Core.
+
+The framework is a complete rewrite that unites the previously separate ASP.NET MVC and ASP.NET Web API into a single programming model.
+
+.NET Core
+
+.NET Core is a free and open-source managed computer software framework for the Windows, Linux, and macOS operating systems. .NET Core fully supports C# and F# and partially supports Visual Basic .NET. Currently VB.NET compiles and runs on .NET Core, but the separate Visual Basic Runtime is not implemented. Microsoft announced that .NET Core 3 would include the Visual Basic Runtime.
+
+Docker
+
+Docker is a tool designed to make it easier to create, deploy, and run applications by using containers. Containers allow a developer to package up an application with all of the parts it needs, such as libraries and other dependencies, and ship it all out as one package. By doing so, thanks to the container, the developer can rest assured that the application will run on any other Linux machine regardless of any customized settings that machine might have that could differ from the machine used for writing and testing the code.
+
+is used to run software packages called “containers”. Containers are isolated from each other and bundle their own application, tools, libraries and configuration files; they can communicate with each other through well-defined channels. All containers are run by a single operating-system kernel and are thus more lightweight than virtual machines. Containers are created from “images” that specify their precise contents. Images are often created by combining and modifying standard images downloaded from public repositories
+
+First Steps with Docker
+
+To anyone who are starting in the Docker world, i recommend their own tutorial, installation and first steps are all there. It is clear and simple, there is no much that i could contribute to make it easier.
+
+Creating the .NET Core Web application
+
+The first thing to do is install the .NET SDK .
+
+Then, we can go to the terminal to make the new project:
+
+
+Once did the Directories that will contain our project, we use the .NET CLI to create it, you should get an output like this:
+
+
+Now, we go to the text editor ( I will use VS Code ) and we will see how net core create all the file needed in a ASP.NET App:
+
+
+Now, let’s see the home view, go to Views > Home > Index.cshtml:
+
+
+The above image is a razor view, it’s an html that can use C# code in it, let’s check it:
+
+
+I’ve added 2 lines to this view. The first one is a h1 html tag, like you’ve ever seen.
+
+The second one, is an h2 html tag, but with some C# code inside, the @ symbol indicates to compiler that we are using C#.
+
+Now, in the terminal, we need to restore the dependencies and tools of a project, we can do this with dotnet restore
+
+
+Next step is to publish our app: dotnet publish -o ./publish
+This command packs the application and its dependencies into a new folder named publish. Now, it is ready to run anywhere (or almost anywhere).
+
+
+Go to the publish folder in the terminal and run dir command, you should see something like this:
+
+
+Then, run the application dotnet src.dll (The .dll file will take the name from the folder that contains it, in this case it is src), your Terminal should show this:
+
+
+Now, as we see in the Terminal, our app is now running and listening port 5000, so open your browser and go to http://localhost:5000
+
+
+In the image we can see the two lines that we added and the template provided by the framework.
+
+Now, let’s dockerize it!
+
+Dockerizing the App
+
+Once we have created the application, we can make a snapshot of it and put it inside a container. We need to create a Dockerfile with the instructions needed to run our application anywhere.
+
+As i said earlier in this post, i could not give to you an easier explanation than the official one, so i recommend to do this tutorial before keep on dockerizing our .NET Core application.
+
+Now, we must do a new file in our root directory (In this case, named AspNetCore-Docker)
+
+The first line to add is FROM microsoft/aspnetcore:2.0
+
+(Make sure that the version added in this sentence is the same that the one in the application is built)
+
+This will download the aspnetcore image from the hub repository, so it already contains the .NET Core and you don’t need to put it inside the image
+
+Second line WORKDIR /app sets our working directory in the app folder, inside the container we are building.
+
+Then, we need to copy the contents of the publish folder into the app folder on the image COPY ./src/publish .
+
+The last line that we are going type in the Dockerfile is the ENTRYPOINT statement ENTRYPOINT [“dotnet”, “src.dll”] Basically, this line tells to docker it should run the dotnet command with src.dll as parameter.
+
+Your Dockerfile should looks like this
+
+
+Now that our Dockerfile is ready, we can build out image! Let’s get on it!
+
+So, we need to run docker build -t myimage in our root folder (Where our Dockerfile is)
+
+this will build the image with the friendly name “myimage”
+
+You should see something like this:
+
+
+Ready! Our container is created, now let’s run it!
+
+We need to execute docker run -p 5001:80 myimage
+
+Tells docker “run the image myimage and publish the container’s port to host on port 5000.
+
+
+Then, go to localhost, or your url host, and you will see your application running in the container!

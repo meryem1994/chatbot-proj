@@ -1,0 +1,105 @@
+The Artificial Intelligence concept has been fervently widespread in the last few years, becoming one of the most popular technological fields nowadays. This technology improved significantly how we solve tasks, using them in the most diverse areas of application, from cybersecurity to medical information processing.
+
+Deep Learning is a field of AI, based on neural networks and developed to supply the necessity of working with more complex and non-linear models, since real world problems are in this format. In this sense, we can see the evolution of so many technologies as natural language processing, for example Google translates can recognize what’s being told; and the image recognition, that observes patterns inside images to understand and fit them in some application, as cell phone unlocking or even when we tag someone in social media.
+
+In summary, this report outlines the concepts around Deep Learning, its evolution through Neural Networks and its architectures.
+
+Introduction
+Artificial Intelligence is a mechanism that has been evolving all aspects of humanity, making traditional work easier and with better quality. This artifice has been evolving over the years, what leads us to two fields: Machine Learning, an area that, from a data set, we can train an algorithm to perform tasks such as classification or regression; and Deep Learning, a much deeper field, based on neural networks, to which the machine can develop knowledge, from patterns that it itself recognizes.
+
+The learning process based on Deep Learning uses hidden layers, right after the data entry layers, where we do not have full understanding of the information stored in it, once they come and go within the layers until they reach the final product, or final products, of the network. This technology exists in more complex processes, which do not have linear resolution, because each layer will be responsible for a step in the abstraction process, important for the complete understanding of the general objective of the problem. This means that with each hidden layer, we have a deeper step of thoroughness to determine the patterns within the data. For example, when we do an image recognition algorithm to see the difference between cats and dogs, the machine needs to abstract the images in such a way that it recognizes what the central object of the image is and what the background is, to then observe the colors and textures of the edges to see the patterns of what makes a dog be a dog and a cat be a cat.
+
+In this report, I will delineate the concepts about the importance of neural networks for the construction of a deep learning algorithm, showing how the studies emerged through it with its first model: Perceptron, and its evolution, the Multilayer Perceptron.
+
+The human brain
+
+How humans evolved bigger brains | eLife Science Digests | eLife (elifesciences.org)
+The human brain is one of the things that most intrigues humanity. It is able to process an immense amount of information, which makes it extremely efficient to recognize faces and learn from past moments. This intrigues researchers, after all we are the only ones blessed with such technology embedded in our bodies, except for some animals, such as dolphins.
+
+His training takes place from the age of two and over the course of a lifetime it will be developed. This is fascinating! However, even with so much technology today, scientists do not understand faithfully the riddles of the functioning of the human brain, which generates many questions about it to this day.
+
+
+How humans evolved bigger brains | eLife Science Digests | eLife (elifesciences.org)
+The most important unit is neurons, through which information is traversed and processed. These neurons can respond to stimuli with changes in the electrical potential difference in the cell membrane. So, each impulse that does transmit information from one neuron to another is called a synapse, traversed through the dendrites. This was the inspiration for Deep Learning concepts.
+
+Neural Networks
+History
+This learning mechanism through previous experiences has caught the attention of scholars, which has made them question if it would not be possible to bring this application to real-world problems artificially; this would be a way to solve complex problems in an excellent way. Then, in 1943, neurophysiologist Warren McCullonch and mathematician Walter Pitts, in their dictated article “A Logical Calculus of the Ideas Imminent in Nervous Activity”, created the first mathematical model of a neural network. They were inspired by Alan Turing’s ideas — With his article “On Computable Numbers”, released in 1936, explaining how he developed the “Turing Machine” during World War II — and described the functionalities of the human brain in abstract terms, showing that simple elements connected in a neural network could bring a huge computational power capacity. Later, his ideas were applied by John von Neumann and Norbert Wiener, among others.
+
+In 1956, the Dartmouth Summer Research Project took research in Artificial Intelligence to another level, stimulating research in this area more vigorously. It was then that Frank Rosenblatt, inspired by the work of McCulloch and Pitts, developed the first neural network model between the 1950s and 1960s: The Perceptron, the simplest model, but primordial for the evolution of the study of artificial neural networks.
+
+Perceptron
+The Perceptron mathematical model is the first step to understand the functioning of neural networks, since its calculation is developed in a more simplified way. To extract a binary output (0 or 1) from a Perceptron, we multiply the series of inputs by their weights and, soon after, a weighted sum of this calculation.
+
+
+Capítulo 6 — O Perceptron — Parte 1 — Deep Learning Book
+In the previous image, we have a dataset with five attributes [X1, x2, X3, X4, X5] and a set of weights [w1, w2, W3, w4, W5] to compute at a binary output [y] that will be either 0 or 1.
+
+This weighting mechanism was developed by Rosenblatt as a simple rule to reach at the desired output, determined by this weighted sum, which must be either less than or greater than some threshold value. Like weights, these thresholds are real numbers that serve as a parameter for our neuron.
+
+
+Capítulo 6 — O Perceptron — Parte 1 — Deep Learning Book
+Now let’s take an example. Let’s say you would like to see a movie at the cinema, we can define that weights are the conditions for which they make you go or not. They will be balanced with the intensity of will you want to see this movie, being w1 = 1 if you will have fellowship, w2 = 3 if you will have a ride or a good transport, W3 = 2 if the ticket price is relatively expensive. So if you really want to see this movie, there is no company and means of transport, but you do not accept that tickets are super expensive, for example, you will not go to the cinema. If you determined that your Threshold for this Perceptron is 5, with the calculation done, we got an unwanted output, producing 1 whenever the ticket is expensive and 0 when it is not. The other weights no longer make a difference, because you have determined a very high priority in the ticket price.
+
+What we understand through this example is that we can vary the inputs and limits to arrive at different decision-making. If we had chosen a smaller Threshold, 3, for example, the Perceptron would understand that the price and the transport are two good situations to go to the cinema.
+
+Of course, Perceptron has no ability to make decisions like a human brain, but it was a good start. Over time, we evolved our studies in neural networks to reach the Multilayer Perceptron, an evolution that accepts nonlinear problems unable to be solved by conventional Perceptron.
+
+Multilayer Perceptron
+To solve the Perceptron linearity limitation, Multilayer Perceptron was created, which has the same concepts of a conventional Perceptron, but more than one layer, called Hidden Layers. These layers are fed by the result of their previous, so they are called hidden, since we do not know the results of this learning until the end of the network, at its output.
+
+
+Introduction to how an Multilayer Perceptron works but without complicated math | by SangGyu An | CodeX | Medium
+Unlike Perceptron with its thresholds to calculate the data, in this type of architecture we have an activation function. The activation functions are present in these hidden layers to make the calculation from the inputs and weights of this neural network. There are several types of activation functions, the most famous being the ReLu and Sigmoid.
+
+
+Introduction to how an Multilayer Perceptron works but without complicated math | by SangGyu An | CodeX | Medium
+You may have wondered how the choice of the most suitable weights is made for such a complex network. Unlike a Perceptron that, because it is so simplified, we can make this adjustment even manually, in a neural network like Multilayer Perceptron, this type of calculation is done by a device called Backpropagation. This mechanism aims to make weight adjustments in such a way that the cost function is minimized, which, in turn, is responsible for optimizing our network. Each iteration in this adjustment, within the chosen activation function, has a derivative, determined by Gradient Descent, typically used in Multilayer Perceptron.
+
+
+What are gradient descent and stochastic gradient descent? (sebastianraschka.com)
+Sums are routed through every layer, and for each iteration, the mean square error gradient is calculated for all inputs and outputs. Then, to propagate the lap, the weights present in the first hidden layer will be updated with the gradient value. So this is how weights are traversed across the entire neural network from its inception.
+
+This process will be done until the gradient converges, meaning that, compared to the old iteration, it has not changed more than the pre-established limit.
+
+Neural Networks Types
+We have seen so far how the idea of neural networks has emerged, the most primordial model Perceptron and its more complex derivative Multilayer Perceptron. From here, we can understand why to evolve these models more and more, through the need to adapt real-world problems more efficiently and fit into problems that couldn’t be solved linearly, such as image recognition, speech recognition or machine translation, for example. That’s why these neural architectures were made: to fit in each specific problem, having structures, particularly appropriated to each of them.
+
+Now, let’s take a look at some of these structures.
+
+
+The Neural Network Zoo — The Asimov Institute
+It was from this need that the most diverse neural network architectures emerged and, in this report, I will give a brief introduction about the main ones, with their specialties, to then enter the most known for image recognition.
+
+Feedforward neural networks (FF or FFNN) and Deep feedforward neural networks (DFF)
+
+Feedforward neural network (FF) architecture
+
+Deep feedforward neural network (DFF) architecture
+The Feedforward neural network architecture is the most important, and primordial, of all of them. The concept around FF is that here we have the input layer, the hidden layer and the output layer, like we’ve seen before. The main point here is that the information moves in only one direction — forward — from the input layer, through the hidden one, to the output.
+When we talk about Deep feedforward neural networks (DFF), we see similarities, because more than one hidden layer, in this same concept, is considered a DFF. Therefore, the DFF is an evolution from FF, considered a Deep network, and that’s the major difference between these two architectures.
+
+Recurrent neural networks (RNN)
+
+Recurrent neural network (RNN) architecture
+The layers hidden in a recurrent neural network have as main characteristic the receipt of their mathematical operations resulting from the previous temporal period. This triggers the temporal need for input data, therefore widely used by weather forecasts focusing on climatic history linked to past events.
+
+Denoising autoencoders (DAE)
+
+Denoising autoencoders (DAE) architecture
+This type of neural network will accept noise in the original input data, since it is a network with a broader perspective on a smaller scale. Thus, a DAE-type network is characterized by increasing the resolution of old videos and cleaning up those noises.
+
+Autoencoders (AE)
+
+Autoencoders (AE) architecture
+Autoencoders are designed to receive inputs in a smaller dimensional space. Thus, its hidden layers must be with a smaller amount of neurons than the input data, and its output is a copy of the information present in the input units. With this, these autoencoders, present in the hidden layers, must learn to represent the original information in a smaller space, but without losing the quality of the original data.
+
+Thus, this type of architecture is very present to compress data for later storage and/or transmission, and also to reduce the dimensions of the data as an aid so that a next neural network can be used in some more specific work.
+
+Variational autoencoders (VAE)
+
+Variational autoencoders (VAE) architecture
+This type of architecture also has the autoencoders in their hidden layers, but its function is to make these data be used as probabilistic distributions. They also have this definition of using the original input data, representing the nature of these variables in this particular medium. Therefore, this network architecture is widely used in inference training and all this work that involves the probabilistic environment.
+
+Conclusion
+We visualized the entire history of neural networks, passing through the human brain, its primordial model Perceptron, developed by McCulloch and Pitts, and how its evolution led to the Deep Learning we know today. We also understood the evolution of neural network architectures and how they have evolved to become important for every problem we want to solve, having some for optimizing old videos, probability, weather forecasting and even sound recognition.

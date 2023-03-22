@@ -1,0 +1,83 @@
+Another day, Another Pipeline.
+Greetings my fellow readers, it’s your friendly neighbourhood Data Practitioner here, bringing you yet another Data Pipeline to satisfy all your engineering needs. Let’s skip the small talk on how important Data is nowadays since I’ve already mentioned it multiple times in all my previous articles. Bottom line, if you’re not using data, you’re missing out. Now, if there’s one thing everyone hates besides a messy desk, it would be a messy data warehouse.
+
+It’s pointless to have a nice clean desk, because it means you’re not doing anything. — Michio Kaku
+
+Please do not apply this notion towards a data warehouse. It is actually the opposite of what the quote has to say.
+
+It’s pointless to have an untidy data warehouse, because it means you’re not able to do anything. — Your’s truly, you can thank me later.
+
+Hence, Data Engineers are critical when it comes to keeping the data warehouse functional for the Scientists and Analysts by organising the architecture of the warehouse. Clean Pipelines have to be built to maintain proper data ingestion from various sources, whether it’s from the organisation itself or from external sources. If you’re a data engineer yourself, you’re in for a treat today. Even if you’re not, listen up and appreciate what engineers do. After all, they’re the ones who provide you clean and readable data to be fed into your complex models.
+
+In my previous article, I’ve talked about how to build a Gmail Data Pipeline. That is assuming if you’re getting regular data from an external source through your gmail inbox. However, what if for some reason, your client refuses to send you an email every week with the data attached. Instead, your client prefers to share the data with you regularly through a mutual
+Google Drive folder. It’s as easy as drag and dropping the file into his/her browser. Within the minute, the data would be ingested into your data warehouse and meaningful insights/reports can be generated.
+Isn’t that cool? No? Just me geeking out?
+That’s funny cause I used to laugh at the nerds about their work. Guess we’re not that different after all.
+
+
+The question that I always get is — why should I care?
+Well, even if you’re not getting the problem now, who’s to say that you’re not going to in the future? Additionally, you can propose a solution like this to your client if the situation arises. It may or may not increase your sense of professionalism. Also, it increases your cool points and we data practitioners can’t get enough of that.
+
+Considering the fact that Google has pretty much dominated the online storage market by integrating pretty much a world of technologies with it like Google Docs, Google Sheets, Google Photos, Google Calendar, Google Everything, it is also rated as one of the top cloud storage services by many review sites. Here’s one example.
+
+Come on, you have to admit it. You use Google Drive yourself don’t you.
+
+
+But don’t take my word for it. Here’s the Google Trends stats to back it up.
+
+
+There’s also a bunch of support code in Github related to Google Drive. We’re looking at about 6k repositories and 8million worth of codes. So don’t worry developers, we got your back.
+
+
+Not to mention that it integrates smoothly with Google Bigquery which is a plus if you’re already using that as your data warehouse. Google Drive is stupid proof, user friendly and used by almost everyone. Soon, you’ll be able to use this cloud service as one of your sources to ingest data into your data warehouse in 3 simple steps.
+
+Google Drive Data Pipeline
+Automatically extracting, transforming and loading data from your Google Drive folder into your preferred data warehouse, up to a minute interval
+An automation system that better organises your Google Drive files into your db. Keep only what you need and scrap the rest.
+Stupid Proof. Drag and drop. Stop downloading your attachments and uploading it into your data warehouse manually.
+I will be using Google App Script to execute this pipeline. The downside to this is that Google App Script cannot compare to any real Work Management Systems like Apache Airflow. Hence, you can’t really monitor your pipelines. However, Google App Script sends an email to your Gmail account upon failure by default. The Google App Script UI also provides a simple summary of your Script to monitor errors.
+
+
+Hence, I would recommend using this solution for a simple Pipeline with minimal complexities. There aren’t any steps for writing logs or sending emails here. It’s just grabbing the data, performing some transformation and loading it into your data warehouse. Simple and quick.
+
+I am also using Google Bigquery as my data warehouse here in my company. The upside here is that Google App Script is able to connect to Google Bigquery with 2–3 lines of code. You may choose to use any WMS and data warehouse you prefer, the Google Drive API should be callable regardless.
+
+Step 1. Set up your Google Drive
+The first step for the pipeline is to set up a Google Drive Folder from which we extract data. It is possible to extract all the files in your Google Drive. However, we only want the csv files that are related to that pipeline itself. Hence, we have to create a Google Drive Folder for each pipeline so that the data can be differentiated from the others, this is to avoid any inconsistencies in the future. Pretty straight forward.
+
+Head into your Google Drive. Right click anywhere in the white space and select New Folder. Name that folder to whatever you want to name your pipeline and you’re set. In that folder itself, create a folder named ‘Processed’ to store all the processed data. You should have a folder dedicated for your pipeline now with a folder inside named ‘Processed’.
+
+
+Step 2. Creating the Pipeline in Google App Script
+Put on your learning cap because we’re going to dive into a little bit of code. Did I mention Google App Script only uses Javascript as their language? If that turns you off, get over it because you won’t be coding in Python forever.
+
+
+Head into your Google App Script homepage.
+Select New Script and begin coding.
+Before typing any code, we have to enable a few APIs to allow Google App Script to connect to Google Drive and Google BQ. On the menu bar, Select:
+
+Resources -> Advance Google Services -> Turn On Bigquery and Drive APIs
+
+In this block of code we are defining our GCP project, Google BQ dataset, table and location and our Google Drive Folder as well. The Google Drive Folder’s ID can be found here :
+In this block, we define a function to be run by Google App Script on regular intervals to scan for files in the folder we specified. If there are existing files, we will pass it into the function loadCSVfromdrive. However, if the file starts with the name ‘processed_’ or ‘loaded_’ we will ignore said file. We will name all the csv files we have processed/ingested into BQ with this prefix to differentiate them against data that are not yet loaded. We will place them into the ‘Processed’ folder as well.
+In this block of code, we are defining the contents of the CSV files we are about to load into Google BQ. This is only applicable for data which requires some cleaning/transformation before ingestion into your data warehouse. If you plan to load the raw data from your Google Drive folder, you may ignore the majority of this block of code. In contrast to Pandas with Python, Javascript has to transform data row by row, which is why we are using a for loop to transform all our data for each row and appending said row to our csvcontent. If you know a way to operate as in Pandas in Javascript, please do slide in my DMs as I’m fairly fresh in JS. We also create the file after transformation as ‘processed_filename’ in our processed folder so that it gets differentiated from our raw data.
+We are setting up our load job here. If you are receiving cumulative data in your Google Drive to overwrite the data in your data warehouse, you may change the writeDisposition parameter to ‘WRITE_TRUNCATE’. After successfully loading the data, we rename the file to ‘loaded_filename’ so that it doesn’t get loaded in the future. You may also return to this folder to check on your raw data if any problem arises. Here’s the full code for the Pipeline.
+Step 3. Setting up Trigger in Google App Script
+Congratulations, you have reached the final step in this data pipeline.
+Don’t worry, there won’t be any more code from here onwards.
+All we have to do now is to set up the trigger for our Pipeline to run.
+Head into your Google App Script homepage.
+
+My Projects -> Hover on your project -> Triggers
+
+As you can see, it was fast, easy and stupid proof. Like I promised.
+Remember to select the scan_files function as the function to be run. You can pick the time interval for the function to be ran. In Google App Script, the shortest time interval available currently is by the minute.
+That is really short, even for you. That’s what she said.
+
+Congratulations
+You’ve successfully built your personal Google Drive Data Pipeline.
+Did the data team require some data from Google Drive to be fed into their models? You can do that every minute now!
+Be proud and give yourself a pat on the back.
+
+I hope you’ve learned something new today. If I’ve sparked your interest in data, then I had done us all a favour and recruited a new talent into the data industry. It’s not like we are already saturated.
+To end, I will drop a quote once again.

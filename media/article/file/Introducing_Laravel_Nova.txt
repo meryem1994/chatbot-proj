@@ -1,0 +1,97 @@
+I’m thrilled to announce the newest member of the Laravel ecosystem: Laravel Nova. Nova is a beautifully designed administration panel for Laravel. We’ve sweat the small details and carefully crafted Nova to not only look great, but to be a joy to work with.
+
+
+In this post, I’ll go over the key features of Nova; however, be sure to watch the recording of my Laracon talk for an in-depth demo of Nova’s features.
+
+
+Preface
+Nova is installed via Composer as a Laravel package. It doesn’t interfere with your existing application in any way. In fact, you can install Nova into existing Laravel 5.6 applications that you have already built.
+
+On the front-end, Nova is powered by Vue.js, Vue Router, and Tailwind.css. This makes for a powerful, flexible combination, especially in regards to customization — it’s a breeze to build custom tools, cards, and fields.
+
+Each Eloquent model in your application has a corresponding Nova “resource” class which defines its fields, actions, filters, lenses, and cards. Nova is configured entirely using simple PHP classes. No configuration is stored in the database.
+
+Resource Management
+Of course, a primary feature of Nova is the ability to create, read, update, and delete resources in your database. We have worked hard to cover all of the edge-cases in this regard. Need to update the data on the “intermediate / pivot” table of a polymorphic many-to-many relationship? We have you covered. Nova has wonderful support for all of the various Eloquent relationship types.
+
+Resource detail views give you instant access to a resource’s information, as well as its related resources — all with lightning fast search, pagination, sorting, filters, and more.
+
+
+Nova also ships with a variety of great field types. Of course, the basics such as text, boolean, number, file uploads, and dates are covered. However, additional fields like Markdown, Trix, Code, and Place really make it a joy to work with Nova.
+
+Search
+By default, Nova uses SQL queries to search your resources; however, if your application leverages Laravel Scout, Nova seamlessly and intelligently prefers using Scout searches, giving you the full-power of a true search engine such as Algolia.
+
+Of course, search is available on resource indexes and relationship indexes, but it’s also available when attaching resources together. For example, when creating a “Post” resource that belongs to a “User”, Nova provides a beautiful search input for quickly finding users:
+
+
+Nova also includes a beautiful global search component which can search across all of your resource types at warp speed:
+
+
+Actions
+Actions are simple PHP classes that perform a given task on a resource or batch of resources. Each action contains a “handle” method that receives any incoming action fields and a Collection of models.
+
+Have an action that takes a while to run? No problem. Nova can queue it using Laravel’s built-in queueing service:
+
+
+Once an action has been defined and attached to a resource, it’s a breeze to trigger it via the UI:
+
+
+By marking an Eloquent model with Nova’s “Actionable” trait, Nova provides an “audit trail” of actions that have been performed against a given resource from within Nova, including who triggered them:
+
+
+All dates within the Nova UI are automatically, intelligently localized to the user’s timezone. In Europe? No sweat… you’ll see 24 hour time, localized to your timezone.
+
+Filters
+Filters allow you to define PHP classes that scope your resource index queries, and may be enabled / disabled via the UI. For example, a filter may instruct the query to only display records that have a column matching a given value:
+
+
+Once the filter has been defined and attached to the resource, it may be enabled via that resource’s index. Filters may be applied on the resource’s primary index as well as anytime that resource is displayed as a relationship:
+
+
+Lenses
+Lenses allow you to build an entirely different approach to viewing a given resource. For example, a “User” resource might have a “Most Valuable Users” lens that displays the users and their total lifetime purchases, sorted by the users that have generated the most revenue. Within a lens class, you have full control over the construction of the underlying Eloquent query:
+
+
+Each lens may define it’s own set of fields which are entirely separate from the resource itself:
+
+
+Once the lens has been defined and attached to a resource, it can be accessed via that resource’s index:
+
+
+
+Metrics
+Nova provides three types of charts out of the box: value, trend, and partition. You really won’t believe how easy it is to generate these metrics. What previously would have been an all-day job can now be done in seconds.
+
+For example, you may easily view the new users in our application for the current quarter compared to last quarter with a single line of code:
+
+
+But, you’re not limited to simple counting. You could just as easily view the average, sum, min, or max of a given attribute over time. After we’ve registered this metric with a resource, it will be displayed on that resource’s primary index:
+
+
+It’s just as easy to create beautiful “trend” metrics. All it takes is a single line of code:
+
+
+Of course, you aren’t forced to display trends by day. You may easily generate trends that plot data by the minute, hour, day, week, or month.
+
+Once our trend metric is defined, it may be attached to a resource and will be displayed on that resource’s primary index:
+
+
+Authorization
+Nova beautifully integrates with Laravel’s policy authorization system. We leverage the features of Laravel you are already familiar with to create an exquisite development experience. You have granular control over who can view, create, update, or delete resources. If the underlying Eloquent model has a corresponding policy, Nova will automatically use it to authorize resource actions.
+
+In addition, you have full control over who can attach resources to other resources via relationships. For example, you may limit the roles that may be attached to a given user:
+
+
+Customization
+Almost all of Nova’s UI is built entirely in Vue using single-file Vue components. Because of this, you have ultimate flexibility when writing your own custom tools, cards, and fields for Nova. We provide great CLI helpers to generate the scaffolding for all of these types of add-ons:
+
+
+Each tool contains a “Tool.vue” component. From there, the sky is the limit. You can make Axios calls to your back-end Laravel application, while using Tailwind.css to fine-tune the appearance of your tool. It’s hard to state how much freedom you have. Literally anything you can build with Vue components and a Laravel back-end can be implemented in Nova. Nova simply stays out of your way. It’s really great:
+
+
+Custom cards (the small panels you have previously seen in the metrics examples) and custom fields are implemented similarly. Custom cards contain a Card.vue component which you have total freedom to customize.
+
+Custom fields contain three Vue components: one for index screens, one for detail screens, and one for forms. Again, you have total freedom when defining how tools appear and behave within Nova.
+
+By leveraging the power of Vue.js and Laravel, we’ve given you a beautiful canvas to create on. I can’t wait to see what kinds of custom tools the community creates and shares.

@@ -1,0 +1,46 @@
+Building the future of computing, using Large Language Models at the core.
+
+Today we’re excited to announce Fixie.ai, a new platform for building, hosting, and scaling Smart Agents that extend the power of Large Language Models with connections to your own data sources, systems, and tools. Think of Fixie like a way of building a ChatGPT-like experience that can be infinitely extended with new capabilities and interfaces to any software system.
+
+
+Fixie connects Large Language Models to external APIs, data sources, and tools.
+We’ve been working on Fixie for the last few months, and are ready to take the wraps off and show the world what we’ve been up to. We’ll be launching our early access preview in the coming weeks, and you can join the waitlist today at https://fixie.ai.
+
+Large Language Models are the new computational engine
+It’s only been a few months since ChatGPT popularized the use of Large Language Models (LLMs) and demonstrated to the world what they are capable of. Apart from being really good at generating song lyrics, writing children’s stories, and writing essays, ChatGPT and similar AI models have a latent superpower: the ability to learn new skills through example — a technique called few-shot learning in the research literature. With few-shot learning, you can provide the LLM a small number of examples of how to perform a new task — say, sending an email, or searching the web — and the model can incorporate that knowledge to do something it could not do before.
+
+This ability of LLMs to extend their skillset would surprise anyone who is used to thinking of these models as “only” doing text completion. It turns out that something deep in the language-processing logic of the model is the ability to reason about and manipulate a stateful symbolic system.
+
+As a simple example, let’s imagine we wanted to get a language model like GPT-3 to use an external API to look up stock prices. We might start with a few-shot example like the following:
+
+
+Here, we’re teaching the model to use the expression “Ask Func[quote]” when it wants to call out to the stock quote API, and emulating the response that the API would return — in this case, the price of the stock. We then teach the model how to incorporate that answer into its response.
+
+With this one example, we can now ask the model to do something new, like this:
+
+
+What’s been missing is the ability for an LLM to actually connect to the outside world. In the example above, this would mean actually invoking an external API to get the current stock price. LLMs internally only know about the data they were trained on — in the case of GPT3, based on a snapshot of the web from 2021. If we can hook the LLM up to external systems — databases, APIs, software applications — we could leverage this latent computational ability to construct entirely new kinds of software systems.
+
+What’s amazing here is that once you extend a Large Language Model with just this one new “skill”, the LLM is able to do things like generate an accurate report on your entire stock portfolio:
+This is where Fixie comes in.
+
+The Fixie.ai Platform
+Fixie is a cloud-hosted Platform-as-a-Service that enables anyone to build and integrate smart agents that leverage the power of LLMs to solve problems based on natural language. In Fixie, each Agent is a standalone service that combines an LLM with a little bit of code — which can be implemented in any programming language — that understands how to connect to an external system, like a database or an API. Building an Agent is as easy as writing English instructions, “teaching” the Agent how to perform a certain task through examples. Agents can be built by anyone and hosted directly on Fixie (or, you can host your own), and we provide tools to make it incredibly easy to build your own Agents and add them to the platform.
+
+To give a feel for how easy it is to build smart agents with Fixie, here’s the complete code for an Agent that handles natural-language queries about stock prices:
+
+
+The Agent consists of a base prompt, a set of few shot examples, and the quote function. The base prompt sets the stage for prompting the underlying Large Language Model how to interact with the outside world. The few shots are a set of example queries and responses, teaching the LLM “by example” how to process an incoming query, ask for help from the quote function, and how to incorporate the return value into its reply. You can write as many few shots as you want. And, finally, the quote function is a simple Python function that, in this case, invokes the yfinance library to fetch the requested stock quote and return the current price and daily price change. That’s the missing piece from the few-shot example we gave earlier.
+
+Fixie takes the code shown above and wraps it into a fully-hosted service, deployed in the cloud, that accepts natural language queries, processes them through an LLM, and uses the embedded code to assist the LLM in generating a reply. Fixie handles all of the details of interfacing to the LLM, routing queries, managing servers, and so forth. You can also build your own Agents that are hosted on your own infrastructure, using the tools and examples in the open source Fixie SDK. We have built dozens of Agents into the Fixie Platform, and make it easy for developers to contribute their own Agents that expand the capabilities of the platform over time.
+
+The key thing to notice here is that Agents are largely (and, sometimes, exclusively!) built using natural language. The code snippets in an Agent can be written in any programming language, and in many cases an Agent can be constructed by composing other Agents, eliminating the need for any additional code. Fixie provides a suite of built-in Agent capabilities, such as stateful storage, managing user identities, and indexing over large knowledge bases.
+
+Fixie Agents can generate and process text, images, binary data, and other media formats. Using a combination of agents we can generate images, mask out backgrounds, adjust lighting, and compose them to produce masterpieces like this:
+
+
+Join the waitlist
+We’re launching the early-access preview of Fixie in the coming weeks, but you can join the waitlist now at https://fixie.ai to be among the first to get access to the platform. We’ll be releasing the Fixie SDK and all of the tools you need to build applications and agents as open source, and the platform itself will be free for individual developers and small teams. We can’t wait to see what you build!
+
+The team behind Fixie.ai
+Fixie was founded by engineers, product leaders, and AI experts from Google and Apple. We’ve got a strong background building large-scale systems and AI-powered products to billions of users. Matt, our CEO, was a professor of Computer Science at Harvard, and spent time at Google, Xnor.ai, Apple, and OctoML. Zach, our CPO, is a former product director at Shopify, and was previously a product lead at Google on the Chrome and Android teams. Justin, our CTO, was the head of the Stadia, Duo, and Hangouts Video teams at Google, and was one of the inventors of WebRTC. Hessam, our Chief AI Officer, was an AI/ML leader at Apple and was the first employee at Xnor.ai.

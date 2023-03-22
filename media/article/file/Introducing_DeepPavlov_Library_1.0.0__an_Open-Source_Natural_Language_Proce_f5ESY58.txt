@@ -1,0 +1,55 @@
+DeepPavlov Library is a conversational open-source library for Natural Language Processing (NLP) and Multiskill AI Assistant development. This article describes our first major release 1.0.0. This release is based on PyTorch and leverages Transformer and Datasets packages from HuggingFace to train various transformer-based models on hundreds of datasets. This article describes how to use our new Transformer-based models, including text classification, sequence classification, and question answering.
+
+Install DeepPavlov Library
+DeepPavlov Library is an open-source NLP framework. It contains all essential state-of-the-art NLP models that can be used alone or as a part of DeepPavlov Dream — an open-source Multi-Skill AI Assistant Platform. The library contains various text classification models for topic classification, insult detection, and intent recognition. DeepPavlov’s sequence classification models allow you to recognize named entities and classify part-of-speech tags. Our question-answering models can provide you with an answer based on a given textual context, integrated knowledge base, or Wikipedia.
+
+But first, you should install the DeepPavlov Library by running it.
+
+pip install deeppavlov==1.0.1
+The DeepPavlov Library supports Python 3.6 — 3.9
+
+How to use DeepPavlov Library
+The DeepPavlov models are organized in separate configuration files under the configuration folder. A config file consists of five main sections: dataset_reader, dataset_iterator, chainer, train, and metadata. The dataset_reader defines the dataset’s location and format. After loading, the data is split between the train, validation, and test sets according to the dataset_iterator settings.
+
+The chainer section of the configuration files consists of three subsections:
+
+the in and out sections define input and output to the chainer,
+the pipe section defines a pipeline of the required components to interact with the models,
+the metadata section describes the model requirements along with the model variables.
+The transformer-based models consist of at least two components: the Preprocessor that encodes the input, and the Classifier itself.
+Here vocab_file contains the variable that is defined in the metadata section of the configuration file. The variable TRANSFORMER defines the name of the transformer-based model from the Hugging face models repository. For example, bert-base-uncased points out to the original BERT model that was introduced in the paper. Besides the original BERT model, you can use the distilBert if you have limited computational resources. Moreover, you can use any of Bart, Albert models.
+Here:
+
+bert_features is the input to the component that represents encoded by the Preprocessor the input strings,
+the pretrained_bert parameter is a transformer-based architecture, the same that was defined in the Preprocessor,
+the save_path and load_path parameters define where to save the model and where to load them from in case of training and inference correspondingly,
+the learning_rate_drop_patience parameter defines how many validations turns with no improvements to wait until the training is done,
+the learning_rate_drop_div parameter defines the divider of the learning rate when the learning_rate_drop_patience is reached.
+You can interact with the models defined in the configuration files via the command-line interface (CLI).
+You can always use different version of transformer by specifying TRANSFORMER variables in the metadata section, for example, albert-base-v2, distilbert-base-uncased, bert-base-uncased. Then you can retrain the model and check the results
+
+DeepPavlov Library for Named Entity Recognition
+DeepPavlov Library contains a bunch of sequence classification models that can be used for sequence classification tasks such as Named Entity Recognition (NER) and Part-of-Speech (POS) tagging.
+
+For example, we want to extract persons’ and organizations’ names from the text. Then for the input text:
+
+
+NER output from the DeepPavlov demo page
+The annotation for this task is usually done through the BIO encoding scheme, in which the B-* tag is assigned to the first token of the entity, the I-* tag marks the following tokens of the entity and the O tag is used for non-entity tokens. Note that the set of entity types may vary depending on the dataset or a specific task.
+
+Configuration file ner_ontonotes_bert defines a model that is fine-tuned on NER Ontonotes datasets that supports 18 entities including the standard ones: PERSON, ORGANIZATION, LOCATION. Ner_ontonotes_bert configuration is based on bert-base-cased — the original English BERT-cased released by Google. Casing is an important feature for detecting named entities, because usually named entities start with an uppercase letter.
+
+Interacting with the model via Python
+In addition to the English model we’ve fine-tuned the multilingual one on the Ontonotes dataset that supports 18 entities and 103 languages. The multilingual model is based on multilingual BERT that is able to transfer knowledge between languages, for example you can fine-tune a model on one language and evaluate the model on another.
+As you see, multilingual BERT fine-tuned on the original English Ontonotes dataset is capable of detecting named entities in other languages. More about multilingual named entity recognition models you can find in our article here.
+
+As I mentioned DeepPavlov Library contains all essential components for building AI dialogue assistants. But dialogue assistants use a variety of communication channels including communication via voice and via chat. And in many cases input via voice recognition module comes without proper casing or completely in lowercase mode. However, truecasing (that is capitalization where needed) is a crucial feature for detecting named entities. In order to cope with this there are two options either restore truecasing or adapt NER model to cope with improper casing. Our ner_case_agnostic_mdistilbert configuration file defines a model that is able to detect named entities in text with improper casing. 
+In addition, ner_case_agnostic_mdistilbert is bilingual and supports Russian and English languages. The model is successfully used in our DREAM AI Assistant. If you want to learn more about our case-agnostic NER model check our paper Multilingual Case-Insensitive Named Entity Recognition.
+
+DeepPavlov Library for Question Answering
+One can use DeepPavlov for extractive Question Answering (QA). Question Answering can be achieved by using the Reading Comprehension approach that seeks for an answer in the given text. The Natural Language Processing (NLP) community has been working on this task for quite a while. Question Answering on SQuAD dataset is a task to find an answer on a question in a given context (e.g., a paragraph from Wikipedia), where the answer to each question is a segment of the context:
+
+
+A demo from demo.deeppavlov.ai
+There are several datasets designed using the SQuAD format, including but not limited to the English SQuAD dataset (Stanford), Russian SberQuAD, and Chinese DRCD.
+Model returns an answer, position in characters and confidence. The BERT-based approach to question answering can be a huge time-saving method for building QA experiences for your customers, and with the DeepPavlov getting the system up and running is the matter of several lines of code. If you want to learn more about DeepPalov QA models check our article.

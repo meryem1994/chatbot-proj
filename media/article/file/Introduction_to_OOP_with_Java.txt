@@ -1,0 +1,33 @@
+Introduction to OOP with Java
+Java
+
+It is a high level, object oriented, general purpose and secure programming language. It was developed by Sun Microsystems (later bought by Oracle) in 1995, and father of Java is James Gosling. It old name was Oak which was replaced by Java because Oak was already a registered company.
+
+It is widely used to create mobile apps, enterprise level web apps such as banking apps, desktop apps, games, IOT devices such ATMs, Smart Cards etc.
+
+OOP
+
+It stands for Object Oriented Programming. It is programming pattern that is based on “Objects” and “Classes”.
+
+Class
+
+Class is a piece of code that defines attributes (variables) and behaviors (functions) of an object.
+
+Object
+
+Object is a basic unit of OOP. It is any real time entity like table, chair, car etc. It is an instance of Class.
+
+Code Example of Class
+
+class MyFirstCode {
+
+public static void main(String args[]){
+
+System.out.println(“Hello World”);
+
+}
+
+}
+
+
+That was a breif introduction to Java and OOP with Java. I hope this was informational and fruitful for you.

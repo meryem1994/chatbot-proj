@@ -1,0 +1,81 @@
+INTRODUCTION:
+Convolutional Neural Network(CNN or ConvNet)is a class of deep neural networks which is mostly used to do image recognition, image classification, object detection, etc.
+
+The advancements in Computer Vision with Deep Learning has been constructed and perfected with time, primarily over one particular algorithm — a Convolutional Neural Network.
+
+
+Google uses it for photo search, Facebook for their automatic tagging algorithms, Amazon for their product recommendations, and the list goes on and on…
+
+With the help of CNN, you can do a lot of cool stuff like, I have made a handwritten digit recognition model which predicts the digit in the image with 98.82% accuracy.
+
+Bonus:
+
+code -> https://github.com/UPPERCASEGUY/CNN-implementation
+
+You can also make your cool models with little help in concepts regarding CNN. This blog will start building your concepts about CNNs and you are good to go!
+
+CONVOLUTIONAL NEURAL NETWORKS:
+Image classification is the task of taking an input image and outputting a class or a probability of classes that best describes the image. In CNN, we take an image as an input, assign importance to its various aspects/features in the image and be able to differentiate one from another. The pre-processing required in CNN is much lesser as compared to other classification algorithms.
+
+
+A classic CNN classifying between a dog and a cat
+ARCHITECTURE:
+
+
+matrix representation of a picture.
+Computers can not see things as we do, for computers image is nothing but a matrix.
+
+A CNN typically has three layers: a convolutional layer, pooling layer, and fully connected layer.
+
+
+Different layers in a CNN
+Convolutional layer:
+I am pretty sure you have come across the word ‘convolution’ in your life before and here it’s meaning doesn’t change. Yes! you are right, this layer is all about convolving objects on one another. The convolution layer is the core building block of CNN. It carries the main portion of the network’s computational load.
+
+The main objective of convolution is to extract features such as edges, colours, corners from the input. As we go deeper inside the network, the network starts identifying more complex features such as shapes,digits, face parts as well.
+
+
+Convoluting 5x5x1 image with a 3x3x1 kernel to get a 3x3x1 convolved feature
+This layer performs a dot product between two matrices, where one matrix(known as filter/kernel)is the set of learnable parameters, and the other matrix is the restricted portion of the image.
+
+If the image is RGB then the filter will have smaller height and width compared to the image but it will have the same depth(height x width x 3) as of the image.
+
+For RGB images, the convolving part can be visualized as follows:
+
+
+Convolution operation on an MxNx3 image matrix with a 3x3x3 Kernel
+At the end of the convolution process, we have a featured matrix which has lesser parameters(dimensions) than the actual image as well as more clear features than the actual one. So, now we will work with our featured matrix from now on.
+
+Pooling Layer:
+
+This layer is solely to decrease the computational power required to process the data. It is done by decreasing the dimensions of the featured matrix even more. In this layer, we try to extract the dominant features from a restricted amount of neighborhood. Let us make it clear by taking an example.
+
+
+pooling layer
+The orange matrix is our featured matrix, the brown one is a pooling kernel and we get our blue matrix as output after pooling is done. So, here what we are doing is taking the maximum amongst all the numbers which are in the pooling region and shifting the pooling region each time to process another neighborhood of the matrix.
+
+There are two types of pooling techniques: AVERAGE-pooling and MAX- pooling.
+
+The difference between these two is, in AVERAGE-pooling, we take the average of all the values of pooling region and in MAX-pooling, we just take the maximum amongst all the values lying inside the pooling region.
+
+So, after pooling layer, we have a matrix containing main features of the image and this matrix has even lesser dimensions, which will help a lot in the next step.
+
+Fully connected layer:
+
+Till now we haven’t done anything about classifying different images, what we have done is highlighted some features in an image and reduces the dimensions of the image drastically.
+
+
+Fully connected layer inside CNN
+From here on, we are actually going to do the classification process.
+
+Now that we have converted our input image into a suitable form for our Multi-Level fully connected architecture, we shall flatten the image into one column vector. The flattened output is fed to a feed-forward neural network and backpropagation applied to every iteration of training. Over a series of epochs, the model can distinguish between dominating and certain low-level features in images and classify them.
+
+SUMMARY:
+
+Provide the input image into convolution layer.
+Take convolution with featured kernel/filters.
+Apply pooling layer to reduce the dimensions.
+Add these layers multiple times.
+Flatten the output and feed into a fully connected layer.
+Now train the model with backpropagation using logistic regression.
+And you have made your convolutional neural network.

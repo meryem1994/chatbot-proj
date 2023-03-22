@@ -1,0 +1,111 @@
+Introduction
+A virtual assistant, also called an AI assistant or digital assistant, is an application program that understands natural language voice commands and completes tasks for the user.
+
+
+JarvisAI Tutorial
+Content-
+What we are building
+Code and Explanation
+Add your own functionality
+Architecture
+GitHub Repository
+How you can contribute
+References
+How to stay updated about new builds and release
+1. What we are building-
+Our virtual assistant will be able to do the followings things-
+
+( Supported Commands JarvisAI==4.0, the new version might have more features)
+
+1. you can ask the date: Say- “what is the date today”
+2. you can ask the time: Say- “what is the time now”
+3. you can ask joke: Say- “tell me a joke”
+4. you can ask for news: Say- “tell me the news”
+5. you can ask weather: Say- “what is the weather”, “tell me the weather”, “tell me about the weather”, “tell me about the weather in < city>”
+6. you can ask about: Say- “tell me about < topic>”
+7. you can open website: Say- “open website < website name>”, “open website < website name><.extension>”, “open website techport.in”
+8. you can play on youtube: Say- “play on youtube < video name>”, “play < video name> on youtube”
+9. you can send a WhatsApp message: Say- “send WhatsApp message’’
+10. you can send an email: Say- “send email”
+11. greet: Say- “greet”, “hello”, “hey”, “hi”, “good morning”, “good afternoon”, “good evening”
+12. goodbye: Say- “goodbye”, “bye”, “see you later”
+13. conversation: Say- “conversation”, “chat”, “talk”, “talk with chatbot”
+14. you can take a screenshot of the current screen: Say- “take screenshot”
+15. you can click a photo: Say- “click photo”
+16. you can check internet speed: Say- “check internet speed”
+17. you can download a youtube video: Say- “download youtube video”
+18. you can check covid cases: Say- “covid cases in < country>”, “covid cases < country>”
+19. you can ask to play games: Say- “play games”’
+
+2. Code and Explanation-
+Video Tutorial-
+
+JarvisAI Tutorial
+So let’s create our own virtual assistant.
+
+Notes-
+
+All the codes are available on my GitHub.
+Demo YouTube video and code YouTube video is also available on my channel.
+Required links and packages are mentioned below.
+Sharing and Subscribe me on YouTube would be appreciated.
+The code and functions may be updated in the future so stay tuned with me on YouTube and this project's official page.
+Lets code-
+
+2.1. Required packages and libraries-
+https://pypi.org/project/JarvisAI
+
+pip install JarvisAI==4.0
+OR
+
+pip install JarvisAI
+This is the latest virtual assistant module, created by me. It provides the basic functionality of any virtual assistant. The prerequisite is only Python (> 3.6).
+
+2.2. Get your free API Key-
+Signup and get your free API key: http://jarvis-ai-api.herokuapp.com
+
+You need an API key because JarvisAI process all heavy tasks on its server so that you no need to run heavy NPL, AI-ML tasks on your laptop or machine.
+
+2.3. Code-
+After installing the library you can import the module-
+
+Code all you need-
+
+
+Complete Code (Advance Usage)-
+
+
+2.4. Run the program-
+It will start your AI, it will ask you to give input and accordingly, it will produce output.
+
+You can configure the `input_mechanism` and `output_mechanism` parameters for voice input/output or text input/output.
+
+2.5. Let’s understand the Parameters-
+
+3. Add your own functionality
+You can write any function you want, there are few rules-
+
+The function must contain the parameter ‘feature_command’ which is the command you want to execute Return is optional
+If you want to provide a return value it should only return text (str)
+Your return value will be displayed or called out by the choice of OutputMethods of JarvisAI.
+
+4. Then register your feature like this-
+
+
+That’s it now call ‘obj.start()’ to start your AI, and enjoy.
+
+4. Architecture
+The JarvisAI’s architecture is divided into two parts.
+
+User End- It is basically responsible for getting input from the user and after preprocessing input it sends input to JarvisAI’s server. And once the server sends its response back, it produces output on the user screen/system.
+Server Side- The server is responsible to handle various kinds of AI-ML, and NLP tasks. It mainly identifies user intent by analyzing user input and interacting with other external APIs and handling user input.
+
+JarvisAI’s Architecture
+5. Github Repository
+You can feel free to use my code. Star it if you like my work, and subscribe on YouTube if you love it.
+
+Just clone the repository- https://github.com/Dipeshpal/Jarvis-Assisant.git
+
+Then run ‘pip install -r requirements.txt’
+
+It will automatically install everything.

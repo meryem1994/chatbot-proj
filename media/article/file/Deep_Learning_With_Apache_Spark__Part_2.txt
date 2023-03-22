@@ -1,0 +1,90 @@
+Apache Spark Timeline
+The continuous improvements on Apache Spark lead us to this discussion on how to do Deep Learning with it. I created a detailed timeline of the development of Apache Spark until now to see how we got here.
+
+
+Soon I’ll create an article with descriptions for this timeline but if you think there’s something missing please let me know :)
+
+Deep Learning Pipelines
+
+Databricks
+Deep Learning Pipelines is an open source library created by Databricks that provides high-level APIs for scalable deep learning in Python with Apache Spark.
+It is an awesome effort and it won’t be long until is merged into the official API, so is worth taking a look of it.
+
+Some of the advantages of this library compared to the ones that joins Spark with DL are:
+
+In the spirit of Spark and Spark MLlib, it provides easy-to-use APIs that enable deep learning in very few lines of code.
+It focuses on ease of use and integration, without sacrificing performace.
+It’s build by the creators of Apache Spark (which are also the main contributors) so it’s more likely for it to be merged as an official API than others.
+It is written in Python, so it will integrate with all of its famous libraries, and right now it uses the power of TensorFlow and Keras, the two main libraries of the moment to do DL.
+Deep Learning Pipelines builds on Apache Spark’s ML Pipelines for training, and with Spark DataFrames and SQL for deploying models. It includes high-level APIs for common aspects of deep learning so they can be done efficiently in a few lines of code:
+
+Image loading
+Applying pre-trained models as transformers in a Spark ML pipeline
+Transfer learning
+Applying Deep Learning models at scale
+Distributed hyperparameter tuning (next part)
+Deploying models in DataFrames and SQL
+I will describe each of these features in detail with examples. These examples comes from the official notebook by Databricks.
+
+Apache Spark on Deep Cognition
+To run and test the codes in this article you will need to create an account in Deep Cognition.
+
+Is very easy and then you can access all of their features. When you log in this is what you should be seeing:
+
+
+Now just click on the left part, the Notebook button:
+
+
+And you will be on the Jupyter Notebook with all the installed packages :). Oh! A note here: The Spark Notebook (DLS SPARK) is an upcoming feature which will be released to public sometime next month and tell that it is still in private beta (just for this post).
+
+
+You can download the full Notebook here to see all the code:
+
+https://github.com/FavioVazquez/deep-learning-pyspark
+
+Image Loading
+The first step to applying deep learning on images is the ability to load the images. Deep Learning Pipelines includes utility functions that can load millions of images into a DataFrame and decode them automatically in a distributed fashion, allowing manipulation at scale. The new version of spark (2.3.0) has this ability too but we will be using the sparkdl library.
+
+We will be using the archive of creative-commons licensed flower photos curated by TensorFlow to test this out. To get the set of flower photos, run these commands from the notebook (we will also create a sample folder):
+Now let’s use Spark to load this images as a DataFrame. The method spark.readImage lets you read images in common formats (jpg, png, etc.) from HDFS storage into DataFrame. Each image is stored as a row in the imageSchema format. The recursive option allows you to read images from subfolders, for example for positive and negative labeled samples. The sampleRatio parameter allows you to experiment with a smaller sample of images before training a model with full data.
+Deep Learning Pipelines provides utilities to perform transfer learning on images, which is one of the fastest (code and run-time -wise) ways to start using deep learning. Using Deep Learning Pipelines, it can be done in just several lines of code.
+
+Deep Learning Pipelines enables fast transfer learning with the concept of a Featurizer. The following example combines the InceptionV3 model and logistic regression in Spark to adapt InceptionV3 to our specific domain. The DeepImageFeaturizer automatically peels off the last layer of a pre-trained neural network and uses the output from all the previous layers as features for the logistic regression algorithm. Since logistic regression is a simple and fast algorithm, this transfer learning training can converge quickly using far fewer images than are typically required to train a deep learning model from ground-up.
+
+Firstly, we need to create training & test DataFrames for transfer learning.
+
+Applying Deep Learning models at scale
+Deep Learning Pipelines supports running pre-trained models in a distributed manner with Spark, available in both batch and streaming data processing.
+
+It houses some of the most popular models, enabling users to start using deep learning without the costly step of training a model. The predictions of the model, of course, is done in parallel with all the benefits that come with Spark.
+
+In addition to using the built-in models, users can plug in Keras models and TensorFlow Graphs in a Spark prediction pipeline. This turns any single-node models on single-node tools into one that can be applied in a distributed fashion, on a large amount of data.
+
+The following code creates a Spark prediction pipeline using InceptionV3, a state-of-the-art convolutional neural network (CNN) model for image classification, and predicts what objects are in the images that we just loaded.
+Notice that the predicted_labels column shows "daisy" as a high probability class for all of sample flowers using this base model, for some reason the tulip was closer to a picket fence than to a flower (maybe because of the background of the photo).
+
+However, as can be seen from the differences in the probability values, the neural network has the information to discern the two flower types. Hence our transfer learning example above was able to properly learn the differences between daisies and tulips starting from the base model.
+For Keras users
+For applying Keras models in a distributed manner using Spark, KerasImageFileTransformer works on TensorFlow-backed Keras models. It
+
+Internally creates a DataFrame containing a column of images by applying the user-specified image loading and processing function to the input DataFrame containing a column of image URIs
+Loads a Keras model from the given model file path
+Applies the model to the image DataFrame
+To use the transformer, we first need to have a Keras model stored as a file. For this notebook we’ll just save the Keras built-in InceptionV3 model instead of training one.
+If we take a look of this dataframe with predictions we see a lot of informations, and that’s just the probability of each class in the InceptionV3 model.
+
+Working with general tensors
+Deep Learning Pipelines also provides ways to apply models with tensor inputs (up to 2 dimensions), written in popular deep learning libraries:
+
+TensorFlow graphs
+Keras models
+In this article we will focus only in the Keras models. The KerasTransformer applies a TensorFlow-backed Keras model to tensor inputs of up to 2 dimensions. It loads a Keras model from a given model file path and applies the model to a column of arrays (where an array corresponds to a Tensor), outputting a column of arrays.
+
+Deploying Models in SQL
+One way to productionize a model is to deploy it as a Spark SQL User Defined Function, which allows anyone who knows SQL to use it. Deep Learning Pipelines provides mechanisms to take a deep learning model and register a Spark SQL User Defined Function (UDF). In particular, Deep Learning Pipelines 0.2.0 adds support for creating SQL UDFs from Keras models that work on image data.
+
+The resulting UDF takes a column (formatted as a image struct “SpImage”) and produces the output of the given Keras model; e.g. for Inception V3, it produces a real valued score vector over the ImageNet object categories.
+
+In Keras workflows dealing with images, it’s common to have preprocessing steps before the model is applied to the image. If our workflow requires preprocessing, we can optionally provide a preprocessing function to UDF registration. The preprocessor should take in a filepath and return an image array; below is a simple example.
+
+This is very powerful. Once a data scientist builds the desired model, Deep Learning Pipelines makes it simple to expose it as a function in SQL, so anyone in their organization can use it — data engineers, data scientists, business analysts, anybody.

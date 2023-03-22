@@ -1,0 +1,39 @@
+Before beginning to understand communication protocols we need to know what is the purpose of the network in communication.
+
+Well, The primary purpose of any network is to provide us with a method to communicate and share information.
+
+All communication begins with a message or information, that must be sent from one individual to another.
+
+All communication methods have three elements in common:
+
+The message source.
+Destination or Receiver.
+Transmission medium.
+Communication Protocols.
+Before beginning to communicate with each other, we establish rules or agreements to make it happen.
+
+These agreements include the following:
+
+What method of communication should we use?
+What language should we use?
+Do we need confirmation that our messages are received?
+Why Do Protocols Matter?
+Protocols are required for computers to properly communicate across the network( wired or wireless ).
+
+If devices in the local network did not use the same protocols, they would not be able to communicate.
+
+Networking protocols define many aspects of communication over the local network, these include
+
+message format
+message size
+timing
+encoding
+encapsulation
+and message patterns.
+Message Format: when a message is sent, it must be in a specific format or structure.
+Message Size: when a long message is sent from one to another individual or host over a network, it is broken into smaller pieces to ensure the delivery of the message.
+Timing : Timing determines the speed at which the bits are transmitted across the network.
+Encoding: Messages are first converted into bits by the sending host, Each bit is encoded into a pattern of sounds, light waves, etc. depending on the network medium being used.
+Encapsulation: Each message transmitted on the network must include a header that contains addressing info., that identifies the source and destination hosts. Otherwise, it cannot be delivered. Also, there may be other info. in the header that ensures that the message is delivered to the correct destination.
+Message Pattern: The request / Response pattern is a common aspect of many networking protocols because it requires acknowledgment before the following message can be sent.
+However, there are other types of messages that are streamed/sent with concern as to whether they reach their destination.

@@ -1,0 +1,68 @@
+Having joined a new organization, the first thing I got introduced to was Docker. So, I decided to give it a shot. I went on to YouTube and searched “Docker for Java Developers”. There is plenty of content where each creator has tried their best to explain how we can containerize a java application.
+
+
+
+
+Below are some simple steps which you can follow to get started with Docker and containerize and run your java application.
+
+Before getting started, you should have Docker installed on your machine. You may follow the official Docker documentation to get it installed.
+
+Start with writing some java code like below.
+
+2. Create a file and name it “Dockerfile”.
+
+This file includes instructions on how to build the docker image for your application. The order of the command in this Dockerfile is very important as each command will be executed line-by-line.
+
+
+Below is a line-by-line explanation of each command written in this Dockerfile.
+The first instruction of the Dockerfile specifies the base layer of the image using the FROM keyboard. Here we are using openjdk:17 as our base image. Here 17 defines the OpenJDK version which will be pulled from the DockerHub. If we don’t specify any version then docker will pull the latest available image from the DockerHub. Make sure that you specify only the official docker images in your configuration.
+
+#create new app directory in the container for application files
+RUN mkdir /app
+The RUN command will execute the commands we specify for the image and not for the host machine (on which you have installed Docker). Here, I have used the mkdir command that will create a new directory “app” in my docker image which will be built.
+
+“RUN is an image build step, the state of the container after a RUN command will be committed to the container image. A Dockerfile can have many RUN steps that layer on top of one another to build the image.”
+
+#copy the application files from host machine to container directory
+COPY out/production/test-docker/ /app/
+Then, I used the COPY command which is used to copy all the application files from the host machine to the container directory.
+
+#set the directory for executing future commands
+WORKDIR /app
+Then I have set the working directory which I will be using to execute the rest on my docker image.
+
+#Run Main class
+CMD java Main
+Finally, I have used the CMD command which the container will execute by default when I launch the built image.
+
+The next step is to build the image for the java application.
+
+docker build -t test-docker:1.0 .
+The above command will build the image with the name “test-docker” and will give it the tag “1.0”
+
+Once we execute the above command, docker will download the OpenJDK17 image from the DockerHub if not already present locally.
+After completion of the command, we can see the docker images in the Docker Desktop console.
+
+
+Alternatively, we can also execute the below command to list all the docker images.
+
+docker images
+
+The next step is to run the build image inside a container. Below command will run the docker container based on your build image.
+
+docker run -d test-docker:1.0
+
+The command will return you a container ID which we can use for our references. Also, we can see our container running in the Docker Desktop.
+
+
+or, from the CLI using the below command.
+
+docker ps
+
+We can use the below command to view the running container logs.
+
+docker logs f151bb24f583
+
+As we can see, our image is running inside the Docker container.
+
+This brings us to the end of this blog. Will keep posting my new learnings here as time avails.

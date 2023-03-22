@@ -1,0 +1,53 @@
+As long as you arrived here, you need to be a good (or better) programmer, isn’t it?
+
+That’s very good. We need you. Companies need you. The world needs you.
+
+Then, you deserve it. In this series, I’ll expose my summarized notes of the clean code Book to see the lights. I’ll do my best to deliver the content of this great fatty book.
+
+The book is written by “Robert C. Martin” or “Uncle Bob”. The summary will be explained at the beginner level so everyone can understand. This is a FREE flexible summary, so I’ll not go into every section. I’ll summarize it in a short way so that you don’t miss any important information and also save time. You might see different titles or different code examples or explanations. DON’T get surprised. It’s for simplification, it’s for summarization.
+
+Let's get started…
+
+1.1. Understand The Concept of Programming
+Humans invented verbal languages so that they can communicate with each other, programming languages are of no difference but here you are speaking to a dummy machine (a computer) this is why many programmers think that they can speak to the machine in any way as long as the machine understands and executes the code correctly.
+
+Well, that’s true but false, if the machine is executing and understanding the code correctly it’s a good sign that you are a programmer but this doesn’t mean that you are a GOOD programmer. It doesn’t mean that humans will understand the code. Unfortunately, in the programming process, you’ll never walk alone.
+
+You are not and will not be the only one that reads, modifies, or refactors the code, many programs might be doing or will do this in the future. Even if you are working alone as a freelancer, you might need some help in the future besides, the clean and well-designed code makes it easier to modify the current code or apply a new feature. See the open closed principle!
+
+The hardest part of coding is when you apply a new feature to an existing code. Some programmers say if it’s running, keep it running. Is that right? Well, you will answer this at the end of this chapter.
+
+Have you ever gotten bored of reading any book? we all have done. Perhaps the writer didn’t tell a story or at least a good story, For this purpose, your code should tell an interesting story.
+
+1.2. Tell a Story
+Oh no, what? A story?
+
+Yes…
+
+Humans are very well attracted to stories this is why we can watch hundreds of movies and series without getting bored. Coding is of no difference. Your code needs to tell a story so that others can understand without boring or without many WTF :).
+
+
+1.3. There Will be Bad Code
+Yes, bad code and bad design are everywhere around exactly as anything around the world. You can find clean and bad cities, clean and bad clothes, and good and bad people. You should have already seen it or dealt with a bad code, you should have been resentful of reading it, you should have waded through it then, you wouldn’t also wish the same for others.
+
+1.4. Later Equals Never
+If you are a programmer with any experience, you’ve often felt being in a rush before. Perhaps your boss would be angry if you took too much time cleaning your code, perhaps you are bored or tired of working with x project and need to move to a higher priority y. Or maybe you have a huge TODO list of tasks that you need to finish.
+
+Whatever the reason was, we decided to leave it for another day. I’ll do it tomorrow, after tomorrow, next week, month, etc… Of course, you don’t know LeBlanc’s law: Later equals never
+
+1.5. The Total Cost of a Mess
+I’ll tell you a short bad story about others’ messy code. The speed of coding is inversely proportional to how old the project is. The deeper you get your hands dirty the slower it’s, Every change they make to the code breaks two or three other parts of the code.
+
+No change is trivial. Over time the mess is growing up to the point that they cannot clean it up. So, productivity is decreasing and it might sometimes be ZERO.
+
+“Alright alright, let’s redesign the project and hire another team to do so”, said the big boss. The team started the new design of the old messy system and they also had to cope with the old system to keep up with the changes being applied to it.
+
+This race could last for a very long time as uncle Bob said he has seen it take 10 years. Now you should know the cost of being rushed to write bad code.
+
+1.6. The Boy Scout Rule:
+The rule states to “Leave the campground cleaner than you found it”.
+
+If we all deliver our code cleaner than when we received it, the code simply could not rot. It does not have to be a big deal, even if it was changing the names of variables or refactoring too large functions it would be great.
+
+1.7. Conclusion
+Watching gym tutorials doesn’t mean that you will get muscles, they only give you the tools and techniques to get them. Also, the summary of this book cannot promise to make you a good programmer. Although I’ll do my best to do so BUT you need to apply and create your own bad code and transform it into a cleaner one. That’s the best way to learn.

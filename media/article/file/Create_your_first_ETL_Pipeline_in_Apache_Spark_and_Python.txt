@@ -1,0 +1,80 @@
+In this post, I am going to discuss Apache Spark and how you can create simple but robust ETL pipelines in it. You will learn how Spark provides APIs to transform different data format into Data frames and SQL for analysis purpose and how one data source could be transformed into another without any hassle.
+
+What is Apache Spark?
+According to Wikipedia:
+
+Apache Spark is an open-source distributed general-purpose cluster-computing framework. Spark provides an interface for programming entire clusters with implicit data parallelism and fault tolerance.
+
+From Official Website:
+
+Apache Spark™ is a unified analytics engine for large-scale data processing.
+
+In short, Apache Spark is a framework which is used for processing, querying and analyzing Big data. Since the computation is done in memory hence it’s multiple fold fasters than the competitors like MapReduce and others. The rate at which terabytes of data is being produced every day, there was a need for a solution that could provide real-time analysis at high speed. Some of the Spark features are:
+
+It is 100 times faster than traditional large-scale data processing frameworks.
+Easy to use as you can write Spark applications in Python, R, and Scala.
+It provides libraries for SQL, Steaming and Graph computations.
+Apache Spark Components
+
+Spark Core
+It contains the basic functionality of Spark like task scheduling, memory management, interaction with storage, etc.
+
+Spark SQL
+It is a set of libraries used to interact with structured data. It used an SQL like interface to interact with data of various formats like CSV, JSON, Parquet, etc.
+
+Spark Streaming
+Spark Streaming is a Spark component that enables the processing of live streams of data. Live streams like Stock data, Weather data, Logs, and various others.
+
+MLib
+MLib is a set of Machine Learning Algorithms offered by Spark for both supervised and unsupervised learning
+
+GraphX
+It is Apache Spark’s API for graphs and graph-parallel computation. It extends the Spark RDD API, allowing us to create a directed graph with arbitrary properties attached to each vertex and edge. It provides a uniform tool for ETL, exploratory analysis and iterative graph computations.
+
+Spark Cluster Managers
+Spark supports the following resource/cluster managers:
+
+Spark Standalone — a simple cluster manager included with Spark
+Apache Mesos — a general cluster manager that can also run Hadoop applications.
+Apache Hadoop YARN — the resource manager in Hadoop 2
+Kubernetes — an open source system for automating deployment, scaling, and management of containerized applications.
+Setup and Installation
+Download the binary of Apache Spark from here. You must have Scala installed on the system and its path should also be set.
+
+For this tutorial, we are using version 2.4.3 which was released in May 2019. Move the folder in /usr/local
+
+mv spark-2.4.3-bin-hadoop2.7 /usr/local/spark
+
+And then export the path of both Scala and Spark.
+We have imported two libraries: SparkSession and SQLContext.
+
+SparkSession is the entry point for programming Spark applications. It let you interact with DataSet and DataFrame APIs provided by Spark. We set the application name by calling appName. The getOrCreate() method either returns a new SparkSession of the app or returns the existing one.
+
+Our next objective is to read CSV files. I have created a sample CSV file, called data.csv which looks like below:
+As you can see, it dumps all the data from the CSVs into a single dataframe. Pretty cool huh.
+
+But one thing, this dumping will only work if all the CSVs follow a certain schema. If you have a CSV with different column names then it’s gonna return the following message.
+As you can see, Spark complains about CSV files that are not the same are unable to be processed.
+
+You can perform many operations with DataFrame but Spark provides you much easier and familiar interface to manipulate the data by using SQLContext. It is the gateway to SparkSQL which lets you use SQL like queries to get the desired results.
+
+Before we move further, let’s play with some real data. For that purpose, we are using Supermarket’s sales data which I got from Kaggle. Before we try SQL queries, let’s try to group records by Gender. We are dealing with the EXTRACT part of the ETL here.
+First, we create a temporary table out of the dataframe. For that purpose registerTampTable is used. In our case the table name is sales. Once it’s done you can use typical SQL queries on it. In our case it is Select * from sales.
+
+
+Or something like below:
+Pretty flexible, right?
+
+We are just done with the TRANSFORM part of the ETL here.
+
+Finally the LOAD part of the ETL. What if you want to save this transformed data? Well, you have many options available, RDBMS, XML or JSON.
+
+output.write.format('json').save('filtered.json')
+
+When you run it Sparks create the following folder/file structure.
+MySQL and Apache Spark Integration
+The above dataframe contains the transformed data. We would like to load this data into MYSQL for further usage like Visualization or showing on an app.
+
+First, we need the MySQL connector library to interact with Spark. We will download the connector from MySQL website and put it in a folder. We will amend SparkSession to include the JAR file.
+Conclusion
+Apache Spark is a very demanding and useful Big Data tool that helps to write ETL very easily. You can load the Petabytes of data and can process it without any hassle by setting up a cluster of multiple nodes. This tutorial just gives you the basic idea of Apache Spark’s way of writing ETL. You should check the docs and other resources to dig deeper.

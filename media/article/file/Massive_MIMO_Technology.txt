@@ -1,0 +1,65 @@
+Let’s talk about:
+
+What Is MIMO?
+What Is Massive MIMO Technology ?
+How does massive MIMO work in 5G networks ?
+Benefits of Massive MIMO — Why 5G networks use Massive MIMO.
+— and some fundamentals concepts.
+
+What Is MIMO?
+MIMO stands for Multiple-input multiple-output. While it involves multiple technologies, MIMO can essentially be boiled down to this single principle: a wireless network that allows the transmitting and receiving of more than one data signal simultaneously over the same radio channel.
+
+Multiple Input: Multiple antennas at the transmitter.
+The multiple input part of MIMO is about the number of antennas on the transmitter side. Rather than using only one antenna at the transmitter, with MIMO, it is possible to use 2, 4, 8 or even more antennas. The use of additional antennas allows sending multiple streams of the same signal to the receiver (e.g. your 4G phone) to improve the overall signal performance.
+
+Multiple Output: Multiple antennas at the Receiver.
+The multiple output part of MIMO is about the number of antennas on the receiver side. Instead of using just one antenna to receive the various streams of the signal coming from the transmitter, your receiver (e.g. phone) can use multiple antennas to catch the different streams of the signal. For example, it is possible to have 2, 4, 8 or even more antennas in your phone to receive the multiple signal streams.
+
+MIMO antenna Configuration.
+The addition of antennas and the inter-working of multiple transmitter and receiver antennas is complex. Depending on the aim of the connectivity technology, the decision about the number of antennas for the transmitter and the receiver is made carefully. This is where the antenna configuration for MIMO comes in. If the transmitter has four antennas and the receiver has two antennas, then the MIMO configuration will be 4 x 2. There are two communication links in mobile networks, the up-link and the down-link. MIMO is handled separately in the up-link and the down-link. For example, it is possible to have 4 x 2 in the down-link (for downloads) and 2 x 2 in the up-link (for uploads).
+
+What Is Massive MIMO Technology ?
+Massive MIMO technology is a core component of the super-fast 5G networks that are currently rolling out.
+If you are familiar with the standard MIMO in 4G LTE networks, the adjective “Massive” can only make you think one thing — a really big MIMO. While there is no specific definition of exactly what constitutes “Massive” in Massive MIMO, the MIMO technology in 5G New Radio (NR) networks employs much larger antenna arrays than 4G LTE Networks.
+
+The MIMO technology is not new, and it already plays an important role in 4G LTE networks as well as modern Wi-Fi networks. However, Massive MIMO is a new enhancement that was introduced in 5G NR networks. The two key aspects of MIMO technology that differentiate Massive MIMO from standard MIMO are the number of antenna elements and the multi-user capability within the antenna arrays. The most advanced LTE network, LTE Advanced Pro, uses a maximum MIMO configuration of 8 x 8 which means eight antenna elements for transmission and eight for the reception. With Massive MIMO, this antenna configuration gets a lot bigger and 64 x 64 is already possible in 5G base stations from key network vendors. However,an antenna configuration of 256 x 256 is also possible. While the number of antenna elements certainly is key for Massive MIMO, the other aspect that differentiates it from standard MIMO is the multi-user capability that allows it to support multiple user devices simultaneously.
+
+How does massive MIMO work in 5G networks ?
+Massive MIMO employs a large number of antenna elements within a single antenna panel of a 5G base station and uses spatial multiplexing, diversity and beamforming to increase network capacity, throughput and radio link quality. The additional capacity is used to serve multiple simultaneous users.
+
+The transmitter and receiver diversity, spatial multiplexing and beamforming provide the foundation for improving signal reliability and data throughput whilst reducing interference. The additional MIMO enhancement in 5G comes from the sheer volume of antenna elements employed by Massive MIMO and the multi-user application of the antenna elements.
+
+Transmitter and receiver diversity.
+Diversity is when multiple antennas are deployed at the transmitter or the receiver end to reduce the impact of signal fading. A radio signal can take many paths to travel between a transmitter and receiver. Some paths are without any obstructions (e.g. high-rise buildings), but other paths may have obstacles in the way. As a result, the different versions of the signal traveling through the various paths may fade at different rates. Diversity exploits this nature of the signal by introducing multiple antennas to capture the different versions of the signal so that they can be combined to improve the overall signal quality. The use of diversity at the receiving end is not new in mobile communications, but MIMO introduces multiple antennas both at the transmitter and the receiver. Massive MIMO in 5G networks takes the number of antennas to a whole new level. For example, a 5G Massive MIMO system with a 64 x 64 down-link configuration means 64 antenna elements at the base station (cellular tower) and 64 antenna elements at the receiving end (mobile phone’s receiver). Diversity makes the signal more robust by improving the reliability of the radio link. However, it does not improve the radio channel capacity, so the data rate or throughput is not impacted by diversity.
+
+Spatial multiplexing and multi-user support.
+Spatial multiplexing is one of the most important features in MIMO systems used for improving the efficiency of the frequency channel. This improvement in spectral efficiency leads to higher overall capacity and, therefore, higher data rates. In Massive MIMO, a large number of antenna elements are separated physically in space with the ability to transmit and receive different data streams simultaneously. The overall data stream intended for a specific user can be sent over multiple individual data streams. At the receiving end, these data streams are picked up by an array of receiving antenna elements to put the various individual data streams back together as a single data stream. This process improves the data rates for an individual user. But Massive MIMO does not stop here and utilizes its multi-user capability to handle data streams for many users simultaneously.
+
+Three-dimensional (3D) beamforming.
+Beamforming is an advanced antenna technology that is employed by MIMO systems. It takes place when the signal transmission through multiple antenna elements is targeted in a particular direction instead of broadcasting the signal in all directions. Beamforming makes efficient use of the available transmission power to point the different beams of the signal in the desired direction. In Massive MIMO, beamforming is three dimensional (3D beamforming), so the beams can be horizontal and vertical to improve the data rates for all users, even if they are in high-rise buildings. Beamforming extends the range of the signal by shaping the transmission such that the desired beam gets most of the transmission power to become longer whilst suppressing the other beams that are in the non-desired direction.
+
+Benefits of Massive MIMO — Why 5G networks use Massive MIMO.
+Massive MIMO efficiently utilizes the radio network resources to improve network capacity leading to a higher throughput and multi-user support. It uses the beamforming technique to focus the transmission power in specific directions which extends the network coverage whilst minimizing interference.
+The advantage of a MIMO network over a regular one is that it can multiply the capacity of a wireless connection without requiring more spectrum.
+
+The more antennas the transmitter/receiver is equipped with, the more the possible signal paths and the better the performance in terms of data rate and link reliability.
+
+The greater number of antennas in a Massive MIMO network will also make it far more resistant to interference and intentional jamming than current systems that only utilize a handful of antennas.
+
+It should be noted, too, that Massive MIMO networks will utilize beamforming technology, enabling the targeted use of spectrum. Current mobile networks are rather dumb in the way they apportion a single pool of spectrum between all users in the vicinity, which results in a performance bottleneck in densely populated areas. With Massive MIMO and beamforming such a process is handled far more smartly and efficiently, so data speeds and latency will be far more uniform across the network.
+
+Spectral Efficiency.
+Massive MIMO employs spatial multiplexing, which efficiently uses frequency and time resources to improve network capacity and, therefore,bit rates.The different signal paths created by multiple antennas in Massive MIMO are used as sub-channels for sending and receiving data streams for multiple users.
+
+Higher throughput.
+The use of multiple data streams through spatial multiplexing allows a user device to get higher overall bit rates. In addition, due to the large number of antenna elements in Massive MIMO, a lot of additional capacity is created, enabling higher throughput for multiple users simultaneously.
+
+Lower interference.
+The beamforming technique provides targeted transmission of the radio signal, which makes the signal more robust in a specific direction. That way, the main beam in the desired direction becomes the strongest, and the side beams (side lobes) become weaker, which minimizes any potential interference between the beams.
+
+Extended range.Massive MIMO has three-dimensional beamforming (3D beamforming), which creates horizontal and vertical beams of the signal so that it can reach people in different ranges (distance) and heights (e.g. high-rise buildings). The beamforming technology also extends the network coverage by channeling the transmission power in a targeted direction to improve the range.
+
+Conclusion.
+Massive MIMO stands for Massive Multiple Input Multiple Output and it is an antenna technology used by 5G NR networks to improve the spectral efficiency, data rates, coverage range and capacity of 5G networks. Massive MIMO employs a large number of antenna elements (generally higher than ten) in a single antenna to support multiple user devices simultaneously.
+
+Massive MIMO is not simply about placing and using a large number of antennas. The entire technology also works using artificial intelligence and machine learning to complement frequency management, signal processing techniques, and data transmission.

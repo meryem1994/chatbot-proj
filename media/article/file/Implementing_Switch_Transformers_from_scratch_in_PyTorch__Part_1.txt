@@ -1,0 +1,105 @@
+he origin of language was one of the key moments that defined the fate of humankind as we see it today. Empowered with the ability to share and discuss ideas, unlike any other species, our evolution was dramatically accelerated. This led to brilliant works of art, inventions and ambitious collaborations. Language is an indispensable part of our lives, making it impossible to even think about something that doesn’t have an associated word. With the evolution of language, our conversations became richer. This was accompanied by an evolved cognitive ability, enabling us to comprehend complex structures, long passages and intricacies like humor and sarcasm. But what about machines?
+
+Recurrent Neural Networks (RNNs)
+Language is inherently sequential. We interpret it one word after the other, at the same time remembering the context. Inspired by this design, Recurrent Neural Networks (RNNs) dominated the world of Natural Language Processing (NLP). The text was treated as a sequence of words and they would be fed one word at a time. Along with the input word, the RNNs would feed the output at the last time step, as the hidden state, to themselves.
+
+
+A RNN cell (unrolled version) processing the text ‘bentou is amazing’. Variables x, y & h represent input, output & hidden state respectively. Subscript t reflects the time step.
+But there was a serious problem. It was terribly difficult to train RNNs using backpropagation. The final output was obtained after the last time step, which meant that the gradients had to be transferred up to the first. This was problematic for long sequences on two fronts: first, it took really long to train as it couldn’t be parallelized and second, it led to vanishing and exploding gradients. The repeated multiplication of gradients made them either infinitesimally small or astronomically big. Consequently, even if the models were somehow trained, they didn’t perform well.
+
+Convolutional Neural Networks (CNNs)
+Things took a different turn in the world of Computer Vision (CV). Since images don’t have a sequential nature, RNNs were never impressive here. A different type of architecture, Convolutional Neural Networks (CNNs) dominated the CV space. They had the operation of convolution at their heart, which operated on a region of the image at a time, completely independent of the rest. This gave brilliant results and was easily parallelized, enabling the models to be trained efficiently.
+
+
+A CNN with different components labelled.
+A Unified Approach
+The great results CNNs brought in CV prompted their application in NLP, in combination with RNNs. The convolutional layers worked on sections of the input and extracted features, which were then processed by recurrent layers. This definitely reduced the sequence length and helped with training time and gradient problems, but the results weren’t much impressive. Unlike images, sentences have words that are related to each other, and they can be located at arbitrary distances. It fundamentally made using convolutional layers that operated on sections, ineffective.
+
+It was a time in AI history which was calling out for leapfrog design enhancements. Enter: The Transformer!
+
+Transformers: Rise & Reign
+
+A person awestruck with the potential of transformers.
+Genesis
+The world was forever changed in 2017 with the introduction of the transformer. An architecture built entirely with an attention mechanism and linear layers, it solved the issues that had been holding back CNNs and RNNs. In a blink of an eye, there was a parallelizable architecture that allowed all words in an input sequence to attend to each other. Benchmarked on machine translation, it outperformed the state-of-the-art results of that time and quickly replaced RNNs across NLP field.
+
+Promises
+As of now, transformers have taken the world by storm. They have become the go-to choice for every NLP task but have significantly shone in sequence transduction problems, where we map an input sequence to an output sequence. These problems are at the heart of the most interesting things in NLP, such as language modeling and machine translation.
+
+Originally designed for NLP, transformers have managed to enter CV too. The introduction of Vision Transformer (ViT) marked a paradigm shift in the world of CV. Images, that aren’t inherently sequential, were divided into sequence of patches and modeled in the style of texts.
+
+Generative AI is the next wave and transformers are pushing the boundaries of innovation. Large Language Models (LLMs) like BERT and GPT-3 family, which powers ChatGPT, have a transformer architecture at their core and are shaking the text-to-text domain. Diffusion-based generative models like Stable Diffusion and Dall E-2 have made a lot of noise in the image generation space, but text-to-image transformer models have started to appear. Google’s Muse indicates that transformers might completely overtake other architectures in the Generative AI space.
+
+Will a world exist where transformers are the only architectures that people use? But can they render every other architecture designed for specific tasks obsolete?
+
+Double-Edged
+The supernatural performance of transformers comes at an unfortunate cost. The community has somehow reached a consensus that the way to enhance transformers is to dramatically increase their learnable parameters and train them on gigantic datasets. This demands enormous compute resources for both training the model and then serving it to end-users. Not every team is adequately deep-pocketed!
+
+Fortunately, research is being focused on making the training and deployment of these huge models pocket-friendly. This has given birth to the family of Efficient Transformers, that have compute friendly architectural tweaks. One of them has captivated us: Switch Transformer.
+
+Theme
+In this series, we’re not going to talk about the transformer architecture. There’s an overabundance of blogs out there that do exactly this. Instead, we’re going to spotlight the key design concepts in transformers, that are a testament to human ingenuity. We’ll connect these concepts and form a story that’ll lead us to the transformer architecture and then we’ll quickly move to scaling it to trillion parameters with Switch Transformers.
+
+We implemented a Switch Transformer from scratch in PyTorch for Machine Translation, translating from German to English. The observations and results we got in doing so form the backbone of this series. We’ve reflected upon the potential of transformers and it’s time that we do it again with the technicalities.
+
+Modeling
+A thing that’s indispensable to our discussion is the modeling of human-readable text into something that a model can understand. A model’s parameters are numerical and it learns a mathematical function. It means that the words, their meanings, context and every other thing has to be encoded into numbers. It starts with a corpus.
+
+Corpus
+A corpus (plural corpora) is a collection of written or spoken texts and serves as the training data. It’s crucial that the corpus be properly cleaned and structured and is machine readable. Starting with a huge corpus with texts from varied sources already solves the major part of the problem.
+
+We used the training set from Multi30k as our corpus and visualized the words present in it with a word cloud.
+
+
+Word cloud made with the words (/tokens) present in the corpus (/vocabulary). The size reflects the frequency of occurrence and the colors are for aesthetics. Implemented using stylecloud.
+Tokenization
+Our world is made up of atoms, but the world of NLP is made up of tokens. If we take a piece of text and continue breaking it into smaller meaningful units, we’ll eventually arrive at a point beyond which we cannot do anything and what remains with us will be tokens. All of us use tokenization in our daily interpretations. We process a sentence by breaking it into smaller understandable units and making sense of them. For example, we cannot process “Do’nt go!” unless we’ve broken it into Do, n’t, go and !. We do it effortlessly, but a machine needs a tokenizer. Think of a tokenizer as something that takes a piece of text, goes over it and breaks it into tokens by referring to a set of rules. These rules are the crux of the entire process of tokenization. How can we ensure that it splits “Mr. Detective.” to Mr., Detective and ., instead of Mr, ., Detective and . ? We can either build a tokenizer from scratch by writing all the rules or use a pre-built version. We did the latter.
+
+We used spaCy to get the tokenizer. SpaCy is an open-source library built for advanced NLP tasks and contains different components as pretrained pipelines. Since we were dealing with two languages, we needed two tokenizers. We got the tokenizer for German from de_core_news_sm and English from en_core_web_sm. We’ll explore the tokenizer from en_core_web_sm a bit.
+
+We need to download en_core_web_sm from spaCy, after which we can load the tokenizer with:
+
+
+Code for loading tokenizer | Gist
+The tokenizer should know the rules. Let’s check what it does to Mr. Detective.
+
+
+Code for testing tokenization | Gist
+It works. Our tokenizer has tokenized “Mr. Detective” to Mr. and Detective. Let’s make things harder and see what it does to entities like Don’t, U.K. and :).
+
+
+Code for testing tokenization | Gist
+Our tokenizer works with these complex entities too. The most important thing to notice is that it hasn’t separated :) into : and ). It really understands the intricacies to an incredible extent.
+
+But how does this magic unfold? How is the tokenizer able to handle these intricacies? The answer to these troubling questions lies in the set of rules and the algorithm it operates on. The tokenizer separates the text with a whitespace delimiter, then parses it from left-to-right. When it encounters an entity, it looks it up in a set of tokens and if a match isn’t found it refers to the set of rules and breaks it further. It then works on the newly birthed entities until no further breaks can be made. It then moves forward in the whitespace delimited string and repeats itself.
+
+We can in fact see this in action. With the below lines, we can see what rules are used for breaking down ““Do’nt worry!””.
+
+
+Code for viewing rules used for tokenization | Gist
+It’s so satisfying to look at how it breaks down the text, just like a human would’ve.
+
+Vocabulary
+Tokenization is great, but it’s useless if we don’t know the meanings of the tokens. This applies to our daily interpretations as well. We won’t be able to comprehend what Do, n’t, worry & ! means if we don’t know their meanings. We all have a mental vocabulary which contains all the words that we know. We need to replicate this for a machine. We build a vocabulary of the unique tokens present in the training corpus and call it vocab. The model will have knowledge only about the tokens present in the vocab and any other token it sees will be unknown (<unk>).
+
+Embedding
+Once the vocab is ready, we have the tokens that our model needs to know. It’ll learn the meanings on its own. But how will it represent these meanings? We need to figure out a way for our model and it has to be something numerical. We can assign an index to every token in the vocab, with tokens similar in meanings being consecutive. As a result, positive tokens like enjoys and celebrates will be consecutive and negative tokens like bored and frustrated will be consecutive, at the same time being far from each other. But as we increase the number of tokens, it becomes difficult to represent their meanings using a single number. We have to switch to vectors, hoping their dimensionality is sufficient to capture the meanings. And we call these vectors embeddings.
+
+Embeddings are the n-dimensional vectors that represent the tokens present in the vocab. The intuition behind them is that in the learned n-dimensional space, tokens with similar meanings will be close to each other (have high cosine similarity) and tokens with dissimilar meanings will be far (have low cosine similarity). Larger the n, the better. A larger n reflects more dimensions to encode the difference between tokens, capturing their meanings better.
+
+We used the Embedding module from PyTorch to store the embeddings. It’s a simple lookup table and retrieves the embeddings using indices for the corresponding tokens. We can instantiate an Embedding object with:
+
+
+Code for instantiating an Embedding object | Gist
+We set the dimension to 256 and trained the embeddings from scratch. Our embeddings improved with epochs and we visualize them in this GIF. We needed to reduce their dimensionality to 2 and used Principal Component Analysis (PCA) for this. We selected 15 positive and 15 negative tokens and plotted them for the epochs. The result? We got a beautiful visualization that reflects how our embeddings improved over the course of training.
+
+
+A visualization of embeddings over the course of training. We trained the model for 20 epochs but the validation loss increased after the 11th. | Inspiration
+We had a relatively tiny corpus because of which our embeddings didn’t entirely separate into distinct regions for positive and negative sentiments. However, in order to show how great embeddings can get when trained on a huge corpus, we do the same visualization using the embeddings from GloVe. The embeddings that we use were trained on a corpus of 840 Billion tokens, a vocab of 2.2 Million tokens and had the dimensionality of 300. For a comparison, our embeddings were trained on a vocab of 5888 tokens.
+
+
+A visualization of embeddings pre-trained and provided in GloVe. | Inspiration
+We can clearly see the distinct regions for positive and negative sentiments. This is the true power of embeddings when they’re trained gracefully.
+
+Conclusion
+In this part we reflected upon the origin & potential of transformers and some key design concepts. In the next part we’ll dissect attention mechanism, the heart of transformers, followed by an analysis of our implementation and results of Switch Transformer.

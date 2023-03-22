@@ -1,0 +1,118 @@
+Before we start writing lines of code and developing web applications, we need to understand what front-end is. We divide a web application into two parts, the first is the part that runs on a server, where all the logical part of the application is, known as the back-end.
+
+The second is the part that runs on the device of the person using the application, where all the visual part and interaction with that person (images, videos, buttons, animations, etc…) is. This second part is known as the front-end. This architecture was well known as client-server.
+
+We just have to be careful when we use the term “front-end”. I said that it is in the front-end where all the visual and interactive part is. But front-end is not only a visual part, today it is also very logical, a lot of programming. There is a subdivision within the front-end itself: The visual part and the logical part. The visual part is exactly what the person sees when opening the application: images, buttons, colors, icons, tables, animations, among others, and the logical part is the part that is responsible for the integration of the back-end with the front-end: requests for API, dynamic completion of information, accounts, validations, etc… But although these parts exist within the front-end, both need basic knowledge in four skills: logic, HTML, CSS and JavaScript. Regardless of whether you want to work only on the logical part of the front-end or only on the visual part, these four skills are extremely important in becoming a front-end developer.
+
+You do not need to master these four skills, with the exception of logic. But you must have at least basic knowledge of them.
+
+What is HTML?
+HTML is the language of the web, it is the skeleton of a page, it is its structure. HTML is a text markup language designed to tell the browser what type of content is placed on a page. It is the basis for displaying some content on the web.
+
+It is with HTML that we tell the browser that the page we are building has a title, a paragraph, an image, a link to another page, a list, etc…
+
+What is CSS?
+If HTML is the structure of a web page, CSS is the painting on the wall, it is the frame of the hanging picture, it is the size of the sign. CSS is a language created to design things on a web page, be it font size, box colors, visual effects, etc…
+
+What is JavaScript?
+JavaScript is the language created to provide interaction on web pages. Do you want to press a button and change the color of any component? JavaScript! Want to display a message on the browser screen of the person using your app? javascript! Do you want to complete a page with dynamic information from a web service? JavaScript! So we can say that JavaScript is the “brain” of a web page.
+
+I got the concept, but where do I start?
+The basis of a web page is HTML. Without HTML, you have nothing to style with CSS or create interactions. So the first step is to understand what HTML is and how to start a page using HTML. Not all web pages need more advanced interactions, but all pages need some form of layout. With that thought in mind, the second step is to learn how to style CSS pages. The third step is to learn how to make the page more dynamic for whoever is going to use it. Microinteractions, dynamic loading of information, searches and even design change using JavaScript.
+
+I already know the basics of all three, where do I go now?
+Now it all depends on what catches your eye the most. Remembering that the front-end can be divided into two parts: the visual part and the logical part. Which one catches your attention the most?
+
+This is not a final decision, you can change the path if you feel that a path is not ideal. Another important thing is that you do what gives you pleasure, what you have fun doing and that brings you personal satisfaction! Don’t force yourself to do something you wouldn’t want to do. It is very important to maintain mental health.
+
+I really like the visual part! What is my path?
+This is where the specialization is greatest in HTML and CSS. There are various technologies, techniques and standards that must be learned. And even here there may be other, more specific paths.
+
+HTML
+The most important thing when writing HTML is to write semantic HTML. Tags exist exactly to describe the content displayed on the page. Also learn the accessibility attributes to make the page more inclusive. Remember that a page with semantic and inclusive HTML ranks higher in search engines! Learn SEO techniques and accessibility.
+These technologies are very interesting for those who want to develop pages without using CSS frameworks.
+
+Pre/Post-processors:
+SASS (preprocessor)
+
+PostCSS (post-processor)
+
+There are pre/post processors to make CSS writing easier. You end up writing CSS code in a different way and when you upload it to a server, everything is transformed into regular CSS.
+
+Frameworks:
+Bootstrap
+
+Materialize CSS
+
+Tailwind CSS
+
+Frameworks are interesting for those who need to speed up CSS writing, without having to worry about responsiveness or class names.
+
+CSS standards:
+BEM
+
+Atomic css
+
+Cube CSS
+
+SMACSS
+
+CSS standards are different ways of writing CSS, either in class names or by separating properties. The main idea of ​​these standards is to write a cleaner CSS that is easier to understand and maintain.
+
+Some points to add: It is interesting for those who want to follow this path to have knowledge of JavaScript for small interactions and, above all, to know how to deal with events. Knowledge of JavaScript is extremely important for working with WebGL. And it is also a bonus to have knowledge in design.
+
+What is the name of this profession? What are you doing?
+It’s a bit tricky to say exactly what the name of the person who works on this path is. Some call it Web Designer, Interaction Designer, User Interface Designer, etc. But perhaps the most accepted name is Front-end Designer.
+
+One of the great advantages of having a front-end designer is that they are the bridge between designers and programmers. Precisely because this person has basic knowledge in both parts, he is able to translate what the two areas end up asking for or fighting during the development phase. She is the main person in turning the design team’s drawing into an actual page.
+
+I really like the logical part! What is my path?
+This is where the specialization is total in JavaScript. What ends up happening to some people who follow this path is that they only learn CSS frameworks, since it is not their goal to learn everything about CSS and HTML. But in addition to the path for those who want to follow the visual part, there are several technologies to choose from and deepen.
+
+“Language”
+Typescript
+
+This is the main “language” used to write applications or functions with JavaScript. I left the term “language” in quotes because it’s actually JavaScript. There are other “languages” that I didn’t mention because the main and most used one is TypeScript, but the others are just different ways of writing JavaScript.
+
+Frameworks
+React
+
+Angular
+
+Vue.js
+
+Next.js
+
+Ionic
+
+ReactNative
+
+Frameworks are JavaScript tools that make it easier to write more complex and robust applications and functions. As in the case of “languages”, in the end what is executed is a JavaScript code.
+
+Features / Technologies
+Fetch
+
+WebSocket
+
+LocalStorage
+
+[Async/Await
+
+Promises
+
+Map
+
+Typed arrays
+
+SPA
+
+Progressive Web Apps
+
+WebGL
+
+Here come functions and concepts that are commonly used in everyday applications, especially if your application does more than just display HTML and CSS. Many of these concepts are extremely important for applications that connect to a back-end service or other APIs. WebGL comes as a bonus for game development, for example.
+
+What is the name of this profession? What are you doing?
+Here it is a bit more complex to give a unique name because some people end up specializing in one or more frameworks. But if it is about giving a generic name, it would be Front-end Engineer / Engineer or Front-end Developer / Developer. Depending on the framework you want to focus on, you can search by React Developer/Developer, for example.
+
+Front-end is an area with many paths to follow, but it is worth mentioning that regardless of the path chosen, some basic knowledge is necessary. Technologies, frameworks, and concepts change at an extremely high speed in the front-end world, so updating is always recommended.

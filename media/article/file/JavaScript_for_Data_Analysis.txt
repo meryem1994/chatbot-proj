@@ -1,0 +1,31 @@
+On the demise of cameras in favor of camera-equipped mobile phones, Chase Jarvis once quipped, “The best camera is the one that’s with you.” In other words, portability and convenience outweigh technical differences in resolution, color, bokeh, etc. If you want to take a picture, a camera in your hand is better than a camera left at home.
+
+I think of this when asked about JavaScript versus Python, R, or Julia for data analysis. Those other languages are all great. They have powerful features such as operator overloading and multidimensional arrays, robust open-source libraries for math and visualization, and active communities. It’s easy to argue why any of them might be better suited than JavaScript for data analysis.
+
+Yet in my view, the language differences are beside the point.
+
+In part this is because JavaScript — the language, the web platform, and the open-source ecosystem — grows more capable every year. A tremendous amount of work goes into JavaScript by browser vendors, standards groups, researchers, and a vast population of global contributors. When we say JavaScript is fast, it isn’t by luck; it’s because people made it fast. We all benefit from this consolidated effort.
+
+And because JavaScript is the language of the web, it runs everywhere. Like the camera phone in your pocket, nearly everyone has a browser that runs JavaScript — the very browser you’re using to read this article. JavaScript enables interactive visualizations, explorable explanations, live analyses, model simulations, computational art, games, quizzes, you name it… When someone shares an analysis implemented in JavaScript, you’re not just seeing a static snapshot of their work; you’re running it live in your browser. You can go beyond passive reading by querying data, tweaking assumptions, and asking questions.
+
+JavaScript is the richest medium we’ve ever had for communication, but thanks to the open nature of the web it’s also something more: a medium amenable to inspection and tinkering, for learning and collaboration. Browser developer tools allow you to view, step into, and even modify, running code.
+
+The web got me hooked on programming. I first learned JavaScript through View Source: if a web page did something cool, I’d view its source and tinker with it to understand how it worked and to see if I could repurpose it to make something interesting. The immediacy and accessibility of JavaScript — and the endless possibilities — made it intoxicating.
+
+What has motivated me to keep building software over the last twenty-odd years is the idea that when you build something on the web, you’re teaching others how to build something too. We’re all swimming in this primordial soup of ideas, giving and receiving creative inspiration.
+
+Collaboration and communication are why the web exists. The web is how we work. It’s how we learn. It’s how we share ideas. It’s the web what makes JavaScript great for data analysis (and much else besides). On the web, we can edit and run code together in realtime, share exploratory views of data to answer questions, and explain concepts, with little friction. We can do almost anything we can imagine.
+
+So I admire the many powerful features and libraries available in other languages, but JavaScript is my first choice for its portability and convenience. It’s the easiest way to share live code anyone can edit.
+
+Of course, there’s still much to do. JavaScript may not have been conceived as a language for data analysis, but the language can be extended to better support it.
+
+I’m optimistic. JavaScript has improved dramatically over the last ten years, adding async/await, arrow functions, promises, iterators, generators, and more. Thanks to ES modules and services like Skypack, we may finally see easier library interoperability between Node.js and browsers (or at least fewer headaches with bundlers, transpilers, and loaders). With WebGPU, WebAssembly, and other standards under development, JavaScript’s future is bright. (See Ben Schmidt’s JavaScript and the next decade of data programming for more.)
+
+We also need new libraries and abstractions that let us spend more time thinking with data and less wrestling with the intricacies of programming. Open-source efforts such as Apache Arrow, Arquero, tidy.js, Observable Plot (which I contribute to), and Vega-Lite are helping.
+
+This histogram shows two overlapping, approximately normal (bell curve) weight distributions. The female distribution is centered around 60kg, while the male distribution is centered around 75kg.
+A histogram of Olympic athlete’s weights (kg) made with Observable Plot. Blue represents female athletes; orange represents male.
+As the author of D3.js, another open-source JavaScript library for visualization, I’ve heard from folks who were inspired to learn visualization by the work others shared openly on the web. Some of these folks even made it a career.
+
+I’m hopeful that with better tools — and specifically tools that embrace collaboration on the web — even more folks can unlock the power of thinking with data, together.

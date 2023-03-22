@@ -1,0 +1,50 @@
+The Decentralized Wireless (DeWi) sector is on the rise, with network protocols like Helium, Pollen, decentralized middleware platform such as IoTeX, and marketplaces like Airwaive growing the ecosystem. There is enormous talk about hotspot mining, price records, and 5G coverage, but how can we not get lost in a sea of innovative technical projects for this long-standing infrastructure industry?
+
+Here are 10 Telecom jargons you must know to keep up with DeWi movements and what they mean.
+
+Decentralized Wireless
+Decentralized Wireless (DeWi) is a concept pioneered by Helium network, which combines a wireless access point with a cryptocurrency miner to incentivize host devices to build a wireless network. Through blockchain and decentralized protocols, DeWi aims to build a distributed wireless network that incentives operators to deploy telecom infrastructure.
+
+2. ISP
+
+An ISP (internet service provider) is a company that provides internet access and related services to individuals and organizations. ISPs have the equipment and telecommunications lines necessary to serve a geographical area with a point of presence on the internet. In the United States, Comcast, Charter, AT&T, and Verizon are among the largest internet service providers.
+
+3. Small Cell
+
+The small cell installation consists of small radio and antenna devices mounted on structures such as streetlights, buildings, and poles. Data transmission between wireless devices requires these devices, which are about the size of a pizza box or backpack. For small cell installation, three things are required: power, backhaul, such as fiber optic cable or microwave, and permitted installation space. The Airwaive Host receives a small cell from the operator to help deploy wireless networks on their property.
+
+4. Bandwidth
+
+Generally, bandwidth refers to the amount of information that can be transmitted per unit of time over a transmission medium (like an internet connection). Bandwidth is highly significant for determining daily activities such as how fast a web page loads on a browser. Each use case is very different in terms of the amount of data and bandwidth. Therefore, bandwidth is an important factor to consider when developing a global wireless network.
+
+5. Mobile Network
+
+Mobile networks route communications via radio waves between users. The system consists of base stations covering delimited areas or “cells”. When these cells are joined, wide geographic coverage is provided. It allows mobile phones, smart watchers, etc., to communicate with each other and with fixed transceivers and telephones anywhere in the network, even if they move through multiple cells. Pollen is dedicated to building a decentralized mobile network built on the blockchain and owned and operated by its users.
+
+6. IoT
+
+The Internet of Things, or IoT, refers to the billions of physical devices connected to the internet around the world, allowing them to collect and share data. Almost any physical object can be adapted to become an Internet of Things device if it is capable of connecting to the internet in order to be controlled or communicate information. Helium has been leading the way for the decentralization of IoT networks through the deployment of Helium hotspots over the past few years.
+
+7. 5G
+
+5G stands for 5th generation mobile networks. With 5G wireless technology, users can expect multi-gigabit peak data speeds, ultra-low latency, increased reliability, massive capacity, added availability, and a more uniform user experience. 5G technology is applied to three main types of connected services: mobile broadband, mission-critical communications, and the Internet of Things. By connecting operators and hosts across the globe, Airwaive allows operators to deploy 5G networks faster and deliver broadband access to end users.
+
+8. Backhaul
+
+Backhaul is the connection (wired or wireless) between the wireless access point (radio) and the core Internet. For fixed and mobile networks, this backhaul must be high-speed Internet. For example, a fiber connection.
+
+9. Spectrum
+
+All wireless communication relies on the radio frequency (RF) spectrum, from your smartphone to your home WiFi. RF spectrums are divided into frequency bands based on their usage. The portion of spectrum used for wireless communication sits within that space and ranges from about 20 kHz to 300 GHz. The government owns spectrum in the United States and is responsible for licensing it efficiently to both public and private entities. The Federal Communications Commission (FCC) and National Telecommunications and Information Administration (NTIA) host auctions to allow companies to bid for spectrum licenses. As a result, cellular carriers, TV broadcasters, satellite operators, and others can place bids and gain usage rights for certain frequency bands.
+
+
+Spectrum wavelengths are classified into different bands within the electromagnetic spectrum range.
+
+10. CBRS
+
+CBRS is a band of RF spectrum from 3.5GHz to 3.7GHz that the FCC has designated for sharing among three tiers of users: incumbent users, priority licensees and generally authorized, which is lightly licensed. It will allow carriers to extend the coverage and capacity of their 4G LTE and 5G networks. Service providers are expected to use CBRS to replace last-mile fiber access to customer sites, deliver fixed-wireless services, and even point-to-multipoint connections. It enables DeWi operators such as Helium, Pollen and many other enterprises to launch their network, provide IoT connectivity and even replace Wi-Fi in some cases.
+
+With this guide, we hope you now have a better understanding of the most common buzzwords used in decentralized wireless. Join Airwaive on social media to learn more about the vast and complex world of DeWi and how we decentralize the last mile of the Internet.
+
+About Airwaive
+Airwaive connects wireless service providers with home and business owners who earn income operating wireless access points in their neighborhoods. Airwaive provides the tools and incentives for the components of a decentralized wireless network to thrive, offering internet service providers, hosts and validators the resources and motivation to build and scale the internet using wireless technology to reach everyone on the planet. Airwaive’s mission is not complete until 100% of the world has affordable access to broadband internet.

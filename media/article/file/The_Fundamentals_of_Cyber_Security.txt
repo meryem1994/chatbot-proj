@@ -1,0 +1,55 @@
+Keep Calm and Sound Smart
+Many people, maybe even you, are scared away from security because of technical jargon. I’m often still daunted by all of the acronyms and even struggle to remember exactly what the first S means in CISSP (which is one of the biggest certifications in the industry). Regardless of these things, being able to arm yourself against threats on the internet is a necessary skill in this day and age. I cannot stress the importance enough. You might feel like you “don’t have anything to hide”, and if your password was stolen you wouldn’t care, but I assure you that your information (including financial, demographic, medical, tax returns, emails, messages, yes those “I woke up like this” SnapChats, etc.) is incredibly valuable. It’ll also help you to know some of the jargon, so you at least seem like you know what you’re talking about when it comes to all of this hacker stuff.
+
+To protect yourself against the cyber threats of today, you must have a solid understanding of cyber security. My goal in this series of articles is to teach you enough about security so that you can properly arm yourself. Let’s get at it.
+
+>For the updated version of this article, check it out on my personal site https://kea.la/are-you-exposed-to-hackers-protect-yourself-now.
+
+What even is Information Security?
+To get a thorough look at information security, we need to begin with the definition of both of these words. Information is the gathering of data and facts about something or someone. Security is being free from a threat, or being protected from a threat. If we put the two words together, we get information security, often referred to as InfoSec. I will use InfoSec and information security interchangeably throughout the article. Information security in essence, is protecting someone or something’s data, and as someone who specializes in InfoSec, my job is to protect your personal data and not let anyone steal it.
+
+
+Overly Attached Girlfriend
+Now that you know what information security is, let’s cover the fundamentals starting with confidentiality, integrity, and availability (often referred to as CIA). These fundamental principles are the building blocks of security and will help you develop a strong foundation in security. Confidentiality, integrity, and availability are the driving forces behind InfoSec.
+
+Confidentiality: A Little Privacy, Please
+Confidentiality is exactly what it sounds like: keeping your information secret. As security professionals, the worst thing we can do is let someone else get ahold of your information without your consent. This would be unauthorized disclosure; we have nightmares about it.
+
+The hard thing about confidentiality though, is that it doesn’t just pertain to information being stored somewhere on your profile. It has to remain confidential on all systems and devices where it is stored, during the process of it being sent different places, and once it reaches where it’s going. Confidentiality must be enforced in all of these places, and this usually means there are a lot of holes for hackers to step into and steal your information.
+
+The best way to keep your information secret is to make sure that there is strict access control* on your data, and encryption* of any data being transmitted (thankfully most companies do this nowadays).
+
+*Access control is selectively restricting access to something, like your data.
+
+*Encryption is a way of concealing your data by converting it into code.
+
+Integrity: Just Being Honest
+Integrity is when the information that is stored in a system is accurate and reliable. Often, hackers will target the integrity of a website or service to make unauthorized modification to the data being stored there. An example of this is if a hacker were to break into a banking website and change their $1 balance into $1,000,000. The integrity of the site has now significantly diminished. Attackers can also insert all kinds of malware into a system to corrupt the information and change values in the database.
+
+On the other hand, users, like you and me, can also accidentally corrupt data, especially on the job. It’s not like we mean to, but we might accidentally type in 20mg of some medicine instead of 200mg to give to a patient, or charge a customer $10 for a meal instead of $20. Mistakes like this happen all of the time, and it’s up to us as users to be aware of anything that might damage the integrity of the system.
+
+When building a secure system, the best way to uphold the integrity is to (again) ensure strict access control, intrusion detection*, and limited the choices that users have so that mistakes don’t happen as often. It would also help if the application itself checked for believable user input.
+
+*Intrusion detection is the act of detecting when hackers carry out actions that might compromise the confidentiality, integrity, and availability of the system. Often, this is accomplished by an intrusion detection system (IDS) which is an application that looks out for malicious behavior on the system.
+
+Availability: I’m Available Anytime, Except When I’m Not
+Availability is the word we use to describe whether or not users have access to data and resources or not. Can you access the website you are trying to access? Is the website available or is it down?
+
+Availability is a lot harder to accomplish than most people realize, because many services have to be up and running to ensure that resources are available when you need them.
+
+One of the threats you should be aware of when thinking about availability is a denial-of-service (DoS) attack, or distributed denial-of-service (DDoS) attack. A DoS attack is one where the enemy will flood your computer and Internet connection with traffic so you can’t access any information on the Internet. Here is a very basic example of this happening (and not completely accurate). When you go to the Internet to access google.com, your computer is sending one request to google.com’s server. In fact, it can only handle one request at a time. If an attacker “floods” the google.com server with a bunch of requests, it can’t handle it, thus disabling you from accessing google.com. A DDoS attack occurs when the attack is more distributed, meaning that the hacker uses multiple computers, maybe even yours, to attack another computer/website by sending a lot of data to it.
+
+A few of the ways you could protect yourself from these attacks are by using anti-virus software*, or even using a firewall*.
+
+*Anti-virus (or antivirus) software is a program that scans your computer looking for malicious software (i.e., malware*).
+
+*Firewalls are software that watches all of the traffic that comes into and leaves your computer, and doesn’t allow malicious traffic to come through.
+
+*Malware is software that is intended to damage or disable computers and computer systems.
+
+Talk Security To Me
+After reading this article, I hope you have a better understanding of what information security is, and what the main goals are. Confidentiality, integrity, and availability all have to work together to keep your information secure, but don’t think for one minute that InfoSec professionals could do it without the help of you, our users.
+
+In addition, I trust that you now have the ability to speak about these topics intelligently, and can keep up (at least a little) when IT people are discussing security.
+
+Information security is an exceedingly important topic and skill today, and the amount of threats we face is on the rise every day. Stay tuned as I go more in depth about InfoSec, and get ready to learn how to better protect yourself. After all, hackers gonna hack.

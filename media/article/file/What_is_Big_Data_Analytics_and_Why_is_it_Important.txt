@@ -1,0 +1,97 @@
+The amount of data we need to work with, analyze, and explore; and that amount is only going to grow larger and larger as the technology around us advances. Now, imagine having to stare at thousands of rows of data in a spreadsheet, trying to find hidden patterns and track down changes in the number that could be useful in your post-analysis interpretation.
+
+Doesn’t sound fun, does it?
+
+That is where data visualization comes in. Having a visual summary of information makes it easier to identify patterns and trends than looking through rows of a spreadsheet. Humans are visual creatures, we interact and respond better to visual stimulation, and visualizing data is one way to make it easier for us to understand our data better. Since the purpose of data analysis is to gain insights and find patterns, visualizing the data will make it much more valuable and easy to explore. Even if a data scientist can reach insights from data without visualization, it will be more challenging to communicate the meaning of it to others without visualization. The different types of charts and graphs make communicating data findings faster and more effecient.
+
+The importance of visualizing data goes beyond easing up the interpretation of the data. Visualizing the data can have many benefits, such as:
+
+Showing the change in the data over time.
+Determining the frequency of relevant events.
+Pointing out the correlation between different events.
+Analyzing value and risk of different opportunities.
+In this article, I will talk about a Python library that can help us create eye-catching, stunning, interactive visualizations. The library is Pygal.
+
+Without further ado, let’s get into it…
+
+Pygal
+When it comes to visualizing data in Python, most data scientists go with the infamous Matplotlib, Seaborn, or Bokeh. However, one of the libraries that are often overlooked is Pygal. Pygal allows the user to create beautiful interactive plots that can be turned into SVGs with an optimal resolution for printing or being displayed on webpages using Flask or Django.
+
+Getting familiar with Pygal
+Pygal offers a wide variety of charts that we can use to visualize data, to be precise, there are 14 charts categories in Pygal, such as histogram, bar charts, pie charts, treemaps, gauge, and more.
+
+To use Pygal’s magic, we need to install Pygal, first.
+
+$ pip install pygal
+Let’s plot our first chart. We will start with the simplest char, a bar chart. To plot a bar chart using Pygal, we need to create a chart object and then add some values to it.
+
+bar_chart = pygal.Bar()
+We Will plot the factorial for numbers from 0 to 5. Here I defined a simple function to calculate the factorial of a number and then used it to generate a list of factorials for numbers from 0 to 5.
+If we want to plot different kinds of charts, we will follow the same steps. As you might’ve noticed, the primary method used to link data to charts is the add method.
+
+Now, let’s start building something based on real-life data.
+
+Application
+For the rest of this article, I will be using this dataset of the COVID-19 cases in the US to explain different aspects of the Pygal library.
+
+First, to make sure everything works smoothly, we need to ensure two things:
+
+That we have both Pandas and Pygal installed.
+In Jupyter Notebook, we need to enable IPython display and HTML options.
+Bar Chart
+Let’s start by plotting a bar chart that displays the mean of the number of cases per state. To do that, we need to execute the following steps:
+
+Group our data by the state and extract on the case number of each state and then computing the mean value for each state.
+Treemap
+Bar charts help show the overall data, but if we want to get more specific, we can choose a different type of char, namely, a treemap. Treemaps are useful for showing categories within the data. For example, in our dataset, we have the number of cases based on each county in every state. The bar chart was able to show us the mean of every state, but we couldn’t see the case distribution per county per state. One way we can approach that is by using treemaps.
+
+Let’s assume we want to see the distribution of the detailed cases for the 10 states with the most significant number of cases. Then, we need to manipulate our data first before plotting it.
+
+We need to sort the data based on cases and then group them by states.
+Use the sorted list to get the top 10 states with the most significant number of cases.
+Use this sublist to create our treemap.
+This treemap, however, is not labeled, so we can’t see the county names when we hover over the blocks. We will see the name of the state on all the county blocks in this state. To avoid this and add the county names to our treemap, we need to label the data we’re feeding to the graph.
+
+
+Unlabeled Treemap
+
+Before we do that, our data is updated daily. Hence, there will be several repetitions for each county. Since we care about the overall number of cases in each county, we need to clean up our data before adding it to the treemap.
+Awesome! Now our treemap is labeled. If we hover over the blocks now, we can see the name of the county, the state, and the number of cases in this county.
+
+
+Labeled Treemap
+The complete code for the treemap
+
+
+Pie Chart
+Another form we can present this information is using a pie chart to show the 10 states with the most significant number of cases. Using a pie chart, we can see the percentage of the number of cases of one state relative to the others.
+
+Since we already did all the data frame manipulation, we can use that to create the pie chart right away.
+Gauge chart
+The last type of chart we will talk about is the gauge chart. The gauge chart looks like donuts, and it is useful for comparing values between a small number of variables. So, we will go by comparing the top 5 states in the dataset.
+
+The gauge chart has two shapes, the donut shape or in Pygal the SolidGauge, and the form of the needles, or the Gauge.
+
+The Donut Shape
+Styling
+Pygal also gives us the chance to play with the colors of the charts; the styles already defined in the library are:
+
+Default
+DarkStyle
+Neon
+Dark Solarized
+Light Solarized
+Light
+Clean
+Red Blue
+Dark Colorized
+Light Colorized
+Turquoise
+Light green
+Dark green
+Dark green blue
+Blue
+To use the built-in styles, you will need to import the style you want, or you can import them all.
+Aside from these styles, you can define a custom style by setting the parameters of a style object. Some of the properties that can be edited are color which represents the series color, the background, and foreground which represents the color of the chart’s background and foreground, respectively. You can also edit the opacity and the font properties of the charts.
+
+Here’s the style object to my custom styles

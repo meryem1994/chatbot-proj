@@ -1,0 +1,58 @@
+Routing is a topic most of us are familiar with. However, SPA frameworks and routing libraries use different techniques underneath. Two such approaches are static and dynamic routing. Frameworks like Angular, Ember and React Router library (in the past) supported static routing.
+
+But recently, React Router introduced dynamic routing to address some of the core limitations with static routing.
+
+As developers, we should be aware of both these techniques, and this article will give you all the answers you need on static and dynamic routing in React.
+
+Static Routing is not dead: There are plenty of reasons to use it.
+In static routing, you need to define all the routes in a centralized location in your application. Then these routes will be imported to the top level of the application before it starts rendering.
+
+Earlier versions of react-router and frameworks like Angular, Ember use static routing.
+
+If we consider Angular as an example, its app-routing.module.ts file will contain all the routes and corresponding components.
+Then this file is imported to app.module.ts before application rendering takes place.
+
+Although React has moved from static to dynamic, it doesn’t mean that static routing is dead. There are situations where static routing becomes really useful.
+
+For example:
+
+It allows you to link routes by name.
+Suitable for static analysis.
+Allows to inspect and match routes before rendering. This is useful in server-side frameworks like Express.
+It loads data in the lifecycle before rendering the next screen.
+Apart from all these, React still provides a static routing library called react-router-config to be used in such situations.
+
+Then, why React moved to dynamic routing in the first place? Don’t worry. You will find the answer in the next section.
+
+Dynamic Routing: The React way of doing things
+The main difference between static vs. dynamic routing is the time at which the routing takes place. In dynamic routing, routes are initialized dynamically when the page gets rendered.
+
+This means almost everything is a component in the React Router.
+
+There are some interesting concepts in dynamic routing. Let’s discuss a few of them to understand the link between dynamic routing and React.
+
+Dynamic routing allows rendering your React components conditionally.
+React encourage developers to use components as fundamental building blocks of web applications. This allows us to render separate components on the same page based on the conditions we like.
+
+With Dynamic routing, we can use route changes as the conditions and render components without changing the layouts or pages completely.
+
+For example, let’s assume a requirement to display a message list and open a personal chat when the user selects a message from that list.
+
+With dynamic routing, you can use a single layout or a web page with 2 components (Message and Chat)to achieve this. First, we can use the Message component with the route /messages to load all the messages when the page loads. Then we can conditionally render the Chat component using a route like /messages/chat/:userId to open the chatbox.
+
+
+Open the chat when a user is selected from the left side panel
+This can also be known as nested routing since we are nesting routes inside sub-components.
+
+Easy to configure nested routes
+Nested routing is not a unique thing to dynamic routing. But with dynamic routing, we can easily configure nesting routing for our applications.
+
+If we retake the same example, there are two ways to configure those routes. I can either define both of them at the same level (e.g., in App.js) or move the Chat component route to the Message component.
+Here, the App component only has one route. When the user navigates to /messages the Chat component will be mounted, and there the next route is defined as /chat/:userId. When the user navigates to /messages/chat/:userId , Chat component will be loaded.
+
+Likewise, there are many things we can achieve with dynamic routing, and I think now you have a clear idea about why React chose dynamic routing.
+
+Conclusion
+In this article, I tried to answer some burning questions of developers about static routing, dynamic routing, and when to choose them.
+
+If we consider React alone, it has its fair share of reasons to support dynamic routing over static routing. As I explained, some situations still demand static routing and that’s why React also provides a library called react-router-config.

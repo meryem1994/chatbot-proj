@@ -1,0 +1,97 @@
+So, I have been a Developer for about 18yrs now from 2003 which was my first year in the university starting with Basic and then moving to Visual Basic 6.0 in 2004 and to VB.NET after School in 2008 during my compulsory National Youth Service Corps 1year program and then ASP.NET also during that period as well. I eventually started using C# sometime in 2017 up until Present. I have always wanted to learn another programming language and increase my tech stack but due to a combination of crazy deadlines and procrastination I haven’t really been able to do it. Thanks to two of my current bosses and the Udemy Course (Python for the .NET Developer) I had the perfect way to start the transition. After taking the course and getting my certification (lol), I understood the basics of Python and was able to test a few things.
+
+So, why Python?
+
+Python as far as I have known is the language mostly used for Data Science, Machine Learning and AI. It is a dynamically typed language meaning that the type checking is done at runtime which means you don’t have to declare variables so for example instead of
+
+int Salary = 5000; in C# you just have
+
+Salary = 5000 in Python.
+
+You don’t even have to put the semi-colon at the end. Lol. You also don’t have to bother with curly braces like in C# that if you have so many functions and nested if statements it can getting a bit confusing or messy. It is easy to code, read, maintain and port. Python also has a huge set of libraries; This saves developers’ a lot of time as they do not have to code from scratch every time or even any time. This in turn makes development work much faster in Python. It is even said that to make changes to an existing legacy system, Python is the language to go for. So, all of this makes Python a very good language to learn especially as the world is already more on Data Science. You know the saying now Data is the new Oil.
+
+Differences between C# and Python
+
+Just wanted to highlight some other differences from what I already mentioned above. This is culled from hackr.io
+
+
+Differences between C# and Python
+Dapr and the Benefits
+
+So, you can run your Python code on its own or your can also run it on dapr. So, I will briefly highlight what dapr is all about and its benefits.
+
+
+Dapr Architecture
+What is Dapr? Dapr helps developers build event-driven, resilient distributed applications. Whether on-premises, in the cloud, or on an edge device, Dapr helps you tackle the challenges that come with building microservices and keeps your code platform agnostic. So typically if you were running a python web API endpoint you would have a URL like this http://127.0.0.1:5000/loans/request but with Dapr you have http://localhost:59097/v1.0/invoke/loanapplication/method/loans/request . With this last URI, we have invoked the Dapr sidecar but using the native invoke API built into Dapr. The format is http://localhost:<dapr-http-port>/v1.0/invoke/<app-id>/method/<method-name>. Using this way of calling services using the service invocation Dapr building block has gives you access to already built in
+
+§ Service Discovery
+
+§ Distributed tracing
+
+§ Metrics
+
+§ Error handling
+
+§ Encryption
+
+How to Setup your machine for Python (And also Dapr)
+
+So, you need to install the following applications listed below:
+
+1. Download the latest version of Python — This is important for running python.
+
+2. Download and install Visual Studio Code — This is where you can write and run your python applications. You can also run python applications from the CLI.
+
+3. Install the Python extension for Visual Studio Code from the Extensions Tab in Visual Studio. You can get a guide on how to do that here
+
+4. Download Docker Desktop — This is important for running your applications on containers. Dapr also uses this.
+
+5. On your CLI run dapr init to install and setup Dapr.
+
+After this, you should be good to go. Next, I will take you through setting up a python REST API.
+
+How to run a Python Application with an example of a Simple REST API using Python (and also Dapr)
+
+Two very important things to note about running Python is:
+
+1. Python runs on a Virtual Environment. A virtual environment usually used as virtualenv in Python is a Python environment such that the Python interpreter, libraries and scripts installed into it are isolated from those installed in other virtual environments, and (by default) any libraries installed in a “system” Python, i.e., one which is installed as part of your operating system.
+
+2. Because Python uses a lot of libraries, you will need to install these libraries before you run your Python application and most of this is usually placed in a file some times called requirements.txt and then you install using that file and it will install all the libraries in that file. It looks like the screenshot below:
+
+
+Screenshot of a Python Requirement.txt file
+Now you run python by putting your codes in a [filename].py file. So, a simple script to print Hello World would be
+
+print(“Hello World!”)
+
+And to run it, you simply run Python [filename].py in CLI or terminal window if using Visual Studio Code. But once you begin to use other functions that are dependent on certain libraries like when running a REST API then you need to install the requirements, properly load them into a virtual environment and then run it. The steps to run your python application in the CLI or Terminal Window in Visual Studio Code are follows:
+
+1. pip install virtualenv
+
+2. virtualenv [applicationname]
+
+3. [applicationname]\Scripts\activate — This creates something like you see in the screenshot below. You’ll notice ([applicationname]) before the folder path in the CLI or Terminal Window Where whenever you open this folder later on and you see this you should skip Step 1 to 3. You can also skip 1–2 the next time you are running the application and only go straight to run Step 3 if you don’t see what you have in the screenshot below.
+
+
+Activated Python Environment File Path in CLI
+4. pip install -r requirements.txt — This installs the libraries that you will need so you can import them at the top of your code in your [filename].py file. You can also install this one at a time e.g., pip install Flask. You can change the filename requirements.txt to any filename but this helps to show exactly what is in the file. This also prevents having errors like:
+
+ImportError: No module named sqlalchemy
+
+This is a very important tip that will save your life in Python. Phew! Once you get errors like this, then you know you are yet to install a particular library.
+
+5. python [filename].py
+
+if you want to run the application and if you want to run it with dapr. Make sure your Docker Desktop is up and running. Run the command below:
+
+dapr run — app-id [applicationname] — app-port [appportnumber] — dapr-http-port [portnumber] — python [filename].py
+
+e.g., is dapr run — app-id loanapplication — app-port 5000 — dapr-http-port 3500 — python app.py
+
+REST API Code Sample (GET Endpoint)
+
+
+Python Sample Code for a REST API Get Endpoint.
+In the screenshot above, the first two lines are to call the libraries that would be used in the application. The fourth line is to load the app using Flask. Line 6 -8 is the actual get endpoint code. It is to create a route using a function called other_page whilst Line 10 and 11 is to load and run the application in Python. You can run it without specifying the port and you can use any port as well. As long it is available and not in use by another application.
+
+I hope you enjoyed this and you are able to understand and use Python and from this you can go ahead and do. I also hope you noticed the bonus I gave you on Dapr (You can find more info on dapr.io) I will come back again for more and may also add some more updates to this so watch out and stay tuned. From your C# guy who is now turning to a Snake (Python) lol.

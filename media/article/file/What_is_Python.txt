@@ -1,0 +1,66 @@
+What is Python
+Python is a general purpose, dynamic, high-level, and interpreted programming language. It supports Object Oriented programming approach to develop applications. It is simple and easy to learn and provides lots of high-level data structures.
+
+Python is easy to learn yet powerful and versatile scripting language, which makes it attractive for Application Development.
+
+Python's syntax and dynamic typing with its interpreted nature make it an ideal language for scripting and rapid application development.
+
+Python supports multiple programming pattern, including object-oriented, imperative, and functional or procedural programming styles.
+
+Python is not intended to work in a particular area, such as web programming. That is why it is known as multipurpose programming language because it can be used with web, enterprise, 3D CAD, etc.
+
+We don't need to use data types to declare variable because it is dynamically typed so we can write a=10 to assign an integer value in an integer variable.
+
+Python makes the development and debugging fast because there is no compilation step included in Python development, and edit-test-debug cycle is very fast.
+
+Why learn Python?
+Python provides many useful features to the programmer. These features make it most popular and widely used language. We have listed below few-essential feature of Python.
+
+Easy to use and Learn
+Expressive Language
+Interpreted Language
+Object-Oriented Language
+Open Source Language
+Extensible
+Learn Standard Library
+GUI Programming Support
+Integrated
+Embeddable
+Dynamic Memory Allocation
+Wide Range of Libraries and Frameworks
+
+Python Popular Frameworks and Libraries
+Python has wide range of libraries and frameworks widely used in various fields such as machine learning, artificial intelligence, web applications, etc. We define some popular frameworks and libraries of Python as follows.
+
+Web development (Server-side) - Django Flask, Pyramid, CherryPy
+GUIs based applications - Tk, PyGTK, PyQt, PyJs, etc.
+Machine Learning - TensorFlow, PyTorch, Scikit-learn, Matplotlib, Scipy, etc.
+Mathematics - Numpy, Pandas, etc.
+Python print() Function
+The print() function displays the given object to the standard output device (screen) or to the text stream file.
+
+Unlike the other programming languages, Python print() function is most unique and versatile function.
+
+The syntax of print() function is given below.
+Python Popular Frameworks and Libraries
+Python has wide range of libraries and frameworks widely used in various fields such as machine learning, artificial intelligence, web applications, etc. We define some popular frameworks and libraries of Python as follows.
+
+Web development (Server-side) - Django Flask, Pyramid, CherryPy
+GUIs based applications - Tk, PyGTK, PyQt, PyJs, etc.
+Machine Learning - TensorFlow, PyTorch, Scikit-learn, Matplotlib, Scipy, etc.
+Mathematics - Numpy, Pandas, etc.
+Python print() Function
+The print() function displays the given object to the standard output device (screen) or to the text stream file.
+
+Unlike the other programming languages, Python print() function is most unique and versatile function.
+
+
+Python Variables
+Variable is a name that is used to refer to memory location. Python variable is also known as an identifier and used to hold value.
+
+In Python, we don't need to specify the type of variable because Python is a infer language and smart enough to get variable type.
+
+Variable names can be a group of both the letters and digits, but they have to begin with a letter or an underscore.
+
+It is recommended to use lowercase letters for the variable name. Rahul and rahul both are two different variables.
+The syntax of print() function is given below.

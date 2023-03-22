@@ -1,0 +1,48 @@
+Firstly, it’s my first-time utilizing Medium as a platform to build Portfolio, and I would like to thank Myskill.id for introducing me. Working with data is not new to me. All of my working experiences always intersect with data in many ways, but working with big data in tableau is indeed something fresh in my experience. Besides, it’s beneficial for us to learn how to work with big data and develop skills in many platforms needed for the data analyst profession, such as SQL, Python, Tableau, etc.
+
+Let’s start with how to work with big data using SQL (Structured Query Language). As defined by 1996 Webster’s II New Riverside Dictionary Revised Edition, data is information organized for analysis. Meanwhile, Merriam-Webster Online Dictionary defines data as factual information (measurement or statistics) used as a basis for reasoning, discussion, or calculation. The information gathered by data is an output that includes both useful and irrelevant or redundant information and must be processed to be meaningful.
+
+
+And Why SQL? Probably, it’s the first question that comes to mind when we’re a rookie trying to find a way to work with big data. SQL is the standard query language that allows communication with databases to manage all the data they contain. Instead of being a programming language for building websites, apps, or software, SQL is a language that enables storing, retrieving, and manipulating data in databases.
+
+SQL relies on Relational Database Management Systems (RDBMS) that enable the creation of a relational database. Databases inside an RDBMS store data in objects called tables utilizing a tabular format, storing records by columns and rows similar to what you see when using a spreadsheet.
+
+
+SQL order of the execution defines the order in which the clauses of a query are evaluated. Understanding SQL query order can help diagnose why query won’t run, and even more frequently, will help to optimize the queries to run faster. Basically, the order of SQL clause that is commonly used is as follows:
+
+
+Common SQL Clause
+Other than the essential SQL clause, there are 5 SQL aggregate functions often used, as shown below:
+
+
+SQL Aggregate Functions
+In addition to SQL aggregate functions are SQL comparison operators such as:
+
+
+SQL Comparison Operators
+Furthermore, it’s worth knowing other functions in SQL, like Logical operators:
+
+
+SQL Logical Operators
+Let’s get into practice immediately. We are provided with a database that consists of 4 different tables that relate to each other (unicorn_companies, unicorn_funding, and unicorn industries, unicorn_funding), and by utilizing PGadmin, a management tool for PostgreSQL, we can see what kind of data are available in the table.
+The asterisk symbol (*) following the command “SELECT” is to signify that we wish to view all fields from the “unicorn_companies” table. We can use the same query to check the variable in three other tables.
+After checking the variables inside all the tables, it can be seen that all of them have the same variable that is company_id, which can be used later for further analyzing the database with more than one table.
+
+Furthermore, analyzing data based on the request to explore more or use the query toward the data, as an example
+
+“SELECT” determines which data must be shown in the output table. In this case, we need to show the variable country and use the aggregate function, COUNT(), to count the entire company in each country from the “unicorn_companies” table. Later we need to give the company total calculation an alias as total_company so it would show in the output table.
+
+Group the expected result based on the country using the “GROUP BY” clause, as we need to see the total company based on each country. The “HAVING” clause in the query is required to filter the company’s total calculation and return the result if their count is greater than 100. The “HAVING” clause filters particular values output because the “WHERE” clause does not support the aggregate functions.
+We need more than one table to solve the question, considering the industry field is located in the “unicorn_industry” table while the funding and valuation fields are located in the “unicorn_funding” table. Therefore, we need to join these two tables.
+
+In “SELECT” from two joined tables, give us a result set that displays the industry from the “unicorn_industry” table, which has already been given an alias as industry. To calculate the total funding, we imply the aggregate function, SUM(), from the funding field in the “unicorn_funding” table, which has already been given an alias as tf. And indicate the aggregate function, AVG(), from the valuation field to calculate the average valuation. In addition, The ROUND() function was added to round a number to a specified number of decimal places.
+
+Because we use two tables, each time we use a column in the “SELECT” clause, we prefix the column with the table name (e.g., industry.industry) in case there is any ambiguity about which table the columns belong to.
+
+The SQL LEFT JOIN will join two tables based on a common column and select records matching values in these two columns and the remaining rows from the left table. In the query above, the result will contain the rows where there is a match between company.id (of the “unicorn_industries” table) and company.id (of the “unicorn_funding” table), along with all the remaining rows from the “unicorn_industries” table.
+The CASE statement is SQL’s way of handling if/then logic. The CASE statement is followed by at least one pair of WHEN and THEN statements. With the query above, the CASE statement will checks each row to see if the conditional statement — company.country = ‘Indonesia’ is TRUE. For any given row, if the conditional statement is TRUE, it will count as company.id in Indonesia, that later will be the entire company in Indonesia.
+
+While the “WHERE” clause is used to filter the continent only in Asia to count the total_company in Asia and specify the entire company which runs in the logistics industry. It’s handy to use LIKE statement to define the type of industry we need to filter because we don’t need to write down the full name of the industry type inside the query.
+To find the answer to question 4 above, we use three tables: “unicorn_industries”, “unicorn_dates”, and “unicorn_funding”. We will simplify complex long queries using the “WITH” clause, especially those with JOIN and subqueries. The “WITH” clause will define a temporary data set whose output can be referenced in subsequent questions.
+
+In the query above, we have 2 temporary datasets, which are top3_industry, to define three industries with the most unicorns in 2019–2021 and how many the total company in each industry and yearly_valuation to determine every industry’s average valuation (in billions) each year between 2019–2021.

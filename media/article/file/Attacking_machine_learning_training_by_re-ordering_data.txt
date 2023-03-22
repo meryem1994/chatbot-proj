@@ -1,0 +1,66 @@
+We have increasingly outsourced our decision-making to machine learning models (“the algorithm”). The whole point of building recommendation, sorting, and “decision support” systems on ML is to undertake assessments at superhuman speed and scale, which means that the idea of a “human in the loop” who validates machine judgment is a mere figleaf, and it only gets worse from here.
+
+There are real consequences to this. I mean, for starters, if you get killed by a US military drone, chances are the shot was called by a machine-learning model:
+
+https://abcnews.go.com/blogs/headlines/2014/05/ex-nsa-chief-we-kill-people-based-on-metadata
+
+From policing to hiring to housing to lending, from social media promotion to what song you hear next on a streaming service, ML models supplant human judgment, backed by the promise of unbiased, mathematical choices. Humans may be racist, but algorithms can’t be, right?
+
+https://www.mediamatters.org/daily-wire/what-daily-wire-gets-wrong-and-alexandria-ocasio-cortez-gets-right-about-algorithms-and
+
+Wrong. I mean, super wrong. The problem isn’t merely that using biased data to train an algorithm automates the bias and repeats it at scale. The problem is also that machine-learning is a form of “empiricism-washing.” A police chief who orders officers to throw any Black person they see up against a wall and go through their pockets would be embroiled in a racism scandal. But if the chief buys a predictive policing tool that gives the same directive, it’s just math, and “math doesn’t lie”:
+
+https://pluralistic.net/2021/08/19/failure-cascades/#dirty-data
+
+Thus far, algorithmic fairness audits have focused on training data. Garbage In, Garbage Out: biased training produces a biased model.
+
+https://memex.craphound.com/2018/05/29/garbage-in-garbage-out-machine-learning-has-not-repealed-the-iron-law-of-computer-science/
+
+But a burgeoning research field based on adversarial attacks on training data shows that we need to go beyond checking training data for bias. In April, a team from MIT, Berkeley, and IAS published a paper on inserting undetectable backdoors into machine learning models by subtly poisoning the training data:
+
+https://pluralistic.net/2022/04/20/ceci-nest-pas-un-helicopter/#im-a-back-door-man
+
+The attack calls into question whether it’s possible to verify that an algorithm whose training you outsource to a third party can ever be validated. The bank that hires a company to ingest its lending data and produce a risk model can’t prove that the model is sound. It may be that imperceptibly subtle changes to a lending application would cause it to be approved 100% of the time.
+
+In part, the fiendish intractability of this attack stems from the difficulty of validating a random number generator. This is a famously hard problem. It the subject of Godel’s life-work, and it was how the NSA compromised an encryption standard:
+
+https://www.wired.com/2013/09/nsa-backdoor/
+
+Now, “Manipulating SGD with Data Ordering Attacks,” a paper from researchers at the University of Toronto, Cambridge, and the University of Edinburgh shows that validating a model is even harder than it we thought:
+
+https://arxiv.org/abs/2104.09667
+
+In a summary of the paper on Cambridge’s security research blog, the researchers explain that even if you start with unbiased — that is, broadly representative — data, the order in which you present that data to a machine-learning model can induce bias:
+
+https://www.lightbluetouchpaper.org/2021/04/23/data-ordering-attacks/
+
+That’s because ML models are susceptible to “initialization bias” — whatever data they see first has a profound impact on the overall weighting of subsequent data. Here’s an example from the researchers’ blog:
+
+[A]ssemble a set of financial data that was representative of the whole population, but start the model’s training on ten rich men and ten poor women drawn from that set — then let initialisation bias do the rest of the work.
+
+As they say, the bias doesn’t have to be this obvious: subtle nonrandomness in the data ordering can poison the model. And as we’ve seen, validating random-number generators is really hard. That opens up the twin possibilities of malicious model-poisoning to introduce bias, and of inadvertent bias in a model because of bias — not in the data, but in the data-order.
+
+This suggests that auditing a model for bias is much harder than we thought. Not only must you confirm that a model is free from bias, but also free from biased ordering. This is not something that regulators have really come to grips with — for example, the EU’s AI’s regs contemplate examining data, but not data-order:
+
+https://digital-strategy.ec.europa.eu/en/policies/european-approach-artificial-intelligence
+
+Even if we do decide to include data-order in AI audits, how can we validate the order after the fact? There are ways to look at a piece of data and figure out whether it was used to train a model — but as far as I know, there’s no way to start with a model and work backwards to find out its training order.
+
+That means that if a regulator suspects that a model was deliberately tampered with, they will likely have to take the prime suspect’s word for it when seeking to determine what the training-data’s order.
+
+Yikes.
+
+Image:
+JonRichfield (modified)
+https://commons.wikimedia.org/wiki/File:A_throw_of_two_dice_as_in_the_game_of_hazard_IMG_1705s.jpg
+
+CC BY-SA 4.0:
+https://creativecommons.org/licenses/by-sa/4.0/deed.en
+
+Cryteria (modified)
+https://commons.wikimedia.org/wiki/File:HAL9000.svg
+
+CC BY 3.0:
+https://creativecommons.org/licenses/by/3.0/deed.en
+
+Cory Doctorow (craphound.com) is a science fiction author, activist, and blogger. He has a podcast, a newsletter, a Twitter feed, a Mastodon feed, and a Tumblr feed. He was born in Canada, became a British citizen and now lives in Burbank, California. His latest nonfiction book is How to Destroy Surveillance Capitalism. His latest novel for adults is Attack Surface. His latest short story collection is Radicalized. His latest picture book is Poesy the Monster Slayer. His latest YA novel is Pirate Cinema. His latest graphic novel is In Real Life. His forthcoming books include Chokepoint Capitalism: How to Beat Big Tech, Tame Big Content, and Get Artists Paid (with Rebecca Giblin), a book about artistic labor market and excessive buyer power; Red Team Blues, a noir thriller about cryptocurrency, corruption and money-laundering (Tor, 2023); and The Lost Cause, a utopian post-GND novel about truth and reconciliation with white nationalist militias (Tor, 2023).

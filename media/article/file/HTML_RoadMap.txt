@@ -1,0 +1,72 @@
+HTML Roadmap
+Are you planning to start your coding journey? Then this is for you — a roadmap to help you achieve your goals.
+
+Here is a list of things one should learn while starting with HTML. Note: Though this does not cover all that HTML has to offer, it covers a list of things one should know to start with web development.
+
+HTML Roadmap
+HTML main level tags
+Doctype
+title tag
+meta tags
+link tag,
+script tag
+body tag
+HTML comments
+adding a favicon
+og:image tag
+2. HTML semantic elements
+header
+footer
+section
+aside
+nav
+article
+main
+3. List of other most commonly used HTML tags
+div
+paragraph tag
+span
+anchor tag
+list, ordered list, unordered list
+iframes
+heading tags
+dl /dt, datalist
+br, hr
+4. table elements
+thead
+tbody
+td
+tr
+tfoot
+th
+5. Form elements
+form
+different input types (text, email, phone, color, date, URL, radio, checkbox, etc)
+textarea
+select
+button
+label
+6. Multimedia tags
+canvas
+video
+audio
+svg
+progress
+img
+7. HTML events -[Good to know when using JavaScript]
+Mostly used
+
+window events
+keyboard events
+mouse events Used if using the specific tags like form/media tags etc
+form events
+media events
+drag events
+clipboard events
+8. HTML global attributes on elements
+class
+id
+data-* (custom attribute)
+tabindex
+lang
+The above is a list of items one should know as a beginner to get started with web development. Do you have more suggestions on a few other things one should learn when starting with HTML? Let me know in the comments below.

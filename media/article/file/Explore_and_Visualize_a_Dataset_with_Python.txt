@@ -1,0 +1,118 @@
+In last week’s story, “Extracting data from various sheets with Python” you learned how to retrieve and unify data from different sources (Google Sheets, CSV, and Excel). Both stories work as a standalone story, so don’t worry if you skipped last week’s piece.
+
+Extracting data from various sheets with Python
+Or how to learn to unify Google Sheets, Excel, and CSV files — a code-along guide
+towardsdatascience.com
+
+In today’s story, you will learn:
+how to combine and wrangle the data,
+how to explore and analyze the data,
+how to create beautiful graphs to visualize your findings
+Who is this article for:
+People who work with data a lot
+People who have a basic understanding of Python and Pandas
+Recap of the Situation:
+You are tasked with figuring out how to increase your sales team’s performance. In our hypothetical situation, potential customers have rather spontaneous demand. When this happens, your sales team puts an order lead in the system. Your sales reps then try to get set up a meeting that occurs around the time the order lead was noticed. Sometimes before, sometimes after. Your sales reps have an expense budget and always combine the meeting with a meal for which they pay. The sales reps expense their costs and hand the invoices to the accounting team for processing. After the potential customer has decided whether or not they want to go with your offer, your diligent sales reps track whether or not the order lead converted into a sale.
+
+For your analysis, you have access to the following three data sources:
+
+order_leads (contains all the order leads and conversion info)
+sales_team (includes companies and responsible sales reps)
+invoices (provides information on the invoices and participants)
+Imports and Settings:
+
+The used libraries are quite standard. However, you might have to install seaborn by running the following command in your Notebook.
+
+!pip install seaborn
+Load the Data:
+You could either download and combine the data as showcased in last week’s piece or download the files from here and load them into your Notebook.
+
+
+
+first two rows of sales_team Dataframe
+
+first two rows of order_leads Dataframe
+
+first two rows of invoices Dataframe
+Let’s start exploring:
+Overall conversion rate development:
+
+Conversion rate development over time
+It certainly seems like things went downhill in early 2017. After checking with the chief sales officer, it turns out that a competitor entered the market around that time. That’s good to know, but nothing we can do here now.
+
+
+We use an underscore _ as a temporary variable. I would typically do that for disposable variables that I am not going to use again later on.
+We used pd.DateTimeIndex on order_leads.Date and set the result as the index, this allows us to
+use pd.Grouped(freq='D') to group our data by day. Alternatively, you could change frequency to W, M, Q or Y (for week, month, quarter, or year)
+We calculate the mean of “Converted” for every day, which is going to give us the conversion rate for orders on that day.
+We used .rolling(60) with .mean() to get the 60 days rolling average.
+We then format the yticklables such that they show a percentage sign.
+Conversion rate across sales reps:
+
+It looks like there is quite some variability across sales reps. Let’s investigate this a little bit more.
+
+
+Not much new here in terms of functionalities being used. But note how we use sns.distplot to plot the data to the axis.
+
+If we recall the sales_team data, we remember that not all sales reps have the same number of accounts, this could certainly have an impact! Let’s check.
+
+
+Distributions of conversion rates by number of assigned accounts
+We can see that the conversion rate numbers seem to be decreasing inversely proportional to the number of accounts assigned to a sales rep. Those decreasing conversion rates make sense. After all, the more accounts a rep has, the less time he can spend on each one.
+
+
+Here we first create a helper function that will map the vertical line into each subplot and annotate the line with the mean and standard deviation of the data. We then set some seaborn plotting defaults, like larger font_scale and whitegrid as style.
+Note how we are using pd.cut here to assign categories to our numeric data, which makes sense because after all, it probably does not matter if a breakfast starts at 8 o’clock or 9 o’clock.
+Additionally, note how we use .dt.hour, we can only do this because we converted invoices['Date of Meal'] to datetime before. .dt is a so-called accessor, there are three of those cat, str, dt. If your data has the correct type, you can use those accessors and their methods for straightforward manipulation (computationally efficient and concise).
+
+invoices['Participants'], unfortunately, is a string we have to convert that first into legitimate JSON so that we can extract the number of participants.
+
+
+Now let’s combine the data. To do this, we first left-join all invoices by Company Id on order_leads. Merging the data, however, leads to all meals joined to all orders. Also ancient meals to more recent orders. To mitigate that we calculate the time difference between meal and order and only consider meals that were five days around the order.
+There are still some orders that have multiple meals assigned to them. This can happen when there were two orders around the same time and also two meals. Then both meals would get assigned to both order leads. To remove those duplicates, we only keep the meal closest to that order.
+
+
+
+part of the combined data frame
+I created a plot bar function that already includes some styling. The plotting via the function makes visual inspection much faster. We are going to use it in a second.
+
+
+Impact of type of meal:
+
+
+Wow! That is quite a significant difference in conversion rates between orders that had a meal associated with them and the ones without meals. It looks like lunch has a slightly lower conversion rate than dinner or breakfast, though.
+
+Impact of timing (i.e., did meal happen before or after the order lead):
+
+
+A negative number for 'Days of meal before order' means that the meal took place after the order lead came in. We can see that there seems to be a positive effect on conversion rate if the meal happens before the order lead comes in. It looks like the prior knowledge of the order is giving our sales reps an advantage here.
+
+Combining it all:
+We’ll use a heatmap to visualize multiple dimensions of the data at the same time now. For this lets first create a helper function.
+
+
+Then we apply some final data wrangling to additionally consider meal price in relation to order value and bucket our lead times into Before Order, Around Order, After Order instead of days from negative four to positive four because that would be somewhat busy to interpret.
+
+
+Running the following snippet will then produce a multi-dimensional heatmap.
+
+
+
+Heatmap to visualize four dimensions in one graphic
+The heatmap is certainly pretty, although a little hard to read at first. So let’s go over it. The chart summarizes the effect of 4 different dimensions:
+
+Timing of the meal: After Order, Around Order, Before Order (outer rows)
+Type of meal: breakfast, dinner, lunch (outer columns)
+Meal Price / Order Values: Least Expensive, Less Expensive, Proportional, More Expensive, Most Expensive (inner rows)
+Number Participants: 1,2,3,4,5 (inner columns)
+It certainly seems like the colors are darker/higher towards the bottom part of the chart, which indicates that
+
+conversion rates are higher when the meal happens before the order
+It seems like for dinner conversion rates are higher, when there is only one participant
+It looks like more expensive meals compared to the order value have a positive effect on conversion rate
+Findings:
+Don’t give your sales reps more than 9 accounts (as conversion rate drops off rapidly)
+Make sure that every order lead is accompanied by a meeting/meal (as this more than doubles conversion rate
+Dinners are the most effective when there is only one employee from the customer
+Your sales reps should be paying meals that are roughly 8% to 10% of the order value
+Timing is key, ideally, your sales reps know as early as possible that a deal is coming up.

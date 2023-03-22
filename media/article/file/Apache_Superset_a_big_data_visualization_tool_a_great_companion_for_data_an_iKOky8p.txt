@@ -1,0 +1,73 @@
+Apache Superset is actually a big data BI visualization tool and is a modern big data exploration and visualization platform that allows users to build dashboards quickly and easily using simple code, a free visualization builder, and the most advanced SQL editor.
+
+The project was launched on Airbnb in 2015 and entered the Apache incubator in May 2017.
+
+BI tools are a powerful weapon for data analysis. At present, there are many BI software on the market. The Superset backend is based on python, so it can be regarded as a member of the python ecology. Its three major characteristics are:
+
+Open-source
+Lightweight
+Rich in charts
+Compared with the other integrated software, Superset has some barriers to use and is not user-friendly for novices, but it’s a free tool.
+
+Apache Superset mainly has the following functions:
+
+A variety of visualization charts are predefined through NVD3/D3 to meet most of the data display functions.
+An easy-to-use interface for browsing and visualizing data Creating and sharing dashboards
+A lightweight semantic layer that allows defining dimensions and metrics to control how data sources are exposed to users
+High-granularity security model.
+Easy integration with many authentication backends (database, OpenID, LDAP, OAuth, REMOTE_USER)
+Integration with many types of SQL-based RDBMS through SQLAlchemy.
+The superset is cloud-native and highly available. It is designed to be scalable to large-scale distributed environments and supports working in containers. Apache Superset supports the following features:
+
+Rich data visualization tools out of the box
+An easy-to-use interface for exploring and visualizing data
+Create and share dashboards
+Enterprise-level authentication integrated with major authentication providers
+A scalable A high-grained security/authority model that allows anyone to access a single feature and data set to develop complex controls
+A simple semantic layer allows users to define how many fields should be displayed, thein the target drop-down list and provide users with functions such as aggregation and functional measurement
+Integrate with many RDBMS through SQLAlchemy
+Apache Superset is in operation in Airbnb, Netflix, Twitter, Yahoo!. There are many python dependencies installed by Superset. It is recommended to install Anaconda first to avoid unnecessary trouble.
+
+Superset Tips
+Data source: As long as the data source is supported by Python’s SQL alchemy, superset can be used, which means that most data sources you can think of can be accessed. There are many detailed permissions in the data source configuration items, such as whether to add, delete, modify, and create tables.
+With the data source: you can define the database tables needed to build a chart. The superset defines the concepts of fields and metrics (Metric) here. An indicator is a certain statistical result of a field, such as a sum, average, maximum, and minimum of values ​​on the field.
+After defining the fields and indicators of the table, data analysts can create and process charts by selecting metrics (Metric), grouping conditions (Group), and filtering conditions (Filter).
+After defining a series of charts, you can use these charts to generate a beautiful dashboard (Dashboard).
+You can import text files such as CSV and connect them to the database. Superset supported databases but to connect to these databases, you need to install the corresponding connection package.
+
+MySQL
+Oracle
+PostgreSQL
+Presto
+Snowflake
+SQLite
+SQL Server
+Teradata
+Vertica
+Hana
+Amazon Athena
+Amazon Redshift
+Apache Drill
+Apache Druid
+Apache Hive
+Apache Impala
+Apache Kylin
+Apache Pinot
+Apache Spark SQL
+BigQuery
+ClickHouse
+CockroachDB
+Dremio
+Elasticsearch
+Exasol
+Google Sheets
+Greenplum
+IBM Db2
+
+Using superset to build a chart requires a certain amount of SQL usage experience and a prior understanding of the database table structure. For non-technical personnel (such as products and operations), basically, only pre-built dashboards (Dashboard) can be used.
+
+The system is subdivided, requiring managers to spend a lot of time dividing the permissions of users and the use of the team, charts and boards do not introduce the concept of folders or groups, so traditional enterprises need to consider carefully when using superset.
+
+On the other hand, for Internet teams and companies dominated by technical talents, a superset is worthy of serious consideration. It can help teams quickly build a BI system to meet most of the BI needs, and it is also easy to re-develop.
+
+In general, Superset is a very good BI tool. It does a very good job in the direction of visualization. It is not only a leader in the open-source field but also better than many commercial BI tools.

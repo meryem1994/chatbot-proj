@@ -1,0 +1,81 @@
+Without a doubt, the world of Telecommunications and mobile networks has experienced a great shift in the recent years. To start with the origin of Telecommunications, one has to go as far back as the 1790s with the use of smoke signals and drums in Africa, Asia, and the Americas. However, it was until the 1980s that Nippon Telegraph and Telephone introduced the First Generation 1G analog network to the citizens of Tokyo. But the 1G had a lot of limitations, for instance in the fact that only voice signals could be transmitted, and also the frequency spectrum was not well utilized.
+
+The Evolution of Mobile Networks
+
+From Yehor Milohrodskyi via unsplash.com
+Then came the introduction of the GSM in the 2G Second Generation networks, which came to digitize the network and support data services, especially in the GPRS (General Packet Radio Services) and EDGE (Enhanced Data rates in GSM Environment) architectures. However in EDGE, high-volume movement of data was possible, but still the packet transfer on the air-interface behaves like a circuit switch call. Thus part of this packet connection efficiency is lost in the circuit switch environment. Moreover, the standards for developing the networks were different for different parts of the world. Hence, it was decided to have a network that provides services independent of the technology platform and whose network design standards are same globally. Thus, the Third Generation Network 3G Universal Mobile Telecommunications System was born.
+
+The 3G networks provided a lot of advanced features, but 4G networks brought capabilities that 3G lacked, such as streaming large amounts of data via video services and WebRTC. And today, all of the major US 3G networks are scheduled to shut down in 2022. Whether you’re with AT&T, T-Mobile, or Verizon, this may affect your phone, your home alarm system, or even your car.
+
+So, why the 5G? Well, from the first to the fourth generation of networks, only voice and data services were possible, but with the 5G, many other services can be made possible. They include immersive gaming and virtual reality, augmented reality, AI, Internet of Things, smart homes, smart cities, and many more.
+
+
+Evolution of Mobile Networks
+5G Explained
+Simply put, 5G stands for Fifth Generation and it is the latest evolution of mobile communications which has taken over the 4G LTE. 5G networks are to fulfill all the lagging found in the previous 4G networks with a faster speed and a higher bandwidth.
+
+The architecture of the 5G network is in two specifications: 5G Non-Standalone and the 5G Standalone architectures
+
+5G Architecture
+1) 5G Non Stand-Alone Architecture
+
+This architecture relies on the 4G Evolved Packet Core Network, but has a new access network. Because the 5G RAN remains reliant on the 4G core network to manage control and signaling information and the 4G RAN continues to operate, this is called a Non-Standalone Architecture.
+
+By leveraging the existing infrastructure of a 4G network, carriers are able to provide faster and more reliable Enhanced Mobile Broadband (eMBB) without completely reworking their core network technology and pushing customers to new devices. Non-Standalone 5G provides a transitionary platform for carriers and customers alike.
+
+
+5G Non Stand-Alone Access Network Architecture
+2) 5G Stand-Alone Architecture
+
+This is a totally new architecture defined by the International Telecommunications Union (ITU), in which both the access network and the core network changes
+
+
+5G Stand-Alone Access Network Architecture
+Standalone 5G does not depend on an LTE EPC to operate. Rather, it pairs 5G radios with a cloud-native 5G core network. The 5G core itself is designed as a Service Based Architecture (SBA) which virtualizes network functions altogether, providing the full range of 5G features enterprise needs for factory automation, autonomous vehicle operation, and more.
+
+
+5G Stand-Alone Core Network Architecture
+5G Requirements
+The 5G has three basic requirements from the ITU: Enhanced Mobile Broadband (eMBB), Massive Machine Type Communications (mMTC) and Ultra Reliable Low Latency Communications (uRLLC)
+
+
+5G ITU Requirements
+ITU-R has defined the following main usage scenarios for IMT for 2020 and beyond in their Recommendation ITU-R M.2083:
+
+Enhanced Mobile Broadband (eMBB) to deal with hugely increased data rates, high user density and very high traffic capacity for hotspot scenarios as well as seamless coverage and high mobility scenarios with still improved used data rates
+Massive Machine-type Communications (mMTC) for the IoT, requiring low power consumption and low data rates for very large numbers of connected devices
+Ultra-reliable and Low Latency Communications (URLLC) to cater for safety-critical and mission critical applications
+5G technology is driven by 8 specification requirements:
+
+Up to 10Gbps data rate → 10 to 100x speed improvement over 4G and 4.5G networks.
+1-millisecond latency.
+1000x bandwidth per unit area.
+Up to 100x number of connected devices per unit area (compared with 4G LTE)
+99.999% availability.
+100% coverage.
+90% reduction in network energy usage.
+Up to 10-year battery life for low power IoT device.
+5G Network Slicing
+It can be defined as a network configuration that allows multiple networks (virtualized and independent ) to be created on top of a common physical infrastructure. This configuration has become an essential component of the overall 5G architectural landscape. Each “slice” or portion of the network can be allocated based on the specific needs of the application, use case or customer. The need for network slicing arises when each application should “see” a network configured in the optimal way to manage its traffic.
+
+Simply said, 5G network slicing is dividing the network so that specific applications can run with a specific amount of data or network space without affecting other applications, hence making it possible for several applications to run simultaneously in 5G networks, something which could not be done in the 4G network.
+
+
+5G Network Slicing
+Characteristics of 5G
+The 5G has several characteristics to its network, some of which are:
+
+1) Massive MIMO — which is an extension of MIMO (Multiple Input Multiple Output)— expands beyond the legacy systems by adding a much higher number of antennas on the base station. The “massive” number of antennas helps focus energy, which brings drastic improvements in throughput and efficiency.
+
+
+Massive MIMO Architecture
+2) Full-duplex data transmission, which means that data can be transmitted in both directions on a signal carrier at the same time. For example, on a local area network with a technology that has full-duplex transmission, one workstation can be sending data on the line while another workstation is receiving data.
+
+3) Non Orthogonal Multiple Access (NOMA) which is a multpile access technique in which each user operates in the same band and at the same time where they are distinguished by their power levels. NOMA uses superposition coding at the transmitter such that the successive interference cancellation (SIC) receiver can separate the users both in the uplink and in the downlink channels.
+
+
+Comparison between OFDMA and NOMA
+4) 256 QAM, which is a very sophisticated Quadrature Amplitude Modulation technique in which it is possible to modulate both the amplitude as well as phase of the carrier wave and transmit a relatively larger number of bits, thereby resulting in a higher bit rate compared to other lower order QAMs such as 64-QAM and 16-QAM, QPSK, and BPSK schemes
+
+How to access the 5G today?
+Not all countries today have fully launched the 5G. The deployment of 5G is still on going, and will be done by the 2026 according to my personal estimation. 5G is Now Available in 72 Countries Covering 1947 Cities, in all five continents of the world. Telecom operators (such as MTN, Orange, Bouygues Telecom, etc) in each country and Telecom vendors (such as Huawei, Ericsson, ZTE) are doing their best to install this wonderful network in order to meet the requirements of a changing world, and to be at the cutting edge of technology.

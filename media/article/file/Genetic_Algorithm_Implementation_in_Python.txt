@@ -1,0 +1,93 @@
+This tutorial will be diving into genetic algorithms in detail and explaining their implementation in Python. We will also explore the different methods involved in each step diagrammatically. As always, we are including code for reproducibility purposes. We have split the code when required while exploring the different steps involved during our implementation.
+
+Make sure to check the full implementation from this tutorial on either Google Colab or Github.
+
+Join us ↓
+Towards AI is a community that discusses artificial intelligence, data science, data visualization, deep…
+towardsai.net
+
+What is a Genetic Algorithm?
+A genetic algorithm belongs to a class of evolutionary algorithms that is broadly inspired by biological evolution. We are all aware of biological evolution [1] — it is a selection of parents, reproduction, and mutation of offsprings. The main aim of evolution is to reproduce offsprings that are biologically better than their parents. A genetic algorithm mainly bases on Darwin’s Theory of Evolution by Natural Selection, and it tries to simulate the same.
+
+The basic intuition is selecting the best individuals as parents from the population, asking them to extend their generation by reproducing and having their children during the reproduction process where genes of both the parent’s crossover there occurs an error known as mutation. These children are again asked to reproduce their offsprings, and the process goes on, leading to healthier generations. This theory has inspired evolutionary computation to solve optimization problems, feature selection, classic knapsack problem, and many more.
+
+Let’s understand the application of the genetic algorithm with a knapsack problem. Suppose we are on a treasure hunt, and after all the efforts and hard work, we finally find the treasure in a deep-down cave full of gold and diamond ornaments. The first thing we desire to do is fill our backpack with as many ornaments as possible. However, a few parameters have to be taken care of in our problem, and our backpack has limited space. It cannot carry a weight of more than 35 kilograms.
+
+Next, we have to choose the ornaments optimally such that the backpack is not overloaded, all the ornaments we choose must be highly valued, and one ornament should not damage the other within the backpack — this where a genetic algorithm comes into play to optimize our problem by taking care of all the parameters.
+
+Now that we have a basic idea of genetic algorithms. Let’s see the steps involved and code our implementation with Python.
+
+Steps in a Genetic Algorithm
+Initialize population
+Select parents by evaluating their fitness
+Crossover parents to reproduce
+Mutate the offsprings
+Evaluate the offsprings
+Merge offsprings with the main population and sort
+“In a genetic algorithm, a population of candidate solutions (called individuals, creatures, or phenotypes) to an optimization problem is evolved toward better solutions. Each candidate solution has a set of properties (its chromosomes or genotype) that can be mutated and altered; traditionally, solutions are represented in binary as strings of 0s and 1s, but other encodings are also possible [2] [3]”.
+
+Figure 1: Chromosomes, genes, and population.
+Figure 1: Chromosomes, genes, and population.
+1. Initialization
+The algorithm generally starts with the randomly generated population. The size of the population depends on the nature of the problem. We can use 0s and 1s encoding. However, in this tutorial, we will be using uniformly distributed numbers to represent each gene.
+We create a dictionary to hold the population, and each individual is associated with chromosomes(position) and a cost. The position is filled with randomly generated uniformly distributed numbers(genes) with a lower limit -10 and an upper limit +10. Cost is the cost function we are trying to optimize. In this tutorial, we will be optimizing the sum of squares of x, where x is the individual gene of each chromosome.
+2. Parent Selection
+During each successive generation, a portion of the existing population is selected to breed a new generation. Individual solutions are selected through a fitness-based process [2]. As we are in generation 0, we do not have offsprings. We select parents from our randomly generated population. There are three main methods to define the best fit individuals and select for breeding.
+
+Random selection: This is the simplest and most inefficient way of selecting parents. In this method, we shuffle the population by performing permutation and select the first two individuals as parents for breeding. This method is not recommended because it does not follow “Darwin’s Theory of Evolution by Natural Selection,” wherein individuals are selected based on their fitness, not randomly.
+Tournament selection: This method is based on the probability of selection of each individual. We run several tournaments among a randomly selected group of individuals, select one individual from each group as the winner, and again run the tournament by grouping winners from the first iteration, repeat the process until we converge to two winners parents for breeding. The best member of each group in every iteration has the highest probability of selection.
+Roulette wheel selection: This is a widely used and most efficient method for selecting parents; hence we will be using it today in our algorithm. We all know how the roulette wheel works in casinos, drop the ball, spin the wheel, and wait till the wheel stops to see which pot the ball falls in. Let’s take a deeper dive into the implementation part.
+Roulette Wheel method for parent selection
+Roulette wheel method for parent selection, illustration of a roulette
+Source: Unsplash
+The only difference between the casino roulette wheel and the roulette wheel method for parent selection is that in the casino roulette wheel, each pot has an equal probability of holding the ball when the wheel stops rotating. However, here we define the probability for each pot(individual of the population). The probability of each individual is called the fitness of the individual.
+
+Figure 2: Roulette wheel selection process.
+Figure 2: Roulette wheel selection process.
+We have four parents P1, P2, P3, and P4, with the probability of being selected for breeding 0.1, 0.2, 0.3, 0.4, respectively. The arrow is fixed at a place, and the wheel is rotated. When the wheel stops rotating, the parent where the arrow points to is chosen for breeding—the greater the probability larger the area on the wheel, leading to a higher probability of being selected.
+
+Now, how do we implement the roulette wheel programmatically? We open the wheel into a uniform line and divide the line into the number of parents in the population, and each parent occupies the space on the line equal to its probability of being selected, and each cut point is the cumulative sum of probability. Generating a random number between 0 and 1 will act like the arrow that selects the parent for breeding. Here, the random number is 0.28; hence the winner is P2.
+
+
+
+To make it even simpler, we calculate each parent’s probability’s cumulative sum, multiply its sum with a randomly generated number. Then get the index of the first parent whose cumulative value is greater than the random number. For example, P1 has a cumulative value of 0.1, P2 has 0.3, P3 has 0.6, and P4 has 1. If the random number generated is 0.28, then the first parent whose cumulative value is greater than 0.28 is P2 hence the winning parent for breeding. Function argwhere() returns an array of Trues and Falses based on the expression passed as a parameter.
+We calculate each parent’s probability by the exponential of negative beta times costs, where beta is a pre-defined integer and costs is the cost of each parent divided by the average cost of all the parents in the population.
+
+3. Crossover
+Now that we got our two parents for breeding, the next step is to perform crossover/mating/breeding. Crossover refers to the process where certain genes from both the parent chromosomes are overlapped or mixed or swapped to produce new offspring. Since the offspring is the result of the parent chromosomes’ crossover, it inherits both the parents' characteristics. There are three methods to perform crossover.
+
+Single-point crossover: In this method, both the parent chromosomes are cut at the same random point, and the leftover parts are swapped to produce two new offspring chromosomes. Yellow-colored genes represent the cutoff part of the chromosome.
+Figure 4: Single-point crossover.
+Figure 4: Single-point crossover.
+Two-point crossover: A method similar to the single-point crossover, but the only difference is that the parent chromosomes are cut at two random points. Again, the yellow-colored cut off part of the chromosome is swapped.
+Figure 5: Two-point crossover.
+Figure 5: Two-point crossover.
+Uniform crossover: We first randomly choose which genes are supposed to be inherited from both the parent chromosomes and genes not inherited are marked in yellow color. Then, we model them as 0s and 1s, which are written in green color. The gene to be inherited is encoded as 1, and the gene that should not be inherited is encoded as 0. This series of 0s and 1s will be referred to as alpha from now on. Multiply the gene value with the corresponding alpha value for both the parents and then add the results to generate a single gene of the offspring chromosome. Let’s consider the first gene of each parent chromosome. For parent-1, the gene value is 1, and the corresponding alpha value is also 1; hence, 1x1=1. For parent-2, gene value is 0 and the corresponding alpha value is also 0 hence, 0x0=0. The first gene of the offspring chromosome is 1+0=1, and so on — this way, we get offspring-1, to reproduce the offspring-2, we take the compliment values of alpha and carry out the same process.
+Figure 6: Uniform crossover.
+Figure 6: Uniform crossover.
+Programatically, we copy both the parents into the child variable: c1, c2. Randomly generate uniformly distributed alpha values between 0 and 1, which is the parent chromosome’s shape (position). The rest of the process remains the same, except, in theory, we take the complement of alpha values to produce offspring-2, whereas, in the program, we swap the parents while multiplying with alpha, which is the same as taking the complement of alpha values.
+
+4. Mutation
+Mutation is a natural process that occurs due to an error in replication or copying of genes. While performing crossover, we replicated the parent chromosomes by mix-matching genes of both the parents. There is no guarantee that the copying of the parent gene is 100% accurate. There always occurs an error, which leads to the scope of exploration. For example, if both of your parents have brown eyes and blue eyes, that is probably because of a mutation that occurred due to an error while copying your parents’ genes, and your subsequent generation might carry forward that characteristic.
+
+Mutating the chromosome in the genetic algorithm is necessary because it may result in revolutionary results that will help solve our problem more efficiently. So, we have three parameters: the child chromosome(c), the mutation rate(mu), and the step size(sigma). The mutation rate(mu) determines the percentage of the child chromosome that undergoes mutation.
+
+To define which genes will be mutated, we generate random numbers and compare them to the mutation rate then we find the indices of the child chromosome(position) that have values less than the mutation rate using the argwhere() function. Replace those indices with new(mutated) genes generated by multiplying the step size(sigma) with randomly generated value and adding it to the original gene.
+5. Evaluating the Offsprings
+Once the offsprings undergo mutation, we need to evaluate them with the cost function to define their fitness. Also, replace the best solution in every generation/iteration.
+
+6. Merge Offsprings with the Main Population and Sort
+Merging the offsprings is vital for them to be considered as parents to reproduce the next generation. Upon sorting the new population, we have better individuals at the top. Since the population size remains the same as the first iteration(npop), the number of individuals at the bottom of the sorted population equal to the number of new offsprings produced in the previous iteration are eliminated from the selection process to breed new offsprings, and the process continues — this is how the process of elimination takes place.
+
+Figure 7: Process of merging, sort, and elimination.
+Figure 7: Process of merging, sort, and elimination.
+Results
+The number of iterations to run depends on the nature of the problem. In this tutorial, we run 500 iterations.
+
+Figure 8: Generating results of our genetic algorithm (GA) implementation.
+Figure 8: Generating results of our genetic algorithm (GA) implementation.
+We can see how the cost reduces at every iteration, and at approximately 490 iterations, the cost reduces to 0.134 and remains the same throughout the rest of the 10 iterations. Consequently, giving us our optimal solution.
+
+DISCLAIMER: The views expressed in this article are those of the author(s) and do not represent the views of Carnegie Mellon University nor other companies (directly or indirectly) associated with the author(s). These writings do not intend to be final products, yet rather a reflection of current thinking, along with being a catalyst for discussion and improvement.
+
+All images are from the author(s) unless stated otherwise.

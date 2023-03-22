@@ -1,0 +1,100 @@
+ireshark is a free and open-source packet analyzer. It is basically used for network troubleshooting, analysis, software and communications development, and for the education purpose. Why Wireshark is referred as a network packet analyzer? This is because that it will try to capture network packets and tries to illustrated that packet data as detail as possible. Take the following analogy: imagine that the network packet analyzer as a measuring device used to examine what’s going on inside a network cable. For example, a voltmeter that is used by the electrician to examine what’s going on inside a electrical cable.
+
+Purposes
+Here are the examples of what to use wireshark for:
+
+Network administrators use it to troubleshoot network problems
+Network security administrators use it to troubleshoot network problems
+Developers use it to debug protocol implementations
+Educational purpose for learning the network protocols
+Beside the examples mentioned, wireshark can still be helpful in many situations and ways.
+Features
+The following are some of features that wireshark provides:
+
+Available for Linux, Mac and Windows
+2. Capture live packet data from network interface
+
+3. Illustrate packets with very detailed protocol information
+
+4. Save the packet data captured
+
+5. Export some or all packets in a number of capture file formats that provided.
+
+6. Filter packets on many criteria
+
+7. Search for packets according to the criteria needed.
+
+8. Colorize packet display on filters
+
+….. and a lot more!!!
+
+What Wireshark is not !!!
+Here are something that wireshark does not provide:
+
+Wireshark is not a intrusion detection system (IDS) that warn the users when strange things like intrusion happen to the user’s network. However, it might help the users to find out what happen.
+Wireshark will not manipulate things on network but it will on “measure” things from it. Wireshark doesn’t send packets on the network and just simply monitoring the networks.
+
+Wireshark official website download page
+Download installer from : https://www.wireshark.org/download.html
+
+
+Start the installation by going through the default options for ease installation.
+
+Basics of Wireshark
+The capturing of traffic:
+
+
+Interface of Wireshark
+The main interface of the wireshark is displayed in above figure and the option for capturing also illustrated.
+
+
+By clicking on the capture logo (in the red circle), a more detail options of capture interfaces can be viewed if necessary. Select the network adapter for the network monitoring.
+In addition, there is a filter section here (capture filter for selected interfaces), the section will filter traffic before it’s captured. If the user want to record specific traffic from a specific host or traffic on a specific port, the user could specify here. Then, wireshark will pick up and save those packets that match this filter. This is good for when the user want a small amount of the traffic instead of the whole traffic. It is easier to view and analysis since the captured traffic as the captured file is smaller.
+It’s usually depending on the scenario and the situation
+For instance, a user complaining about the slow web browsing. Then, the expert take a capture filter on their source IP address and the port 80/443 traffic (HTTP/HTTPS) . However in this scenario, the expert take the captured traffic and analyze it. He/She didn’t found any issues on the user that initiate a connection attempt and web server responds very quickly now.
+
+Problem: the expert would have seen the issues if he/she filtered on the source IP address of that user and captured all traffic would illustrated theslow DNS responses. The user going to google.com. DNS will send out the DNS query to their resolver for that url and notice that resolver not responding in 10 seconds that result in slow user experience. The expert wouldn’t have captured all of this because they were filtering out only on port 80/443 traffic. Thus, just keep in mind when you are setting up these captured filters based on the situation.
+
+
+It will specify the name for the output.
+Create a new file automatically by specifying the number and size of the capture and the duration of the capture of traffic in seconds and hours. For instance, automatically create a new file after fulfilling all the condition specified.
+In use ring buffer option specify the file for it. For example 10 files is specified, once the first capture match the condition , it will start capturing a new file until 10 files. If the 10 files is created, it will roll over to the first captured file and overwrite it.
+This is good for capturing in high traffic areas and avoid the user from filling up the hard drive with too much files. This statically assigns how much space that is used for capturing the traffic (manageable sizes).
+
+
+Some additional display options and the user can stop the capture after the condition mentioned by the user is fulfilled (if users are not using the ring buffer, this option can be considered). Then, select the start option to start capturing.
+
+
+Now, the wireshark start capturing the traffic based on the network interfaces selected.
+
+
+At this point, the wireshark is installed and you as the user will know how to take a basic capture of the traffic in the network.
+
+The important steps start from this section now on.
+You as the user can take or capture all the packets you want, however if you don’t know how to read/interpret the captures then it’s all for nothing. Actually it’s important to keep in mind wireshark is simply a tool to allow you to analyze the captures and it won”t tell you explicitly what is wrong. It will only give you some hints and leads but it’s totally up to you to understand the protocols of your troubleshooting. This allows you to recognize the abnormal behavior that would have cause a issues. This being said that understanding wireshark and its features will definitely speed up the troubleshooting process.
+
+Important features: Display filters, columns and profiles
+Display filters allow the user to filter the packets contained in the captures and display the one that match your filter to the screen. This is performed by applying the filter criteria in top of the page (display filter column). There is specific syntax that needs to be followed but in this example here only some simple and common filter will be illustrated for better understanding.
+
+
+The most common filters that is displayed in the figure above is going to be the filtering on the specific IP address. This will illustrated the every single packet from or sent to this IP address.
+
+
+If the user want to see traffic from this IP address, the user can apply different filter. This filter here will display packets that sourced from this IP address (one direction which is from the source that selected).
+
+
+Another common filter would be applying a filter for a specific subnet. This is done by adding a subnet mask to the address range that the user wanted to look for. Filter are powerful tool allow user to parse through captures and find the specific packet or packet flow that is necessary. This is extremely helpful if user need to capture hundreds/ thousands of packets from multiple hosts but actually the user want few packets only form specific source. They can quickly apply this filter to grab those packets.
+
+
+common and basic filter.
+You as the user can combine filters with the AND or OR operators. These options allows you to obtain an even more granular and detail results with the filters that you are applying in the wireshark. In addition, with the AND option enable you to combine the criteria that packets must be matched before it is illustrated to the user. For instance, if you had a host that has a multiple streams in the captures but you want to view a specific stream in particular, you can filter on the source IP address and port that get involved with the stream.
+
+
+Here is a display filter that specifies the packet must have a source or destination IP address for 192.168.42.24 and a source or destination port with a value of 80.
+
+
+Now with the OR operator, the wireshark display all packets that match this filter or display packets that matched this other filter. This options allow more packets to be displayed. For instance,to surf to an website, you need to reolve the url to an IP address.Thus, if you have a capture and want to see the entire surfing flow, a DNS traffic must be included along with source IP address that is illustrated on the figure above. Now, the packets that match the source IP address and port or match the DNS filter is shown.
+
+If you don’t know the syntax of something that you looking for, you could google it of find an example that present in your capture and create a filter for it that way.
+
+In this example, apply the filter according to the capture length. The selected option will display the packet that match the length, whereas the Not selected option will illustrate the packet doesn’t match the length specified. In addition, there is more option to be applied and this will make it easier for the user to write the syntax without memorize it. Lastly, I will end the topic with display filters as the i feel that the readers is getting boring with lots of explanation about wireshark.

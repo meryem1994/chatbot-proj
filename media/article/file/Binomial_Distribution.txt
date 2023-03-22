@@ -1,0 +1,59 @@
+In probability theory and statistics, is the discrete probability distribution that gives only two possible results in an experiment, with success or failure.
+
+The binomial distribution has four characteristics, being:-
+
+The number of observations n is fixed.
+Each observation is independent.
+Each observation represents one of two outcomes, being success or failure.
+The probability for success p is the same for each outcome.
+The formula for the binomial distribution can be seen below:-
+
+
+In this blog post I intend to show approximations and actual values of questions concerning the binomial distribution. The approximations will be based on a normal distribution and the exact values will be based on a binomial distribution.
+
+I have obtained the questions from a YouTube course on statistics and probabilities, found here:- https://www.youtube.com/watch?v=sbbYntt5CJk&t=408s
+
+The questions and code written in R have been provided in the video, but I translated the code in R to Python, which was not necessarily an easy thing to. In order to carry out the translation, I looked at code that I had previously translated, searched the internet, and then looked through the stackoverflow website to endeavour to find example code to modify and use.
+
+The code in R has been written in Replit, which is a free online interpreter/compiler that accommodates several programming languages.
+
+The code in Python has been written in Google Colab, which is a free online Jupyter Notebook hosted by Google.
+
+Girl births
+
+The first example involves the births of baby girls. Use a normal distribution to estimate the probability of more than 55 girls being born in 100 births. Assume probability of a girl being born in an individual birth is 50%.
+
+
+To answer this question, I approximated it using the norm function and gave the exact answer using the binom function in R:-
+
+
+I translated the code from R to Python by importing the scipy.stats library and using norm to approximate the value and binom to give the exact value.
+
+The cumulative distribution function (CDF) was used to solve both the estimate and actual values. The CDF of a probability distribution contains the probability that a random value x is less than or equal to x.
+
+
+Exam success
+
+The second example concerns exam success. After many hours of studying for a statistics exam, you believe you have a 90% probability of answering a given exam correctly. Your test includes 50 true/false questions. Assuming your estimate is the true probability that you will answer a question correctly, use normal distribution to estimate the probability that you will miss no more than four questions:-
+
+
+The approximate answer to the question was derived at by using pnorm and the actual value was arrived at using pbinom in R:-
+
+
+I was not able to sufficiently translate the code by searching the internet for examples of code that I could modify and use, so I posed the question in the stackoverflow website. The answer to the question can be found here:- https://stackoverflow.com/questions/74320798/use-scipy-stats-to-estimate-probability?noredirect=1#comment131208921_74320798
+
+
+Toothpaste
+
+The final example concerns toothpaste. Many toothpaste commercials advertise that three out of four dentists recommend a brand of toothpaste. Use normal distribution to estimate the probability that in a random survey of 400 dentists, exactly 300 will recommend brand x toothpaste. Assume the commercials are correct and there is 75% chance that any given dentist will recommend brand x toothpaste:-
+
+
+The answer to this question in R was derived at using pnorm for the approximation and dbinom to arrive at the exact value:-
+
+
+The probability mass function (PMF) has been used to arrive at the exact value. The PMF is a function over the sample space of a discrete random variable x which gives the probability that x is equal to a certain value.
+
+I translated the code in R to Python, which is seen in the screenshot below:-
+
+
+In summary, since there is more prolific and better quality documentation for the R programming language with regard to probabilities, I feel this language is easier to use. Hopefully, as Python becomes more widely accepted as being able to calculate probabilities, the documentation on scipy statistical functions will improve so more people will attempt to calculate probabilities in Python.

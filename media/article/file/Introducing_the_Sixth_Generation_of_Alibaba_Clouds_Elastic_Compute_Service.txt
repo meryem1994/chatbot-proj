@@ -1,0 +1,127 @@
+By Zhixi
+
+I/O-related technologies are becoming more and more important for system design, performance optimization, and middleware development. Learning and mastering I/O-related technologies is a plus as well as a necessary skill for Java engineers. This article will show you how blocking I/O (BIO), non-blocking I/O (NIO), and asynchronous I/O (AIO) were developed and implemented, and how the popular framework Netty works.
+
+Java I/O Models
+BIO
+BIO is a synchronous blocking model, in which one client connection corresponds to one thread. In BIO, the accept and read methods are used for blocking. If no connection requests exist, the accept method is used for blocking. If no data can be read, the read method is used for blocking.
+
+
+NIO
+NIO is a synchronous and non-blocking model. In NIO, one thread on the server can handle multiple requests, the connection request sent by the client is registered with the multiplexer selector, and the server thread polls the multiplexer to check whether any I/O requests exist. If a request exists, it will be handled.
+
+
+Three core components of NIO:
+
+Buffer: This is used to store data. It is implemented based on arrays at the underlying layer. Buffer classes are provided for eight basic types.
+
+Channel: This transmits data to the buffer or writes data from the buffer.
+
+Selector: After channels are registered with a selector, the internal mechanism of the selector can automatically and continuously query whether any I/O events (such as read, write, and network connection) are ready for these registered channels. In this way, the application can use a thread to efficiently manage multiple channels or multiple network connections. Therefore, the selector is also called a multiplexer. When a read or write event occurs on a channel, the channel is prepared and monitored by the selector. Then, the selector can obtain all prepared channels for subsequent I/O operations by using the SelectionKeys.
+
+
+Epoll is an enhanced version of the multiplexing I/O interfaces select and poll on Linux. It can significantly improve the system CPU utilization when the number of active concurrent connections for the application is small. When events are obtained, it only traverses the descriptors that are asynchronously woken up by kernel I/O events and added to the Ready queue.
+
+AIO (NIO 2.0)
+AIO is an asynchronous non-blocking model. It is generally used for applications with a large number of connections and a long connection time. After the read and write events are completed, the callback service instructs the application to start threads. In AIO, only the read or write method needs to be called to perform read or write operations. Both methods are asynchronous.
+
+For read operations, when a stream is readable, the operating system adds the readable stream to the buffer of the read method and notifies the application. For write operations, after the operating system writes the stream passed by the write method, the operating system notifies the application. In this way, both the read and write methods are asynchronous and a callback function is called after they are completed.
+
+Evolution of I/O Models
+Traditional I/O Model
+For traditional I/O operations, a client is connected to a server and they communicate with each other through the following process: The client sends a request, and the server reads, decodes, computes, and encodes the request and then sends a response to the client. The server creates a thread and a channel for each client connection, and then handles subsequent requests (in BIO mode).
+
+
+In this mode, when the number of clients increases, responses to connection requests decrease dramatically and excessive threads are occupied, which wastes resources. In this case, bottlenecks occur due to the limited number of threads. Although thread pools can be used for optimization, many problems still exist. For example, when all threads in the thread pool are handling requests, they cannot respond to connection requests from other clients. Each client still requires service from a dedicated server thread. Even if the client has no requests at a given time, the thread is blocked and cannot be released. To address this issue, the event-driven reactor model was proposed.
+
+Reactor Model
+The reactor model is an event-driven model. An application on a server handles multiple inbound requests and dispatches them to the corresponding threads of the requests. The reactor model is also called the Dispatcher mode due to the I/O multiplexing mechanism, which dispatches the received events to a thread. This is a necessary technology for writing high-performance network servers.
+
+The reactor model works on the basis of NIO, and its core components include reactors and handlers:
+
+1) Reactor: A reactor runs in a separate thread and monitors and dispatches events to appropriate handlers in response to I/O events. A reactor is like a telephone operator who takes calls from customers and transfers the call to the appropriate contact.
+
+2) Handler: A handler handles pending I/O events. A reactor schedules appropriate handlers to respond to I/O events and perform non-blocking operations. A handler is like an employee the customer wants to talk to.
+
+Reactor models can be divided into three types based on the number of reactors and number of handler threads.
+
+a) Single-thread model (one reactor and one thread)
+b) Multi-thread model (one reactor and multiple threads)
+c) Primary-secondary thread model (multiple reactors and threads)
+
+Single-Thread Model
+
+
+A reactor uses a selector to monitor connection events and dispatch received events. The acceptor receives connection events and creates a handler to handle subsequent events of various types. For read and write events, the corresponding handlers are called to handle the events.
+
+Handlers complete the workflow of reading, decoding, computing, and encoding requests and sending responses.
+
+This model is simple. However, when a handler is blocked, the handlers and acceptors of other clients cannot run, so high performance is not achieved. Therefore, this model is only applicable to quick business processing, such as read and write operations in Redis.
+
+Multi-Thread Model
+
+
+In the main thread, a reactor uses a selector to monitor connection events and dispatch received events. The acceptor receives connection events and creates a handler to handle subsequent events. The handler only reads and writes data, whereas a thread pool is called to perform business operations.
+
+The thread pool allocates a thread to complete business operations and then sends the response to the handler of the main thread. Then, the handler sends the response to the client.
+
+A single reactor monitors and responds to all events. When the server encounters a large number of concurrent connection requests from clients or performs some time-consuming operations, such as identity authentication or permission check, this transient high concurrency may become a performance bottleneck.
+
+Primary-Secondary Thread Model
+
+
+Multiple reactors are available, each of which has its own selector, threads, and dispatch.
+
+The main reactor in the main thread uses its selector to monitor connection events. Then, the acceptor receives these events and dispatches new connections to subthreads.
+
+In the subthread, the sub reactor adds the connections allocated by the main reactor to the connection queue, uses its selector to monitor these connections, and creates a handler to handle subsequent events.
+
+The handler completes the workflow of reading and computing requests and sending responses.
+
+The most authoritative information about reactors can be found in “Scalable IO in Java” of Doug Lea. Read this paper if you want to learn more about reactors.
+
+Netty Thread Model
+The Netty thread model is an implementation of the reactor model, as shown in the following figure.
+
+
+Thread Group
+Netty abstracts the BossGroup and WorkerGroup thread pools of the NioEventLoopGroup class. BossGroup receives connection requests from clients, whereas WorkerGroup handles connections that complete TCP three-way handshakes.
+
+NioEventLoopGroup contains multiple NioEventLoops and manages their lifecycles. Each NioEventLoop contains an NIO selector, a queue, and a thread. The thread is used to poll the read and write events of the channels registered to the selector and handle the events that are delivered to the queue.
+
+A Boss NioEventLoop thread performs the following steps:
+
+1) Handle accept events, establish a connection with the client, and generate a NioSocketChannel.
+2) Register the NioSocketChannel with the selector on a worker NIOEventLoop.
+3) Perform runAllTasks to handle tasks in the task queue.
+
+A worker NioEventLoop thread performs the following steps:
+
+1) Poll the read and write events of all NioSocketChannel channels registered to the selector.
+2) Handle the read and write events and businesses in corresponding NioSocketChannels.
+3) Perform runAllTasks to handle tasks in the task queue. Some time-consuming businesses can be handled in the task queue, which does not affect the data flow in the pipeline.
+
+Worker NIOEventLoop threads handle NioSocketChannel businesses in the pipeline. In the pipeline, the handler linked list is maintained to handle data in the channels.
+
+ChannelPipeline
+Netty abstracts the data pipelines of channels into ChannelPipelines, allowing messages to be transmitted in ChannelPiplines. A ChannelPipeline contains the two-way linked list of ChannelHandlers, which intercept I/O events. It allows you to add and delete ChannelHandlers to customize different business logic without modifying existing ChannelHandlers. This supports modification closure and extensions.
+
+A ChannelPipeline is a series of ChannelHandler instances. Inbound and outbound events that flow through a channel can be intercepted by the ChannelPipeline. Whenever a channel is created, a ChannelPipeline is created and permanently bound to the channel. This channel cannot be attached to another ChannelPipeline or separated from the current one. Netty takes charge of all these operations, without the need for special intervention by developers.
+
+Based on its origin, an event is handled by the ChannelInboundHandler or ChannelOutboundHandler, and the ChannelHandlerContext forwards the event to the next ChannelHandler. A ChannelHandler can instruct the next ChannelHandler in the ChannelPipeline to handle the event. Read events (inbound events) and write events (outbound events) use the same pipeline. An inbound event is transmitted from the head of the linked list to the last inbound handler, whereas an outbound event is transmitted from the tail of the linked list to the first outbound handlers. They do not interfere with each other.
+
+
+ChannelInboundHandler callback methods
+
+
+ChannelOutboundHandler callback methods
+
+
+Synchronous and Non-Blocking
+Write operation: Calling the write method of the NioSocketChannel to write data to connections is non-blocking and a response is immediately returned, even if an Alibaba Cloud thread is used. In the ChannelPipeline, Netty determines whether the thread called by the NioSocketChannel to write data is the thread in the corresponding NioEventLoop. If not, Netty encapsulates the write request as a write task and sends it to the queue in the corresponding NioEventLoop. When the thread in the corresponding NioEventLoop polls read and write events, Netty extracts the task from the queue and executes it.
+
+Read operation: When Netty reads data from the NioSocketChannel, no business thread blocking is required. Instead, when the I/O polling thread in the NioEventLoop finds that data is prepared on the selector, Netty sends a notification and the data can be read and handled.
+
+The read and write events of each NioSocketChannel are executed in a single thread that is managed by its corresponding NioEventLoop. No concurrent read and write operations are performed in a NioSocketChannel, so no locks are required.
+
+When the Netty framework is used for network communication, it immediately returns a response upon an I/O request, which does not block the business calling thread. The business calling thread does not have to wait for the response in a blocking manner. Instead, when the response is generated, the I/O thread is called to asynchronously send a business notification. Therefore, the business thread can be called to perform other operations throughout the whole process.

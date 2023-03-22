@@ -1,0 +1,73 @@
+In this article you will find an introduction to computer networks.
+
+A computer network is a system of communication that connects computers and/or communication devices that are close or far from each other. Through a computer network it becomes possible to share data and system resources (such as servers). In that sense, you would need a minimum of two computers in order to create a computer network.
+
+A computer network is used for mainly these reasons:
+
+Granting an easy method of communication via mails, chatrooms etc.
+Sharing hardware, like when we use a server or a printer with many computers.
+Sharing files and data.
+Sharing software, like when a user can connect to the network and download & set up a program to their computer.
+Although there are many network types, you will fin that the biggest and most known one is internet. Here are the top three most known networks:
+
+Internet: A global network that serves millions of people.
+Intranet: A private computer network that is specific to an establishment and can’t be accessed by all, like the one you would use at work. It can still be global if the establishment is global, however, can not be accessed by all.
+Extranet: A part of intranet that still belongs to the same establishment, but through internet connects to specific users and shares a bit of the information from the intranet. Like the one Netflix uses, where only the customers can access the services.
+A computer network requires four basic components to work;
+
+A message to be sent from one computer/communication device to the other
+2. Rules, to determine how to send and receive messages
+
+3. Medium, an environment to send and receive messages through
+
+4. Devices that actually send the message.
+
+A computer network is also going to need hardware, physical devices in order to work properly. The basic hardware components of a computer network are a switch, a router (with wire or wireless), firewall and some cords.
+
+The router itself is the device that forwards the message within a computer network. There are options for a router that is with wire or wireless.
+
+A switch, although only with wire, does the same job as the router. The difference, however, is that while the switch connects computers, the router will connect computers and switches within networks. Therefore you can use a switch to create your small business network, but in order to connect your business network to a global network you would need a router.
+
+And a firewall is a component that is built with both a specific hardware and software, is a wall of protection. It will control the incoming and outgoing data packs based on pre-determined rules. When you connect your small business network to the big global network through a router, you become vulnerable to any attacks. Anyone can connect to your network and withdraw data or make changes on your network’s working computers. To avoid this, we use a firewall. There, we determine who and under which conditions can enter your network and what actions can they take.
+
+The action of sending a message itself through a computer network takes six steps:
+
+A message is created in the form of a text.
+The message is then translated into binary bits.
+A Network Interface Card (NIC, a piece of hardware within the computers that connects the computer to a network) would then translate the bits into signals and sends it to the very first network device (a switch or a router).
+If the message is sent to an outer network such as the internet, it’s then transferred to a router to be send outside the local (small business) network.
+The message then arrives to the target(receiving) network’s router and through it, if the firewall allows, arrives to the local computers within the target network.
+Signals are then translated into bits and bits are translated into text.
+Network Architecture
+Network architecture is the design of a computer network. It includes the organization and the configuration of the physical components of the network, the operational principles of the network and even the protocols (communication methods) between computers in a network.
+
+A good, functionally designed network architecture must have these four characteristics;
+
+Fault tolerance. The network architecture must make it easy to detect and tolerate any possible fault.
+Scalability. The network must be designed in a way that, as the amount of work grows, you can add more resources to handle it.
+Quality of service (QoS). This is a set of technologies that gives all applications a priority value from 0 to 7, 7 having the highest priority. Then, when working under limited network capacity, the QoS will help traffic and prioritize applications in order to make things work smoothly.
+Security. The network must be designed with the right software and hardware placed & configured correctly to achieve maximum security of the network.
+In order to make the network more secure the architecture must provide privacy (ie. user login services), make sure that the data doesn’t change or get lost while traveling from the sender to the receiver, and must remain accessible. The accessibility of the network can be disrupted by Denial of Service(DoS) attacks (cyber attacks that prevents the users from accessing it) or if the server is ever off.
+
+There are two implementation methods we use to send messages through a network: a circuit switching and a package switching. Circuit switching is a type of switching in which an entire channel or circuit is established for the sending of one message. This was generally used in the old telephone networks; if you’ve called a number an entire channel would be held busy during the entire phone call. Any other calls between the same two people would always have to use the same certain, dedicated circuit path/channel. Package switching, on the other hand, breaks down the message into small pieces (packages) and sends them to the same receiver via many different channels, whichever is available at the moment, and making the traffic flow easily. Keep in mind that while circuit switching often used switches and central offices, package switching systems use routers.
+
+Network Protocols
+A network protocol is a set of rules that governs the communication between the computers within a network. We need protocols to make sure that the message is directed correct and clear, while providing an extra layer of security.
+
+Protocols of communication can also be seen within human interactions. In order for two computers to talk to each other (via a router or a switch), just like people, they must be speaking the same language. The network protocols are what the language barrier is for us.
+
+In order to learn further about network protocols, we must first see the OSI model. There are many network protocols and each work on a different layer of the OSI model. The OSI (Open Systems Interconnection) model is a conceptual model that characterizes and standardizes the communication functions of a telecommunication system (such as a computer network) without digging deep into the underlaying technology. There are 7 layers within the OSI model.
+
+7. Application Layer: Human-computer interaction layer, where applications can access the network services. (HTTP, FTP, DNS, SNMP, Telnet)
+
+6. Presentation Layer: Ensures that the data is in a useable format and is where the data encryption occurs. (SSL, TLS)
+
+5. Session Layer: Maintains connections and is responsible for controlling ports and sessions. (NetBIOS, PPTP)
+
+4. Transport Layer: Transmits data using transmission protocols, including TCP and UDP. (TCP, UDP)
+
+3. Network Layer: Decides which physical layer the data will take. (IP, ARP, ICMP, IPSec)
+
+2. Datalink Layer: Defines the format of data on the network. (PPP, ATM, Ethernet)
+
+Physical Layer: Transmits raw bit stream over the physical medium. (Ethernet, USB, Bluetooth)

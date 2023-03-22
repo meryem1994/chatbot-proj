@@ -1,0 +1,66 @@
+Concurrent utils are included in the package java.util.concurrent package.
+This package has two important sub packages namely — java.util.concurrent.atomic and java.util.concurrent.locks. We will discuss about them in upcoming blogs.
+
+
+As of now, we will discuss about java.util.concurrent package. This defines the core features, that helps us to provide alternative approach to the existing synchronization and Interthread process communication.
+
+There are certain key features available in this package, which includes
+
+Synchronizers
+Executors
+Concurrent Collections
+The Fork / Join Framework.
+We will discuss about each of them elaborately in my upcoming blogs. A basic idea about each feature will be discussed here
+
+Synchronizers
+This helps us to provide a high level of Synchronizing the Communication or Interactions between Multiple threads. This feature further provides different type of Synchronization techniques like
+
+Semaphore
+CountDownLatch
+CyclicBarrier
+Exchanger
+Phaser
+These techniques are helpful in one or another way to solve the synchronization problem that occurs during thread execution. It also helps us to optimize the program execution.
+
+Executors
+As the name suggest, Executors helps to manage the thread execution. Here the Executor Interface is at the top of the Hierarchy and is used to start the thread. We also have Executor Service that extends the Executor Interface and includes some additional methods.
+
+There are three class namely that implements this ExecutorService Interface and provides various functionalities namely
+
+ThreadPoolExecutor
+SchedulesThreadPoolExecutor
+ForkJoinPool
+This Executors class has several static utility methods, that helps us to handle various executors creations and use.
+
+Also there are two other interfaces namely, Callable and Future Interface that are related to Executors class.
+
+Future helps us to collect the value that is returned by the thread after its execution. It means the value get’s defined in the future.
+
+Callable is used to define the thread that returns the value.
+
+Concurrent Collections
+As we all know that in java.util.concurrent, there are several concurrent classes that helps us to handle the concurrent execution.
+
+One such concurrent class is Concurrent HashMap, this helps us to handle concurrent Hashmap execution, without actually locking the entire Hashmap for read and write access.
+
+Apart from this there are ConcurrentLinkedQueue and CopyOnWriteArrayList.
+
+Fork/JoinPool Framework
+This Concurrent feature framework helps us to support parallel programming.
+
+Here we have the following main classes namely, ForkJoinPool, ForkJoinTask, RecursiveAction and RecursiveTask.
+
+java.util.concurrent.atomic
+When we use any normal variables during the concurrent execution, the state of the variable cannot be maintained properly. This atomic package, helps us to use variable in the concurrent environment by effectively updating the value of the variable without any latency or using any locks.
+
+To achieve this, atomic package has various classes namely AtomicInteger, AtomicLong, AtomicBoolean and AtomicReference etc with the methods like incrementAndGet(), decrementAndGet(), get(), compareAndSet() etc.,
+
+The execute all at a time without any interruption as a single operation.
+
+java.util.concurrent.locks
+This package acts like an alternative approach to the existing traditional Synchronization methods. Here we have a Lock interface which works as it name suggest by locking the state of the object and releasing it after the task completion.
+
+We have various methods in this interface namely unlock(), lock(), and tryLock() etc.
+This provides a way better than the Existing Synchronization method.
+
+I hope this gives you a basic understating about the various classes and interfaces in the Concurrent API package.

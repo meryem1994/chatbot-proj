@@ -1,0 +1,60 @@
+According to the HTTP RFC, HTTP is a stateless, application level protocol for distributed, collaborative hypertext information systems.
+
+Why Stateless?
+By being stateless, it means that each request is executed independently without any knowledge of requests that were executed before it. Once the transaction ends then the connection is lost.
+
+
+The request sent at 1809hrs has no idea of what was happening before it was sent. Once a response is received from the server for the request, the business is closed.
+
+Why Application Level Protocol?
+The OSI model defines 7 layers as shown below.
+
+
+In the model, HTTP operates in the 7th layer, the Application Layer. It is the layer that is closest to the users — it is the human computer interaction layer.
+
+Some of the protocols that operate in this layer include:
+
+Domain Name System — DNS
+Simple Mail Transfer Protocol — SMTP
+Secure Shell — SSH
+Brief History of HTTP
+HTTP dates back to 1989 when Tim Barnes Lee was working at CERN. He proposed to build a hypertext system which he named Mesh — turned out to be the World Wide Web.
+
+For Tim to build the hypertext system, he needed to come up with 4 building blocks namely:
+
+A textual format to represent hypertext documents — HTML
+A client to display and edit the documents — Browser
+A server to give access to the document — Web Server
+A simple protocol to exchange the documents — HTTP.
+All of the 4 elements were done by 1990 and the first version of HTTP was released. The release was dubbed HTTP/0.9
+
+HTTP/0.9
+It was a single line protocol. Each line started with the only possible method — GET, followed by the path of the resource.
+
+GET /index.html
+There were no headers, status or error codes. If there was an error, a specific HTML file was generated and included the error description.
+
+HTTP/1.0
+Versioning info was added to the request line. In the response, a status code was sent. Clients could now recognize a success or a failure.
+
+Headers were also introduced for both the request and the response. With the HTTP headers, documents other than plain HTML files could be transmitted.
+HTTP/1.1
+This version was launched in 1997. Some of the key features included:
+
+A connection could be reused — in the previous version you had to create a different connection for each request.
+Chunked responses were supported — This allowed for messages to be broken into several pieces.
+Pipelining was added — Pipelining is the ability to send multiple requests without waiting on the response of a previously sent request.
+Cache control mechanisms were added.
+Content negotiation was introduced — content negotiation is the mechanism that is used for serving different representations of a resource to the same URI to help the user agent specify which representation is best suited for the user.
+The ability to host different domains from the same IP address allowed server collocation — courtesy of the Host Header
+HTTP/2.0
+Over the years, web pages have become more complex — more visuals, volume and size of scripts increased. This meant that more complexities with HTTP/1.1
+
+Google created an experimental protocol called SPDY which acted as the foundation for HTTP/2.0
+
+Some of the features of HTTP/2.0 include
+
+Compressed headers — compressing headers reduces their size in terms of bytes that are transmitted during the connection.
+Server push — Allows a HTTP server to send resources to a HTTP client before the client requests them. It loads resources preemptively even before the client realizes it will need them.
+Multiplexed protocol — Allows a client to fire off multiple requests at once on the same connection and receive the responses back in any order.
+Binary protocol — HTTP messages are formatted into frames and each frame is assigned to a stream. The predecessors were text protocols.

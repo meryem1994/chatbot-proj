@@ -1,0 +1,85 @@
+service orchestration is essentially an automated process to deploy, configure, integrate & manage an application or service or IT system by merely providing infrastructure & application specific details as inputs.
+
+With Telecom industry adopting virtualization & containerization as part of its networks and having a more IT type of setup, Telcos are now able to take advantage of service orchestration too. Service orchestration has made it easier now to deploy new technologies & use cases in multiple locations with much less efforts and in time saving manner which has contributed toward reduction in turn around time for new services.
+The promise of orchestrator is so strong that European Telecommunication Standards Institute(ETSI) treats service orchestration functionality as an integral component of NFV and has it defined as part of its Management & Orchestration(MANO) component in ETSI NFV architecture. MANO is responsible for orchestrating not only IT systems, applications and services but also network elements and the Telco technologies like 4G,5G etc.
+
+Network Service Orchestrations in 5G
+While telcos voluntarily adopted NFV and Containerization for its 4G core & started to use OpenRAN, virtualized RAN to reap the benefits associated with NFV/SDN towards early 2020s, 5G architecture itself has been designed taking these technologies as sort of its foundational base.
+
+So, when we talk about what all orchestrations would be applicable for a telco who is working on 5G and how many orchestration packages will be needed , we will have to look at it from 2 perspectives :
+1) 5G deployment perspective
+2) 5G Use Case Perspective
+
+5G Deployment perspective:
+In order to setup 5G technology completely with end target of Standalone 5G , operator will need to deploy 5G access network service based on Open RAN architecture and 5G Packet Core network service (Service Based Architecture) in the respective data centers.
+
+Hence at a minimum 2 Orchestration packages are needed:
+1. 5G Access network service orchestration package
+2. 5G Packet Core network service orchestration package
+
+The exact orchestration package count will also depend on 2 other details:
+1. Exact number of vendors serving the Telco operator’s access/core: Based on this count, the orchestration packages count will increase as vendor specific orchestration package will be needed.
+Example: if operator is using 5G RAN of 2 vendors in a region and 5G Core from also 2 vendors, then operator will need 2 orchestration packages for access and 2 for core .
+
+2. 5G Telco Cloud infrastructures: If a vendor is using Telco cloud infrastructure made of multi clouds, then orchestration package dedicated to each target cloud infra will be needed.
+Example: If operators 5G Telco cloud is using Red Hat Openshift in select data centers and AWS in others, then orchestration package specific for deployment on Openshift will be needed along with package for AWS. So, the total orchestration packages will double.
+
+5G Use Case perspective:
+Once 5G network is deployed by the operator, their main goal becomes to provide end user services that will run on this 5G network for end customer (consumers/enterprises) to consume & Telcos to monetize on.
+
+
+As a use case can be considered to be like an application, one orchestration package for each use case will be required at a minimum that can be orchestrated for end customer when an order is placed.
+
+However, the exact orchestration package count will be dependent on few additional details:
+
+1. Number of products that are being sold by operator for a particular use case. Based on this count, the orchestration packages count will increase as each product specific use case orchestration package will be needed.
+Example: if operator is providing 2 SDWAN solutions: Cisco Viptela & Velocloud, then operator will need 2 orchestration packages for SDWAN offering — 1 for Viptela orchestration and 1 for Velocloud orchestration.
+
+2. Number of different Cloud Infrastructures where app/use case has to be deployed: Depending on the number of different cloud platform infrastructures on which application will be deployed, orchestration packages need will increase. E.g: a) If use case needs to be deployed on Kubernetes & AWS EC2 then separate package will be needed for both infrastructure.
+b) Also, in case of variants of Kubernetes(e.g.: Vanilla Kubernetes, Red Hat Openshift, AWS EKS,etc), platform specific tweaking of orchestration package maybe needed which in turn would increase the overall count.
+
+NOTE: The orchestration package counts we have discussed in above 2 perspectives above is as per what a telco operator will need. However, depending on how the network service implementation/use case application is designed by the product vendor there maybe additional microservices/products that serve as dependency for the network service/use case that needs to be orchestrated.
+
+To orchestrate these microservices additional small orchestration packages will need to be created & stitched together with any other package created for the service to provide final orchestration package that can be executed to achieve essentially Zero Touch Provisioning (ZTP) for that service/use case.
+
+Key tasks to be considered & orchestrated as part of Orchestration Package:
+When working on building Orchestration package for a network service or use case, below tasks need to be considered and as per their requirement automation scripts/templates need to be developed.
+
+Cloud Infrastructure setup & provisioning — Orchestration templates for spinning up resources on cloud infrastructure need to be built as per application requirements. The templates should create & provision the necessary resources for app VMs/CNF to use later.
+Operator side Network Configuration(if needed) — In case operator is using Network slicing and use case requires a slice to be allocated then scripts to create & configure slice need to be built.
+Application microservices & its dependencies Implementation — Orchestration templates & scripts to deploy, configure & integrate both application microservices as well as its dependency services. The application implementation can be executed either directly or or via Network vendors VNFM/EMS using REST API or SOL003 drivers.
+Integration with other network elements — implementing integrations to other upstream and downstream network elements like OSS/BSS , Infrastructure etc if required.
+The files prepared as part of overall orchestration package need to be stored in the appropriate locations as defined by the Orchestration product being used. This package has to be understood by the Products resource manager which will interface with the Infrastructures as well as VNF/EMS/VNFM,etc and hence needs to be in appropriate structure.
+
+NOTE: While building orchestration package, it should be ensured that all infra specific entries or user inputs are captured in parameters so that values are not hard coded and any value can be provided during orchestration execution.
+
+Templates & Tools that can be used as part of Orchestration
+
+For cloud infrastructure provisioning either based on the cloud respective platforms orchestration template can be used or TOSCA templates can be utilized. Some common used cloud orchestration templates are :
+Red Hat Openstack: Heat Template
+AWS: CloudFormation
+Azure: AZ Resource Manager
+GCP: Deployment Manager
+In case of Kubernetes or Kubernetes equivalent cloud platform — Helm charts or YAML files for the objects will have to be used for their orchestration.
+Ansible — An important Automated config & management tool that can be used for any orchestration activity including infrastructure setup, working with Kubernetes/any cloud platform, Application deployment, monitoring, making API call, etc.
+Scripting languages — As part of application/network-service implementation, configuration,etc scripting languages like Python & Javascript are handy too.
+How Orchestration packages can be executed:
+There are essentially 2 ways in which orchestration package can be executed:
+
+Manual execution from the orchestrator — In this method the engineer provides the relevant inputs for the package on the orchestrator and executes the orchestration on the desired platform/infrastructure.
+API call to orchestrator — Instead of engineer manually running the instance, API call from some other system here triggers orchestration. The systems that would essentially trigger are:
+a. CICD (DevOps) tools via pipeline builder like Jenkins: This method is most useful when new version of some images are available or in case of changes in application code.
+b. Closed Loop Automation: In this method orchestrator would receive orchestration request from monitoring & fault management systems to ensure use cases/service are working correctly and to resolve any faults/alarms that maybe triggered by them.
+MANO products in the industry
+Some of the MANO products that are predominantly used presently include:
+
+Network vendors Orchestration solutions which serve as VNFM & Network Service Orchestrator for vendors solution only: Cisco Network Service Orchestrator(NSO), Ericsson Orchestrator, Nokia Cloudband.
+Other NFV Orchestrators that are generic and expected to support any vendor solutions include: IBM Cloud Pak for Network Automation, ONAP, Cloudify, Ciena Blueplanet, Adva Ensemble Orchestrator
+Conclusion: Looking Forward, Looking Back
+Orchestration concept has been in Telco industry from time of NFV architecture introduction in 2014/15 but its adoption has been slow due to products not being mature enough to manage the requirements. While some solutions were entering the market, as NFV was new Telcos were more focused on virtualizing their network initially and adopting orchestration later.
+
+But since close to 2020 operators have started adopting orchestration in their setup while many started having POCs/MVPs to evaluate as new solutions entered the market. This has further been fueled by Covid pandemic which required operators to meet more capacity and find alternate sources of revenue for which quick time to market was necessity.
+
+While most operators still tend to adopt mainly Network providers orchestration solutions as they are well hardened for the NEPs offerings, Telcos can only depend on them till the time use cases offered are limited. From early 2020s many operators have already started adopting end to end service orchestrators as part of their network & this is a trend which will only increase over time. As operators expand into 5G , they will have to adopt End to End Network service Orchestrators which can orchestrate network services & use cases from any vendor ( complementing vendors existing VNF Managers/EMS) and ensuring minimal to Zero Touch provisioning.
+
+In the last decade(2011–2020) we saw Telcos focusing on virtualizing their network & starting to move their workloads to the cloud. This ongoing decade(2021–2030) we will see them complete this transition (as per their intended targets) & leveraging service Orchestration as their core component to streamline network deployment & roll out many new services to run on 5G & eventually 6G.

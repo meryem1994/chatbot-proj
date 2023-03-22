@@ -1,0 +1,62 @@
+you are into Data Science or Software Engineering or any related field, you may have come across the term “JSON”, and if you’re a newbie, you might be confused. In this post, I will try to introduce JSON without assuming any prior knowledge and explain the concept of JSON with simple examples. Let’s get started.
+
+What is JSON?
+
+
+Created by Katerina Limpitsouni
+JSON stands for JavaScript Object Notation. Don’t get carried away by the jargon, it’s actually straightforward to understand and use. As the word “notation” might hint, JSON is simply a way of representing data independent of a platform — this just means that it is something like a PDF (which is the same across different platforms like mobile, desktop and web) for data. The JSON format was specified by Douglas Crockford, and the filename extension is, as you can guess, .json.
+
+Thus, the PDF for data travels across platforms and maintains consistency in representation and storage. It is widely used today and therefore, crucial in the fields of Data Science and Software Engineering.
+
+Why JSON?
+
+
+Created by Katerina Limpitsouni
+JSON sounds cool, but what is the motivation or purpose behind it?
+
+As highlighted above, JSON being independent of a platform is one of the major choices of format for transfer of data between computers that exchange tons of data each day.
+
+An alternative to JSON is XML (extensible markup language), but JSON is better in many ways. While both are human-readable and machine-readable, JSON is much easier to read and is also faster for computers to process. Furthermore, JSON is processed (or parsed) with a JavaScript parser (which is built-into most web-browsers) while XML requires a separate XML parser. This is where the “JavaScirpt” comes into play in “JSON.”
+
+You can read more about the differences here and here.
+
+How to JSON?
+
+
+Created by Katerina Limpitsouni
+After you’ve understood what JSON is and the rationale behind it, you can now jump into writing some JSON code. JSON syntax is very similar to JavaScript so it would be familiar if you have prior experience with JavaScript.
+
+Let us work through an example to understand writing JSON. Let’s say that you are the leader of your neighbourhood and maintain a database for all the people in it. Consider a scenario when Mr Jodhn Appleseed moves into your neighbourhood. You may want to store information like his first name, last name, date of birth, marital status, etc. Let’s use JSON for this!
+
+When you’re writing JSON, you’re essentially a match-maker! Yes, really! But instead of people, you match data. In JSON, data is stored as key-value pairs — every data item has a key through which you can modify, add or delete the data item.
+
+Let’s start by adding the first name and last names:
+
+
+As you can notice, the values in the left column are the keys (“first name”, “last name”) and the values in the right column are the respective values (“John”, “Appleseed”). A colon separates them. The values encompassed with double quotes are of type String — which essentially means that they are meant to be text and not refer to something else (e.g. a number, variable in another part of the file, etc.).
+
+Note that in JSON, all keys must be strings —so must be enclosed with the double quotes. Also, there’s a comma after each key-value pair except for the last one, indicating that a new item is being recorded.
+
+Now, let’s add his age:
+
+Note that there are no double quotes around the number 30. Intuitively, the data type of such data is number, and hence you can perform mathematical operations on them (when you retrieve the information). In JSON, this data type (number) can take on any numerical value — decimal or integer or any other type. Notice also how I added a comma after “Appleseed” as I added another item below it.
+
+Let’s do something fun now. Let’s try to add his house, which would have its address, owner information, and city. But how do we add these things into the JSON file for John? Things like owner info are attributes of the house and not John, so it doesn’t make sense to add this info directly into the JSON file for John. Worry not, JSON has an interesting data-type to handle this!
+
+In JSON, a value can also be an Object (something that is a key-value pair too). This object is just like another JSON file — enclosed with curly braces and containing key-value pairs, except that it is within our original JSON file instead of having a file of its own.
+As you may notice, the house is an Object, which contains the keys address, owner and market price. The data in address is also an Object, containing the keys house no, street and city. Thus, it is possible to nest objects within objects, and this allows for a more clear representation of data, as shown above.
+
+Now, let’s add info about his friends. We might do this by adding “friend1” and name, “friend2” and name, and so on but this would quickly become boring. JSON provides a data type for storing such info effectively, and it is called an array. It is an ordered collection of items — which can be of any data type.
+
+Let’s say he has three friends: Charles, Mark and Darren. Our JSON file would now look something like this:
+Notice that the array is enclosed with square braces and we wrote each item in a newline followed by a comma except for the last one. The new line is not necessary, but it helps the readability of the code for humans.
+
+Lastly, let’s add his marital status. We could do something like "married":"yes" but JSON provides a special data type for all dichotomous choices: a boolean. It can only take on two values: true or false. Intuitively, it can’t be both at the same time. Assume that John is a bachelor. Let’s add this final piece of information to our file! Our file now looks like this:
+
+
+Final JSON File for John Appleseed
+And, you’ve familiarised yourself with JSON. In this article, we understood what JSON is, why it is useful and finally, how to do (some) JSON. In doing so, we learnt about the JSON data types (String, Number, Array, Object and Boolean).
+
+The file above is a GitHub gist, and you can follow this link to download the file and play around with it, add some more info or make JSON files for new people. You can check if your code is valid JSON and can also format it using this tool.
+
+I hope this article helped you get introduced to JSON. Let me know how your journey is by responding to this story.

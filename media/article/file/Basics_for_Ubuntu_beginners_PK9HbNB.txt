@@ -1,0 +1,47 @@
+Let’s first talk what Ubuntu is… It’s an operating system that is distributed to everyone free of charge. We call it, open-source. Since Ubuntu is open source there is a massive community for this operating system. Whenever you come across a problem you can always search it on the Internet to find a solution. It’s a distribution of Linux. Ubuntu is available in three flavors.
+1) Desktop
+2) Server
+3) Core (Internet Of Things)
+
+GNOME 3 has been the default GUI for the Ubuntu desktop since Ubuntu 17.10. If you are a programmer, Ubuntu should be your choice over Windows OS. Ubuntu is really safe to use. You can even run Ubuntu in your pen drive for testing purposes rather than installing it.
+
+Okay, Let’s get started. If you are using Ubuntu for the first time in your life, you may feel like it’s really hard to use. But when you get used to it you will realize that it is more easy and fast to get a job done. This tutorial is useful for the people who just started using Ubuntu for the first time.
+
+Open up your terminal. Once you open it you will see a “$” sign near the blinking cursor. Shortcut to open the terminal:- Ctrl + Alt + t
+
+The first thing you will come across is a term called “sudo”. The meaning of sudo is “superuser do”. Now you will ask what does it mean. When you run a command with sudo, it will give the user to run that command at the root level. So before the operating system proceeds with the command, it will ask for the password of your computer. Let’s try the command below.
+
+$ sudo poweroff
+
+The next thing you should keep in mind is the path you are in. If you use the shortcut to open the terminal, it will always open in the home directory(like a folder). You can use cd to navigate into other directories.
+
+I have navigated from the home location to the Projects directory which is inside the Documents folder.
+As you can see in the above screenshot I have used ~/ after cd. That means I’m mentioning that I’m starting with the root directory. If not my command would be cd /home/username/Documents/Project/
+
+Tip #1: You can use your tab button to auto-fill the command. Eg :- In the above example, I used the tab button after typing ~/Doc. So the terminal automatically filled the rest of it which is ~/Documents/
+
+Next, we’ll see what nano is… nano is a user-friendly text editor which is shipped with Ubuntu. There are a variety of text editors available for Ubuntu. Eg:- Vim..
+There are unique shortcuts for every text editor. You can select one text editor of your choice and get used to it. Try the commands which are mentioned below.
+
+$ nano- Open the text editor
+$ nano filename- If the filename file is already available, it will open or else a new file will be created with the name filename and it will be ready for text editing
+
+Basic shortcuts for nano editor……
+Ctrl + O- Save
+Ctrl + X- Exit
+
+Now the next most important thing is to install new software to your Ubuntu device. Unlike in the Windows operating system, you won't be able to install .exe files to Ubuntu. There are several ways of installing a software package on Ubuntu.
+
+Using .deb(Debian package) file for installation
+Go to the website of the application you want to download and get a copy of the .deb file of that application to your PC.
+Now you can double click on the .deb file and install it or else, use the command below. You need to go to the downloaded directory before you install. I’m assuming my .deb package is in the Downloads folder
+$ cd ~/Downloads/
+$ sudo dpkg -i filename.deb
+*dpkg means Debian package
+Using apt(advanced package tool)
+apt is a powerful command-line tool used to manage software(to install, update or upgrade software). The apt package index is essentially a database of available packages from the repositories defined in the /etc/apt/sources.list file and in the /etc/apt/sources.list.d directory. So, now I’m going to install vim from apt. First of all, you need to update the package list to get all the latest available update and upgrade information. Then you can proceed to install the vim package.
+$ sudo apt-get update
+$ sudo apt-get install vim
+A message will be prompted for confirmation. Press y and proceed
+Install from Ubuntu software center
+You can open the Ubuntu software center tool which is already on your Ubuntu PC and search for the program you want to install.

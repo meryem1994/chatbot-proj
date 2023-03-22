@@ -1,0 +1,169 @@
+Intro
+Ports are an important concept in IT and network security. I find it confusing that they’re called ports, but whatever. To obtain the CompTIA Security+ certificate, memorizing the port numbers and their respective protocols will help immensely.
+
+This article will cover the basics of what a port is in the context of computer networking followed by a list of the commonly known standardized ports, and at the end I’ll cover ways that network administrators can protect against port-based attacks.
+
+What is a port?
+These are logical communication endpoints that exists on a computer or server. Perhaps, a clearer definition would be:
+
+A port is a virtual point where network connections start and end. Ports are software-based and managed by a computer’s operating system. Each port is associated with a specific process or service. https://www.cloudflare.com/learning/network-layer/what-is-a-computer-port/
+
+What do ports do?
+Whoopdie-doo! Knowing what a port is doesn’t really provide a satisfying answer, BUT knowing what ports do DOES satisfy. The best explanation I found comes from the same source as above:
+
+Ports allow computers to easily differentiate between different kinds of traffic: emails go to a different port than webpages, for instance, even though both reach a computer over the same Internet connection. https://www.cloudflare.com/learning/network-layer/what-is-a-computer-port/
+
+Basically, your computer is sending and receiving so much data at any given moment, that to receive all that via one endpoint would be impractical. In order to organize that data, these ports provide the means to send and receive specific types of data. Put another way:
+
+Vastly different types of data flow to and from a computer over the same network connection. The use of ports helps computers understand what to do with the data they receive. https://www.cloudflare.com/learning/network-layer/what-is-a-computer-port/
+
+For example, some ports just receive data in the form of email while others only deal with internet browsing data. This allows your computer to send/receive so much data simultaneously, because it is organized by these ports. Pretty neat, I guess.
+
+As mentioned, ports send and receive data. Ports receiving data are designated inbound ports and ports sending data are called outbound ports. Inbound ports create communication openings on a server to listen for a connection from a client. Outbound ports are communication openings from clients that call out to a server that is listening for a connection. `
+
+What is UDP and TCP and how do they relate to ports?
+UDP and TCP are types of transport protocols. These are important to understand but not important for memorizing port numbers. So, definitely read more on these later, but for now it’s enough to know that these protocols are what specify to which ports to send data. In the list of port numbers below, each port will specify which protocol is used: TCP, UDP, or TCP/UDP.
+
+Where do ports lie in relation to the OSI model?
+Many IT people will know what the OSI model is. However for those who don’t, OSI is an acronym for open systems interconnection. This is a conceptual model created as means to be able to imagine how data flows across the internet. It consists of 7 layers. Each layer of the OSI Model handles a specific job and communicates with the layers above and below itself. Here’s more info on the OSI model for a more thorough explanation.
+
+Anyway, with relation to the OSI model, ports fall within layer 4 of the OSI model, which is the Transport layer. Fitting, since it’s the layer pertaining to ports.
+
+How do ports relate to IP addresses?
+With regards to the OSI model, ports reside in layer 4 and IP addresses reside in layer 3, the Network layer. This layer pertains to getting data to your computer. Each computer has an IP address which acts like a regular address so the network knows which computer to send data. So, the IP address directs data between computers and the ports help organize how to use that data when it arrives to the computer.
+
+What is a port number?
+Ports are standardized across all network-connected devices, with each port assigned a number… meaning the port numbers assigned on my computer are the same as on yours and everyone elses’.
+
+Most ports are reserved for certain protocols — for example, all Hypertext Transfer Protocol (HTTP) messages go to port 80. While IP addresses enable messages to go to and from specific devices, port numbers allow targeting of specific services or applications within those devices.
+
+There are 65,000+ port numbers, but only a handful need to be memorized for the Security+ certification exam. Find that list of port numbers in the next section.
+
+main concept to remember:
+Vastly different types of data flow to and from a computer over the same network connection. The use of ports helps computers understand what to do with the data they receive.
+
+Memorize These
+21 — FTP — TCP
+file transfer protocol; used to transfer files from host to host
+
+22 — SSH, SCP, SFTP —TCP/UDP
+Secure Shell for remote administration of network devices and systems, or Secure copy, or Secure FTP
+
+BONUS: SFTP is more secure than FTPS (ports 989/990) because SFTP uses TLS and FTPS uses SSL which has been compromised
+
+23 — Telnet — TCP/UDP
+unencrypted method to remotely administer network devices (DON’T USE)
+
+25 — SMTP — TCP/UDP
+simple mail transfer protocol; used to send email over the internet
+
+53 — DNS — TCP/UDP
+domain name service; used to resolve hostnames to IPs and IPs to hostnames
+
+69 — TFTP — UDP
+trivial file transfer protocol; simplified version of FTP to put a file on a remote host, or get a file from a remote host
+
+80 — HTTP — TCP
+hypertext transfer protocol; used to transmit web page data to a client for unsecured web browsing
+
+88 — Kerberos — TCP/UDP
+used for network authentication using a system of tickets within a Windows domain
+
+110 — POP3 — TCP
+post office protocol version 3; used to receive email from a mail server
+
+119 — NNTP — TCP
+network new transport protocol; used to transport usenet articles
+
+135 — RPC/DCOM-scm — TCP/UDP
+remote procedure call; this is for executing programs remotely, typically a program is told to execute from one computer and run on another computer…
+
+137–139 — NetBIOS — TCP/UDP
+used to conduct name querying, sending of data, and other functions over a NetBIOS connection
+
+143 — IMAP — TCP
+internet message access protocol; used to receive email from mail servers, but with more features than POP3
+
+161 — SNMP — UDP
+simple network management protocol; used to remotely monitor network devices
+
+162 — SNMPTrap — TCP/UDP
+simple network management protocol Trap; sends Trap & InformRequests to the SNMP manager on a network
+
+389 — LDAP — TCP/UDP
+lightweight directory access protocol; used to maintain directories of users & other objects
+
+443 — HTTPS — TCP
+hypertext transfer protocol secure; used to transmit web page data to a client over an SSL/TLS-encrypted connection
+
+445 — SMB — TCP
+server message block; used to provide shared access to files & other resources on a network
+
+465/587 — SMTP with SSL/TLS — TCP
+simple mail transfer protocol over SSL; used to send email over the internet with an SSL/TLS secured connection
+
+514 — Syslog — UDP
+used to conduct computer message logging, especially for routers & firewalls logs
+
+636 — LDAP SSL/TLS — TCP/UDP
+used to maintain directories of users and other objects over an encrypted SSL/TLS connection
+
+860 — iSCSI — TCP
+internet small computer systems interface; used for linking data storage facilities over IP
+
+989/990 — FTPS — TCP
+used to transfer files from host to host over an encrypted connection; uses SSL, less secure than SFTP
+
+Remember: SFTP (port 22) is more secure than FTPS because SFTP uses TLS and FTPS uses SSL which has been compromised
+
+993 — IMAP4 with SSL/TLS — TCP
+used to receive email from a mail server over an SSL/TLS-encrypted connection
+
+995 — POP3 (SSL/TLS) — TCP
+used to receive email over a mail server using an SSL/TLS-encrypted connection
+
+1433— Ms-sql-s — TCP
+Microsoft SQL server; used to receive SQL database queries from clients
+
+1645/1646 — RADIUS — UDP
+Remote authentication dial-in user service; used for authentication and authorization (1645) and accounting (1646)
+
+1701 — L2TP — UDP
+Layer 2 tunnel protocol; used as an underlying VPN protocol but has no inherent security
+
+1723 — PPTP — TCP/UDP
+point-to-point tunneling protocol; the underlying VPN protocol with built-in security
+
+1812/1813 — RADIUS — UDP
+Remote authentication dial-in user service; used for authentication and authorization (1812) and accounting (1813) …yep, RADIUS is listed twice, not a mistake
+
+3225 — FCIP — TCP/UDP
+fibre channel IP; used to encapsulate fibre Channel franges within TCP/IP packets
+
+3260 — iSCSI Target — TCP
+Used as a listening port for iSCSI-targeted devices when linking data storage facilities over IP
+
+3389 — RDP — TCP/UDP
+remote desktop protocol; used to remotely view and control other Windows systems via graphical user interface
+
+3868 — diameter — TCP
+a more advanced AAA protocol that is a replacement for RADIUS
+
+6514 — Syslog over TLS — TCP
+used to conduct computer message logging, especially for routers and firewall logs, over a TLS-encrypted connection
+
+How are ports attacked or compromised?
+Attacks on ports are usually the result of leaving ports open on a computer, when they’re not really needed. For example, most people don’t need to allow remote access to their computer, so we keep port 23, Telnet, disabled because that port allows for remote access.
+
+Basically, leaving unused ports open(enabled) is the most common vulnerability from ports.
+
+How can ports be hardened against attack?
+By now, you may have guessed it, but simply closing(disabling) unused ports is one of the best means of protecting against a port-based attack. However, other means exist for protecting ports.
+
+Implementing Port Security measures will also help. Port Security involves specifying MAC address limits on any given port. These limits can specify
+
+which particular MAC addresses are allowed on the port
+or even, how many MAC addresses can be allowed on the port
+Another means for securing ports entails the use of VLANs. These are used to create compartmentalization within a network the flow of data.
+
+Lastly, one that is more commonly known, firewalls. However, these are mentioned last because they are redundant (at least from my understanding) to just turning ‘off’ a port. The difference being that firewalls don’t turn ‘off’ ports but ‘block’ ports. Anyway, redundancy is cool sometimes.

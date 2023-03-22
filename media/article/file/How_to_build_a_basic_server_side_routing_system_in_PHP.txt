@@ -1,0 +1,105 @@
+In the context of a server-side web application, a routing system is the part of the web application that maps an HTTP request to a request handler (function/method). An HTTP request consists of a header and optionally a body. The header contains information about the request for example the method, path and host. Some methods like GET, HEAD, and OPTIONS do not make use of the request body while others like POST, PUT, and PATCH use it to pass data from a client to a server.
+
+Using a routing system allows us to structure our application in a better way instead of designating each request to a file.
+
+A routing system works by mapping an HTTP request to a request handler based on the request method and path specified in the URL of the request. This is exactly what we are going to build in this tutorial.
+
+Requirements.
+
+You need PHP version 5 or higher running on your development machine.
+Basic PHP knowledge including familiarity with PHP global variables.
+An understanding of object oriented PHP.
+Disclaimer.
+
+This router will only handle GET and POST requests.
+I am not going to use fancy tools and libraries. No composer, no autoloading. I want to keep focus on the concept.
+Unit testing is great but I am not going to do it, for the purpose of keeping this tutorial short. (Sorry good developers)
+The code I am going to write is not production ready code.
+Let’s begin.
+Using the terminal, create a folder for the project and cd into the folder.
+
+$ mkdir php-router
+$ cd php-router
+Create 4 files in the folder as shown below.
+
+$ touch index.php Request.php IRequest.php Router.php
+index.php — This is the entry file for the web application. This is where we will initialize the router and define our routes. It shall also contain all imports.
+
+Request.php — This file will contain a class for the Request class for initializing objects that contain information about the HTTP request.
+
+IRequest.php —This file will contain the interface that the Request class must implement.
+
+Router.php — This file will contain the Router class.
+
+Before writing the router, we need to design it’s API (How it will be used in apps). Below is the API for out router.
+
+$router = new Router;
+// How GET requests will be defined
+$router->get('/some/route', function($request) {
+    // The $request argument of the callback 
+    // will contain information about the request
+    return "Content";
+});
+// How POST requests will be defined
+$router->post('/some/route', function($request) {
+    // How to get data from request body
+    $body = $request->getBody();
+});
+Now that we have defined how our Router will be used, let’s create it.
+
+Create the Request class.
+First, define the interface that the concrete Request class will implement. In IRequest.php define the IRequest interface.
+
+
+getBody() retrieves data from the request body. The Request class must have the implementation for this method.
+
+Create the Request class.
+
+
+In the constructor, invoke bootstrapSelf() — a method that sets all keys in the global $_SERVER array as properties of the Request class and assigns their values as well. This method makes a call to the toCamelCase() method.
+
+The toCamelCase() method converts a string from snake case to camel case.
+
+getBody() is an implementation of the method defined in the IRequest interface.
+
+Create the Router class.
+In Router.php, add the following code for the Router.
+
+
+In the Router class’ constructor, keep a reference to it’s dependency — the Request object.
+
+Let’s use the PHP magic method __call(). This method is triggered when invoking inaccessible methods in an object context.
+
+Consider the code sample below.
+
+
+We are trying to invoke the method get() which is not defined in class Router, so the __call() magic method is triggered. It receives two arguments. The first argument is the method name (‘get’) and the second is an array of arguments that the get() method was invoked with i.e [ ‘/’, function() {}].
+
+We use the __call() magic method to dynamically create an associative array that map routes to callbacks. We create one for each supported request method. If an invalid method is called on the router object, we respond with a 405 Method Not Allowed.
+
+The resolve() method selects a callback that gets called to handle a request based on the request’s HTTP method and path (‘/’, ‘/foo/bar’, etc).
+
+Now that we have our router, let’s use it to create an app.
+
+Create an app.
+In index.php, import the Request and Router classes we defined, initialize a router and define some routes.
+
+
+Run and manually test the app.
+Let’s use PHP’s development server to run the app on port 8000.
+
+While in the terminal, cd into the project folder and run the following command.
+
+$php -S 127.0.0.1:8000
+Open your web browser and navigate to http://localhost:8000/ and http://localhost:8000/profile to test the home and profile pages.
+
+Use Postman or curl (or any other tool of your choice) to test the POST route to http://localhost:8000/profile.
+
+Here is a screenshot of my test using postman.
+
+
+POST /data works
+
+DELETE /data returns 405 Method Not Allowed
+Final thoughts.
+PHP currently has poor support for HTTP methods that allow sending data in the request body, other than POST (i.e PUT, DELETE, PATCH, etc).

@@ -1,0 +1,99 @@
+This article is contributed equally by co-author Mr. Kartik Garghate.
+
+We might need to validate an IPv4 address, IPv6 address, MAC address, or network subnet address from the backend using database scripts. In one assignment, we had to validate network addresses by writing a database script. We need to process a file by creating an Azure Data Factory pipeline and, while processing, validate the network addresses mentioned in the data file. If network addresses are in the correct format, save those records in the database; otherwise, discard the records having incorrect network addresses.
+
+Network address validation can be quickly done using REGEXP in programming domains like API, UI, and Oracle database, but not in SQL Server. There is no ready-to-use implementation available to validate the network addresses in SQL Server; we needed to write a User Defined Function (UDF) to implement the solution. And for network address validation in Oracle, we need to modify the REGEXP.
+
+In this article, we will see how to implement UDF in SQL Server and modify REGEXP in Oracle to validate IPv4, IPv6, MAC address, and Network Subnet. This article is written considering you have an intermediate level of expertise in database functions, IP validation concepts, and complex query writing.
+
+Format of addresses
+Let’s start by considering all the possible formats for addresses.
+
+IPv4 Address
+IP stands for Internet Protocol, and v4 stands for Version Four (IPv4). An IPv4 address has a format x.x.x.x where each x is called an octet, a decimal value between 0 and 255: for instance, 123.100.20.15 or 0.0.0.0. Octets are separated by periods, and an IPv4 address must contain three periods and four octets.
+
+IPv6 Address
+An IPv6 address is a 128-bit alphanumeric value that identifies an endpoint device in an IP Version 6 (IPv6) network. The preferred IPv6 address representation is x:x:x:x:x:x:x:x where each x is a 16-bit hexadecimal number. IPv6 addresses range from 0000:0000:0000:0000:0000:0000:0000:0000 to ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff.
+
+In addition to this preferred format, IPv6 addresses may be specified in two other shortened formats:
+
+Omit leading zeros: We can specify IPv6 addresses by omitting leading zeros. For instance, the IPv6 address 1050:0000:0000:0000:0005:0600:300c:326b can be written as 1050:0:0:0:5:600:300c:326b.
+Double colon: We can specify IPv6 addresses by using double colons (::) in place of a series of zeros. Double colons are allowed only once in an IPv6 address. For example, the IPv6 address ff06:0:0:0:0:0:0:c3 can be written as ff06::c3.
+MAC Address
+A Media Access Control (MAC) address is the physical address that uniquely identifies each device on a given network. Traditional MAC addresses are 12-digit (6 bytes or 48 bits) hexadecimal numbers and may be written in the following ways:
+
+[00-FF]:[00-FF]:[00-FF]:[00-FF]:[00-FF]:[00-FF], as in 96:FF:FE:12:34:56
+[00-FF]-[00-FF]-[00-FF]-[00-FF]-[00-FF]-[00-FF], as in 96-FF-FE-12–34–56
+[0000-FFFF].[0000-FFFF].[0000-FFFF], as in 96FF.FE12.3456
+[000000000000-FFFFFFFFFFFF], as in 96FFFE123456
+IPv4 Network Subnet
+An IPv4 network subnet format combines IPv4 addresses and numbers from 0 to 32 separated by “/”. There are two formats for subnets:
+
+[IPv4]/[0–32], as in 10.10.10.10/11
+/[0–32], as in /10
+Writing UDFs
+Before writing our UDFs, let’s see why we need them.
+
+Modular Programming: You can create a function once, store it in the database, and call it any number of times in your program.
+Not Supported REGEXP: SQL Server does not support regular expressions like it is supported in other languages. The below IPv6 validation rule works in .NET and AngularJS but is not supported in SQL Server.
+Multiple scenarios to handle: As we mentioned, several addresses may be written in two or more equivalent formats.
+Cross Platform: We cannot call any method or function written in .NET or Java via a database program, but the programs written in .NET or Java can call and use functions defined in the database.
+Let’s see UDFs to validate the network addresses one by one.
+
+Validating IPv4 Addresses
+In this section, let’s write functions to validate IPv4 addresses.
+
+IPv4 Address Validation — SQL Server UDF
+The below UDF validates the IPv4 address in SQL Server:
+UDF fn_ipv4_validation() is written to validate the IPv4 address format, which accepts an IPv4 address as a parameter @p_ip_address and returns ‘TRUE’ or ‘FALSE’. The steps followed in the UDF are explained below:
+
+Step 1: We will check if the string contains any characters from A-Z or a-z and any special characters apart from dot (.), if yes then it sets the counter variable value to 1, and it will return ‘FALSE’ and come out of the function. This check is done with the help of LIKE operator and REPLACE() function.
+Step 2: If the IPv4 address variable does not contain any characters from A-Z or a-z or any special characters other than a dot (.) and the counter variable is 0 then the 2nd step will execute. Here by using the PARSENAME() function we are validating if the parameter @p_ip_address is in [0–255].[0–255].[0–255].[0–255] format. If @p_ip_address is in the correct format, it will return ‘TRUE’ and will come out of the function.
+Step 3: If any of the preceding steps fail, the function returns ‘FALSE’ and exits.
+IPv4 Address Validation — Oracle
+Below expression written using REGEXP_LIKE() helps to validate IPv4 address in Oracle:
+Validating IPv6 Addresses
+In this section, let’s write functions to validate IPv6 addresses.
+
+Character Count — SQL Server UDF
+SQL Server does not have a built-in function for character count, which returns how many times a character is present in a given string. In IPv6 address validation UDF, we need to do some checks based on character count. So instead of writing the same logic, again and again, let’s create a UDF which accepts a string and a character and returns a character count:
+UDFfn_count_char()will show us how many times one particular string/character is present in the string passed. The steps followed in UDF are explained below:
+
+Step 1: Here we are declaring and initializing variables: @v_input_string_length to store the length of the string passed, @v_index to check the index of record and is set to 1, and @v_count to store the counter inside the loop.
+Step 2: We will run the while loop until the @v_index value is less than or equal to @v_input_string_length. In this loop, we will first check whether @p_search_char is present in the passed string @p_input_string using the substring function and if it matches the string to search then we will add one to @v_count and @v_index. As mentioned, this loop will continue till @v_index value is less than or equal to @v_input_string_length and at the end, we will return the total times the string/character is present in the string passed.
+The below example shows how to use fn_count_char() to see how many times a given character appears in a string:
+UDF fn_ipv6_validation() is written to validate the IPv6 address format, which accepts an IPv6 address as a parameter @p_ip_address and returns ‘TRUE’ or ‘FALSE’. The steps followed in UDF are explained below:
+
+Step 1: We will declare two variables, @v_updated_p_ip_address and @v_char_count. @v_char_count is used to save the count of character colon (:) in @p_ip_address and @v_updated_p_ip_address is used to store modified @p_ip_address.
+Step 2: In step 2 we calculate the count of colons (:) in the parameter @p_ip_address and assigned it to variable @v_char_count using the function fn_count_char().
+Step 3: Here we check if @v_char_count, calculated in the 2nd step, is greater than seven, or if @p_ip_address contains a group of more than two colons. If any of the conditions are satisfied, the function returns ‘FALSE’ and exits.
+Step 4: Split the @p_ip_address by a colon (:) using STRING_SPLIT() function. If a split value string contains more than four characters, then return ‘FALSE’ and exit the function.
+Step 5: IPv6 addresses should not contain a single or group of more than two colons at the start or end of the address. This part of the code checks for this condition and returns ‘FALSE’ if @p_ip_address passes this condition and exits the function.
+Step 6: If the IPv6 address is written in double colon format, at step 6 we will add the required colons, so there will be seven colons in the IPv6 address and will assign it to @p_ip_address. This we can implement by using the REPLICATE() and REPLACE() function as shown in the code.
+Step 7: Here we will ensure that numbers between colons are four digits long. If leading zeros are omitted in the IPv6 address parameter @p_ip_address, we will add those zeros by following the below steps,
+- Split the string based on the colon (:) by using the STRING_SPLIT() built-in function.
+- By using STRING_AGG(), RIGHT() and REPLICATE() built-in functions will make that IPv6 address in full format.
+E.g., if the value of the parameter @p_ip_address is 1050:0:0:0:5:600:300c:326b, then will update it to 1050:0000:0000:0000:0005:0600:300c:326b format and assign it to new variable @v_updated_p_ip_address.
+Step 8: We will check whether the IPv6 address passed is in the correct format, i.e., values are between 0–9 or a-f or A-F, as explained earlier. If this condition is satisfied, we will return ‘TRUE’ and exit.
+Step 9: If any of the preceding steps fail, the function returns ‘FALSE’ and exits.
+The below example shows how to usefn_ipv6_validation()to validate IPv6 address:
+fn_mac_address_validation() is a UDF written to validate the MAC address format, which accepts a MAC address as a parameter @p_mac_address and returns ‘TRUE’ or ‘FALSE’. The steps followed in UDF are explained below:
+
+Step 1: MAC addresses can be written in four different formats. So, in the 1st step, we will be verifying all formats, and if the parameter @p_mac_address passes any one of the formats, the function is returning ‘TRUE’.
+Step 2: If the previous step failed, the function returns ‘FALSE’ and exits
+The below example shows how to use fn_mac_address_validation()to validate MAC addresses:
+fn_network_subnet_validation() UDF is written to validate the network subnet format, which accepts a network subnet as a parameter @p_network_subnet and returns ‘TRUE’ or ‘FALSE’. The steps followed in UDF are explained below:
+
+Step 1: If any of the below conditions satisfies for @p_network_subnet, function returns ‘FALSE’ and exits:
+- Checks if a substring after ‘/’ contains characters other than numbers.
+- Checks if the length of a substring after ‘/’ is zero.
+- Checks if the length of a substring after ‘/’ is greater than two.
+- Checks if a substring after ‘/’ starts with zero.
+- Checks if character ‘/’ is present in @p_network_subnet.
+Step 2: If all below conditions are passed, then the function returns ‘TRUE’ else returns ‘FALSE’ and exits:
+- @p_network_subnet does not contain any character from A-Z or a-z.
+- Subpart of a string @p_network_subnet before ‘/’ is a valid IPv4 address or 1st character of @p_network_subnet is ‘/’.
+- Substring after ‘/’ is between 0–32.
+The below example shows how to use fn_network_subnet_validation()to validate an IPv4 network subnet address:
+Conclusion
+This article provided you with the database scripts to validate network subnet addresses in SQL Server and Oracle, which you couldn’t easily do otherwise.

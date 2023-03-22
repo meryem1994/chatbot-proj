@@ -1,0 +1,101 @@
+This article focuses on Hive, it’s features, use cases, and Hive queries. Since a lot of DML and DDL queries are very similar to SQL, it can act as a foundation or building block for anyone new to SQL.
+
+Apache Hive is often referred to as a data warehouse infrastructure built on top of Apache Hadoop. Originally developed by Facebook to query their incoming ~20TB of data each day, currently, programmers use it for ad-hoc querying and analysis over large data sets stored in file systems like HDFS (Hadoop Distributed Framework System) without having to know specifics of map-reduce. The best part of Hive is that the queries are implicitly converted to efficiently chain map-reduce jobs by the Hive engine.
+
+Features of Hive:
+Supports different storage types such as plain text, csv, Apache Hbase, and others
+Data modeling such as Creation of databases, tables, etc.
+Easy to code; Uses SQL-like query language called HiveQL
+ETL functionalities such as Extraction, Transformation, and Loading data into tables coupled with joins, partitions, etc.
+Contains built-in User Defined Functions (UDF) to manipulate dates, strings, and other data-mining tools
+Unstructured data are displayed as data look like tables regardless of the layout
+Plug-in capabilities for the custom mapper, reducer, and UDF
+Enhanced querying on Hadoop
+Use Cases of Hive:
+Text mining — Unstructured data with a convenient structure overlaid and analyzed with map-reduce
+Document indexing — Assigning tags to multiple documents for easier recovery
+Business queries — Querying larger volumes of historic data to get actionable insights, e.g. transaction history, payment history, customer database, etc.
+Log processing — Processing various types of log files like call logs, weblogs, machine logs, etc.
+Coding in Hive
+We will be using a table called “transaction” to look at how to query data in Hive. The transaction table contains attributes id, item, and sales.
+
+Here are some of the best coding practices for any programming language.
+
+Are your coding skills good enough for a Data Science job?
+5 coding sniffs you must know if you are working in the Data Science industry
+towardsdatascience.com
+
+DDL commands in Hive
+DDL is the the short name of Data Definition Language, which deals with database schemas and descriptions, of how the data should reside in the database. Some common examples are
+
+Create table
+Creating a table — CREATE TABLE transaction(id INT, item STRING, sales FLOAT);
+Storing a table in a particular location — CREATE TABLE transaction(id INT, item STRING, sales FLOAT) ROW FORMAT DELIMITED FIELDS TERMINATED BY ‘\001’ STORED AS TEXTFILE LOCATION <HDFS path name>;
+Partitioning a table — CREATE TABLE transaction(id INT, item STRING, sales FLOAT) PARTITIONED BY (id INT)
+Drop table
+DROP TABLE transaction;
+Alter table
+ALTER TABLE transaction RENAME TO transaction_front_of_stores;
+To add a column — ALTER TABLE transaction ADD COLUMNS (customer_name STRING);
+Show Table
+SHOW TABLES;
+Describe Table
+DESCRIBE transaction;
+DESCRIBE EXTENDED transaction;
+DML Commands in HIVE
+DML is the short name of Data Manipulation Language which deals with data manipulation and includes most commonly used SQL statements such as SELECT, INSERT, UPDATE, DELETE, etc., It is primarily used to store, modify, retrieve, delete and update data in a database.
+
+Loading Data
+Loading data from an external file — LOAD DATA LOCAL INPATH “<file_path>” [OVERWRITE] INTO TABLE <table name>;
+LOAD DATA LOCAL INPATH “/documents/datasets/transcation.csv” [OVERWRITE] INTO TABLE transaction;
+Writing dataset from a separate table — INSERT OVERWRITE TABLE transaction SELECT id, item, date, volume FROM transaction_updated;
+Select Statement
+The select statement is used to fetch data from a database table. Primarily used for viewing records, selecting required field elements, getting distinct values and displaying results from any filter, limit or group by operation.
+
+To get all records from the transaction table:
+
+SELECT * FROM transaction;
+
+To get distinct transaction ids from the transaction table:
+
+SELECT DISTINCT id from transaction;
+
+Limit Statement
+Used along with the Select statement to limit the number of rows a coder wants to view. Any transaction database contains a large volume of data which means selecting every row will result in higher processing time.
+
+SELECT * FROM transaction LIMIT 10;
+
+Filter Statement
+SELECT * FROM transaction WHERE sales>100;
+
+Group by Statement
+Group by statements are used for summarizing data at different levels. Think of a scenario where we want to calculate total sales by items.
+
+SELECT item, SUM(sales) as sale FROM transaction GROUP BY item;
+
+what if we want to filter out all items which saw a sale of at least 1000.
+
+SELECT item, SUM(sales) as sale FROM transaction GROUP BY item HAVING sale>1000;
+
+Joins in Hive
+To combine and retrieve the records from multiple tables we use Hive Join. Currently, Hive supports inner, outer, left, and right joins for two or more tables. The syntax is similar to what we use in SQL. Before we look at the syntax let’s understand how different joins work.
+
+
+Different joins in HIVE
+SELECT A.* FROM transaction A {LEFT|RIGHT|FULL} JOIN transaction_date B ON (A.ID=B.ID);
+
+Notes:
+
+Hive doesn’t support IN/EXISTS sub queries
+Hive doesn’t support join conditions that doesn’t contain equality conditions
+Multiple tables can be joined but organize tables such that the largest table appears last in the sequence
+Hive converts joins over multiple tables into a single map/reduce job if for every table the same column is used in the join clauses
+Optimizing queries in Hive
+To optimize queries in hive here are the 5 rule of thumb you should know
+
+Group by, aggregation functions and joins take place in the reducer by default whereas filter operations happen in the mapper
+Use the hive.map.aggr=true option to perform the first level aggregation directly in the map task
+Set the number of mappers/reducers depending on the type of task being performed. For filter conditions use set mapred.mapper.tasks=X; For aggregating operations: set mapred.reduce.tasks=Y;
+In joins, the last table in the sequence is streamed through the reducers whereas the others are buffered. Organize tables such that the largest table appears last in the sequence
+STREAM TABLE and MAP JOINS can be used to speed up to join tasks
+Want to learn more about visualization in Python?

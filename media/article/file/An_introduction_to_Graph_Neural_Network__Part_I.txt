@@ -1,0 +1,41 @@
+Recently, graphs have been getting a lot of attention — from the life science industry to social media. The usage of knowledge graphs to store information and to get a richer inference has become very popular. The research in graph neural networks is solving many existing problems and establishing new benchmarks.
+
+In this part, we will understand what kind of data should be best represented with graph data structure and learn different graphs. In the future parts of this series of articles, we will explore graph neural networks more and attempt some hands-on.
+
+Where do we find graphs?
+Graphs are everywhere around us. Wherever we try to find a link between two objects, graph data structure comes into the picture. If we take the example of Facebook, all our friends have a direct connection with us. Let’s consider person A is having a friendship with person B. Now if we represent this as a graph, A and B are two vertices or nodes who are having an edge between them. Similarly, if A is also a friend of C, and B does not know C, the graph will look like this —
+
+
+A and B are connected; A and C are also connected; but B and C are not connected
+If social networks are probably the most used example for describing graphs around us, the second most popular example could be molecules — especially protein-like organic molecules. A wide variety of graph operations could be tested on these complex structures of proteins. Last but not least example of a graph is the connection between terminals in a telecommunication network.
+
+The power of a graph is beyond analyzing just the properties of its nodes. The graph represents the interactions between those nodes also. With the advancement of social networking, telecommunication, the internet etc. we are getting an abundant amount of graph data to analyze and understand. Our challenge is to unlock the immense potential of this massive amount of data.
+
+What is a graph?
+Before going into much depth, we should have a clear understanding of graph data structure. Let’s define a graph:
+
+𝒢 = (𝒱, ℰ)
+where 𝒱 represents the vertices or nodes and ℰ represents the edges of the graph. It is not mandatory that all nodes would have an equal number of edges, or, even any edge at all. An edge defines the interaction or relationship between nodes. Let’s consider Mr Sharma staying at the next door. If I try to represent housing society by a graph and all the houses as nodes, there could be an edge defined between Mr Sharma (red) and me (blue) and this edge could be named as is_neighbour_of. So, Mr Sharma is_neighbour_of me. Now, practically Mr Sharma is not the only neighbour I have. On the other side, I have Mr Sen (orange) and Mr Venkatesh (green) staying just opposite to my house. So, I am practically connected with all these three people with an is_neighbour_of relationship. But none of them is a neighbour of the other (if I define the neighbourhood as the next house only — pretty awkward society, huh?).
+
+
+Neighbours of me form a graph
+Now If we would like to see the relationship in a tabular form, the following matrix with yes for neighbours and no for non-neighbours may help —
+
+
+The adjacency matrix of the neighbourhood graph
+This is called the Adjacency matrix of the graph. Unlike this example, all the edges in a graph might not be similar. If Mr Sharma’s house is far away compared to Mr Sen’s, there would be a good chance that I meet Mr Sen more often than Mr Sharma. So, the significance (or, weight) of the edge between me and Mr Sen is stronger than that with Mr Sharma. Edge weight plays a significant role in many cases.
+
+Different types of graph
+There are three basic types of graphs — undirected, directed and weighted.
+
+
+The above figure describes each of these three. For the directed graph, it only allowed travelling in one direction (from blue to red in this picture). It is like one-sided love. On the other hand, undirected graphs are like Mr Sharma and me. Both of us are neighbours of each other. Another slight variation of an undirected graph is a bi-directional graph. For example, let’s consider Anita’s daughter is Megha, hence, Megha’s mother is Anita. So, when you consider them as two nodes of a graph it will look like the below diagram —
+
+
+This is called a bi-directional graph.
+
+As I cited an example of a weighted graph in the previous section, the edge weights play a significant role to estimate the strength of a connection. We will see its importance in depth later.
+
+If someone wants to extend the example of the bi-directional graph to establish a family graph, a new kind of graph would be constructed which is called a multi-relational graph. In a family there exist different relationships among people, hence, there will be different types of edges. The multi-relational graph has two other varieties called heterogeneous graph and multiplex graph.
+
+As the name suggests, a heterogenous graph consists of different types of nodes — say, male members and female members of the family. On the other hand, a multiplex graph could be a graph constructed by different cities and the edges are different modes of transportation. Any two cities might have multiple modes of transportation (by rail or air or road) which are termed as ‘layers’ of the multiplex graph.

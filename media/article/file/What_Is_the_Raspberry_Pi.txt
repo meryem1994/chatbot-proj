@@ -1,0 +1,58 @@
+The Raspberry Pi is a dream machine for all kinds of projects, but the first step is gathering up your supplies and learning the basics. Here’s how to begin.
+
+By Whitson Gordon
+
+Six years ago, a single-board computer came on the market and changed the game for tinkerers and DIYers. The Raspberry Pi is a dream machine for all kinds of projects—gaming consoles, home streaming, VPN servers, and beyond—but the first step is gathering up your supplies and learning the basics. If you’re building something with the Pi, start here.
+
+What Is the Raspberry Pi?
+The Raspberry Pi is a tiny computer about the size of a deck of cards. It uses what’s called a system on a chip, which integrates the CPU and GPU in a single integrated circuit, with the RAM, USB ports, and other components soldered onto the board for an all-in-one package.
+
+It doesn’t have onboard storage, but it has an SD card slot you can use to house your operating system and files. The Raspberry Pi is small, doesn’t use much power, and is relatively inexpensive at just $35.
+
+
+The nonprofit Raspberry Pi Foundation originally designed the Pi as an inexpensive computer for teaching programming, but it quickly became popular among DIYers looking for a more powerful brain in their electronics projects.
+
+Since its inception, many models of the Pi have been released, some with multiple revisions (such as the Raspberry Pi 3 Model B+, which improved the previous Model B’s networking capabilities).
+
+The latest Pi, at the time of this writing, is the Raspberry Pi 4, which rocks a 1.5GHz quad-core ARM CPU, a 500MHz VideoCore VI GPU, and 1GB of RAM—though you can step up to 4GB of RAM for a bit more money.
+
+Earlier models are still available for $35, but you can often find used models a bit cheaper than the list price. These older models produce less heat, which is a nice feature if your project doesn’t require much power.
+
+What You Need to Get Started
+The Raspberry Pi is the heart of your project, but a single circuit board isn’t going to go very far without a power supply or storage. To get your project up and running, you’ll need a few additional things.
+
+The Raspberry Pi
+The latest model is a bit tough to find since it’s in such high demand, but you can check this approved list of resellers to see where it might be available. Earlier models including the Raspberry Pi 3 B+ and Raspberry Pi 2 are also for sale on Amazon, as is the Raspberry Pi Zero, which packs a bit less power into an even tinier package.
+
+
+A Power Supply
+Previous versions of the Pi use microUSB for power delivery, but the Raspberry Pi 4 upgrades to USB-C (albeit an out-of-spec version ). While certain phone chargers might power the Pi just fine, I recommend buying a power adapter designed for the Pi like this one from CanaKit or the official models from the Raspberry Pi Foundation. The USB chargers you have lying around might not provide consistent enough power to the board, and the less you have to troubleshoot, the better.
+
+A microSD Card
+Most newer Pi models use microSD cards for storage, with the original Pi Model A and B using a regular SD card. Not all SD cards work perfectly, though, so your best bet is to either buy the official Raspberry Pi microSD card (which comes with an operating system preloaded) or a tested compatible one from this list, like the SanDisk 32GB Ultra. You’ll also need a way to plug the SD card into your computer, like this USB adapter.
+
+A Case
+Technically, this is optional, but we recommend it. Instead of having your bare board out in the open, it’s a good idea to protect it with a case. Pi 4 cases are still coming to market, but for earlier models, the FLIRC case is a particularly great option, thanks to its built-in heatsink.
+
+
+Of course, there are other cool cases out there, like retro gaming cases and transparent cases that show off the hardware inside. Many cases also come with separate heatsinks and/or fans, which can aid in keeping that system-on-a-chip running cool.
+
+Mouse, Keyboard, and HDMI Cable
+Depending on your project, you may not need a mouse and keyboard permanently attached to your Pi, but you’ll probably want them on hand for the initial setup. If it’s too much of a hassle to remove the mouse and keyboard from your main computer, grab a cheap set from Amazon, and do the same for your HDMI cable (or micro-HDMI cable, if you’re using the Pi 4).
+
+How to Install an Operating System on an SD Card
+Every project requires some sort of operating system running on the Pi, usually a variant of Raspbian, the Foundation’s official OS for the Pi based on Debian Linux. The Pi Foundation also offers an automated installer called NOOBS (New Out of the Box Software), but for the purposes of this guide, we’re going to skip it.
+
+Since many projects will require you to “flash” an image to the SD card yourself, it’s a good idea to learn how to do that now. I find it simpler than NOOBS, despite NOOBS being designed for beginners.
+
+
+To install an operating system, you’ll need two things: an image file, and a program that will write it to your SD card. We’ll be using Raspbian as our OS in this tutorial, but you can replace it with any operating system you want, like LibreELEC for building a media box, RetroPie for retro gaming, and so on.
+
+For writing to the SD card, I recommend Etcher, since it’s available for Windows, macOS, and Linux. (Note: if you’ve already used this particular SD card in a Pi before, it may have some partitions that aren’t visible in Windows, which you can clean out with diskpart before continuing.)
+
+Download the image file for your specific Pi model—I’m using the full Raspbian image with the recommended software included. It’ll either come in the form of an IMG file or an IMG wrapped in a ZIP file (if you’re using Etcher, you don’t need to unzip it).
+
+Just launch Etcher, click the Select Image button, and choose the file you just downloaded. Choose your SD card as the target and click Flash. Be extra careful when selecting the target, as the process will erase whichever drive you choose.
+
+This may take a bit of time, but when it’s finished, you can eject the SD card, pop it into your Pi, plug the HDMI cable into a monitor or TV, and plug the Pi into the wall to power it on. Once you land on the Raspbian desktop, you can configure your Wi-Fi, install software from the command line with apt, and start tinkering!
+

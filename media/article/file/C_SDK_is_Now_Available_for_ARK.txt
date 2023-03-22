@@ -1,0 +1,35 @@
+The latest addition to ARK’s vast Software Development Kit library is the C++ programming language. This integration brings the total number in the ARK Blockchain SDK library to 17 (actually 18, with some modifications it can also cover C).
+
+Most blockchain projects only allow developers to interact with one programming language, forcing the use of a particular language or requiring a new language to be learned. Here at ARK we want every developer to jump right into ARK and blockchain development using whatever language they are comfortable with. Our goal is to make blockchain development as easy as possible.
+
+ARK C++ enlarges our already vast family of SDK’s, joining other programming languages such as Python, Java, JavaScript, PHP, Rust, Go and many others found here.
+
+What is C++ and what are the advantages it will offer?
+C++ is widely used in embedded systems software engineering. Adding C++ will push ARK further into the world of IoT as it can be run on micro controllers such as Arduino and Raspberry Pi. This will be tremendously useful at ARK hackathons for developing amazing new devices utilizing the power of the ARK blockchain.
+
+Here are links to the C++ Repositories, along with corresponding documentation to get up and running:
+
+ARK C++ Client: https://github.com/ArkEcosystem/cpp-client
+
+ARK C++ Client Docs: https://docs.ark.io/api/sdk/clients/cpp.html
+
+ARK C++ Crypto: https://github.com/ArkEcosystem/cpp-crypto
+
+ARK C++ Crypto Docs: https://docs.ark.io/api/sdk/cryptography/cpp.html
+
+C++ is a general purpose object oriented programming (OOP) language and is considered to be an intermediate level language, as it encapsulates both high and low level language features. C++ has influenced more modern languages like PHP, Java, and C#. It is one of the most popular programming languages and is mainly utilized with system/application software, drivers, client-server applications and embedded firmware. Another big plus is that it is a highly performance oriented language.
+
+The ARK C++ SDK is also one of the first (if not the first) full client-side cryptocurrency SDK to be directly compatible with embedded systems like Arduino. The ability to be run solely on microcontrollers was a primary consideration throughout design and testing.
+
+It is important to note that this will not run on all chips. It was designed specifically with Arduino in mind, however support for several main stream boards like Espressif are baked in. As the world of IoT expands, the C++ SDK will adapt to meet the many needs of the industry.
+
+Here are some of the ARK C++ possible use cases (with the help of microcontrollers):
+
+Vaults & locks (access)
+Point Of Sale hardware
+Vending machines
+Secure sensor data (safety, disaster management, …)
+Supply chain management
+HW gamification (badges, geocaching, …)
+Off-grid communications
+A very special thanks to all that contributed to the development of the ARK C++ library. Remember that we are running an ARK GitHub Bounty program so if you find any bugs and provide a solution you can earn some extra ARK. More info provided in the link below.

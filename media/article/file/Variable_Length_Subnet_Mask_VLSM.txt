@@ -1,0 +1,55 @@
+Hello there, I hope all are doing good. previously we discuss about FLSM METHOD. Now we discussing Variable Length Subnet Mask(VLSM), this is second method in this subnetting topic.Okie that’s all fine now i’m asking you what is vlsm? why we using this particular method? what need is there?, You want to clear those all questions read this blog upto end you can definitely get knowledge about subnet mask.
+
+Just scroll! for answer
+
+VARIABALE LENGTH SUBNET MASK:
+Here simply i’ll explain with small example: There are three networks, of those three networks the first network has 10 hosts, the second network has 40 hosts and the third network has 50 hosts. This creates different subnet masks for the five hosts.
+
+If you are beginner:It’s enough for you to understand this only.
+
+10.67.83.0 this is my IP address and /24 CIDR NOTATION. now I want to split it into five subnets.My first requirement 80 IPs, second one is 30 IPs, Third requirement 20 IPs, Fourth requirement is 10, and my last fifth requirement is 5 IPs.
+
+10.67.83.0 Default Subnet Mask →255.255.255.0 in binary →11111111.11111111.11111111.00000000.First three octets masked for network, so we can not change to that 24 bits. rest of the 8 bits we can use.Let’s calculate the mask:
+
+80 hosts calculation
+step 1: Find block size
+
+Here we playing small game using fingers for finding block size
+
+1st take your right hand thump finger here the thump finger value is 2 next index finger value is 4 like this count the remaining three fingers in the same way. Count the left hand thumb finger and index finger in the same way. How to count square the previous finger value. Count right hand thumb to left hand index finger →2,4,8,16,32,64,128.
+
+Our first requirement is 80 hosts, now play the game and start count thumb finger value is 2 no our requirement is 80 count the next finger 4 not enough next 8 our requirement now also not fullfill next finger 16, next 32, next finger 64 we want too more, next right hand last finger value is 128 yes, our requirement is satisfied.so count the how many no.of fingers:7
+
+Note:here we talking about host so our formula is 2^h-2=0.right side to left side approach.
+
+2⁷-2=0
+128–2=126
+126 hosts we will assign
+10.67.83. — |— — — — — — — →left seven bits host bits, and last one 8th bit is network bit. How to find here which is block size:
+
+How many network bits is there: 1 bit
+which bit is last bit: 8th bit
+what is 8th bit value: 128, so our block size is 128.
+And our increment value is 128.
+Step 2: Find New Subnet Mask(NSM)
+
+NSM →255.255.255.128.
+In CIDR Notation /25.
+Step 3: Use increment to find the first requirement IP range
+
+10.67.83.0 — 128 /25.
+30 hosts calculation
+Step 4: Find block size
+
+Same here also use finger game and find the how many fingers
+Use 2^h-2 this formula
+Find NSM and write CIDR Notation also
+Then finally use increment value and write the IP Range
+Ex: my previous IP range 10.67.83.0–128 /25.
+My increment value is 32, and My IP range is 10.67.129–160 CIDR Notation is →/27.
+My increment value is 32 add to 128 →160
+Remaining three exercise is your practice.
+
+Practice well and post the answer in the comment section.
+
+Thank you for all spending time with me.

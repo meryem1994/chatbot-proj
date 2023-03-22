@@ -1,0 +1,54 @@
+As a programmer, most of us know about Object-Oriented Programming(OOP). Most of the time we learn OOP by Java, C++, python. Kotiln is a new programming language and It’s also an Object-oriented language. This story makes your knowledge about how OOP concepts applying with Kotiln. I explained the core of Kotlin in my previous story, Everything You need to know about Kotlin as a Beginner(Basic types, Control flows, Return and Jumps, Functions).
+
+List of Content
+Classes and Constructors
+Inheritance in Kotlin
+Encapsulation
+Interfaces in Kotlin
+Visibility Modifiers
+Extensions in Kotlin
+Classes and Constructors
+Classes are the main building block of object-oriented programming. Class is a blueprint of an object. An object is representing real-world entities. objects are mainly content with three components. They are, state(variables), behaviour(methods), Identity(name). Therefore classes mainly consist of attributes and methods to create a prototype of an Object. The following code snippet shows you the syntax of class in Kotlin.
+When we create an object of person, we need to create a constructor and initialize the variables. You also can return null values to the constructor. There have two types to create a constructor.
+Inside the main method, you can create a person object by using this constructor and call to Its properties(variables automatically set as public, but you can use them as private).
+Here you further need to know about constructor. After you initialize the class variables, If you want to do more at object initializing, you can use the initial method in the class.
+Inheritance
+This is a main concept of OOP, objects inherit some/all behaviours, states from their parent objects. In java, we do inheritance using the extend keyword. But in Kotlin the logic is the same but we execute it differently.
+
+Here the parent class should be open, It says the class is ready to inherit. Otherwise, It’s is behave like a private class(cannot inherit).
+Encapsulation
+Encapsulation is the mechanism to control the read/write permission over the object’s properties. Also known as Data Hiding. We can achieve encapsulation through the private variables and generating get and set methods for them. We can create those two methods as following.
+Interface
+The interface is representing as a blueprint of a class. It describes everything blueprint of a class. Interface only contain functions. must implement interfaces and override their methods.
+
+Then you can create a class by implementing these two interfaces at once. You can see how we override common methods. other methods also can use in the same way.
+I create two interface files, Drawable and Movable. These two have the same method and different methods as well.
+
+Visibility Modifiers
+Let's start with this diagram. There have two packages. Inside the package1, there have three classes and three functions and a private variable. Inside the package 2, there have one class and one function. We are going to explore the visibility of each component.
+
+
+I will implement the above file structure as follows.
+
+First, create a new package Package1. Inside the package1, need to crate three class files separately and three functions and a variable add into a class file(outside of the class).
+
+ClassA
+
+Then I am explaining the visibility modifiers.
+
+You can access to ClassA from anywhere because it’s public. Also, you can access public function1 from anywhere. You can access into internal class from package1(within the same package), but you need to import package2 if you use it in package2(outside of the package).
+
+To private classC you can access from inside of it’s. But you cannot access any other outer file. Further, I am creating a subclass of classD, and I name it as subClassD.
+
+You can only access “protected” property within a subclass. The following example shows that. But, you cannot inherit a private property even in the subclass.
+Extensions in Kotlin
+Here we discuss more creating new methods and properties. Let’s go with simple examples.
+
+How we Swap Two variables of the mutable list.
+
+first create a new function file MutableList<String>.swap2Elements
+Static property and functions
+we can use companion object as static in Kotlin. Withing the companion object, we implement functions that static.
+Conclusion
+At the end of the story, you have learned Object Oriented Concepts in Kotlin. Comment you’re great ideas or ask any question has with this story in the response section below.
+Found this post useful? Kindly tap the 👏 button below! :)

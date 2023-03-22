@@ -1,0 +1,81 @@
+TCP/IP is the backbone of communication over internet. Now there are two versions of Internet protocol available IP version 4 and version 6 for communication over the network layer. The key difference between these two are an IPv4 address is 32 bits and expressed in dotted-decimal notation whereas an IPv6 address is 128 bits in length and expressed in hexadecimal format.
+
+
+IPv4 versus IPv6 representation
+
+IP version 4
+
+IPv4 representation
+As we can see from the image IPv4 is divided into 4 bits field separated by a dot (4 * 8 = 32), represented in a decimal notation. IPv4 address is divided into two parts for subnetting purpose into network and host field. As the number of devices began to grow over internet IPv4 address space started to deplete and a solution was implemented twenty tears ago.
+
+IP version 6
+
+IPv6 address representation
+An IPv6 address uses 128 bit hexadecimal representation, every 4 bit (nibble) is represented by single hexadecimal (4*32=128). Alphanumeric characters are case insensitive in IPv6 representation so digits after 9 it can be A or a.
+
+Unofficially a section of four hexadecimal in IPv6 is known as hextet similar to octet for IPv4 .RFC 2373 and RFC 5952 provides rules for reducing IP address
+
+Rule 1 : Omission of leading zeros- Leading zeros can be omitted from an IPv4 or IPv6 address.
+Preferred: 2001:0db8:85a3:0000:0000:0000:0000:0000
+omitting zeros: 2001:0db8:85a3:0:0:0:0:0
+IP only allows omission of leading zeros omitting trailing zeros can lead to ambiguous addressing.
+
+Preferred: 192.168.000.001
+Omitting zeros: 192.168.0.1
+Rule 2 : Omission of all 0s hextets
+For IPv6 addresses a double column (::) any single contagious string of one or more hextets, this use of double column further reduces size of IPv6 addresses. Below example shows a sample IPv6 addresses after combing two rules.
+
+Preferred: 2001:0008:0000:0000:0000:0000:0000:0000
+omitting zeros: 2001:8:0:0:0:0:0:0
+Classless Interdomain Routing (CIDR)
+
+CIDR is used for dividing IP address ranges for subnetting and allocation. CIDR divides an IP into two set of numbers. CIDR of notation for IPv4 address is as given below.
+
+192.255.255.255/24
+
+First 24 bits out of 32 bits will be network address and rest of bits are use for host part. The diagram below explains CIDR addressing format for IPv4 addresses and the number of maximum hosts it can have respective class and it’s use.
+
+
+As the internet grew, the limited IPv4 address space was quickly depleted. A customer request for an IPv4 address and a prefix length(subnet mask) to his network requirement was addressed by relying on Network Address transformation(NAT). to accommodate the number of internal IPv4 addresses in their hosts.
+
+CIDR IPv6 notation
+In case of IPv4 addressing if need to increase host address it need to be pulled from the network part, IPv6 solves this problem. CIDR notation is given below.
+
+ipv6-address/prefix-length
+
+The prefix length identifies the prefix or network portion of the address .Let’s look at an example of address.
+
+2001:0008:0000:0000:0000:0000:0000:0000/64
+First 64 portion is known network address and the second part is known as interface address. If a site receives /48 prefix, this allows (16⁴=65,535) hosts with 18 quintillion interface for each hosts /56 address space(16⁴=256) subnets with same interfaces for each subnet.
+
+IP address types
+
+IPv6 supports three types of addressing
+
+Unicast
+Anycast
+Multicast
+All node multicast(Broadcast in IPv4)
+Unicast
+
+A unicast address uniquely identifies an interface on an IPv6 device. A packet sent to unicast address is delivered to interface(prefix address) defined by that address. Single interface can have many addresses
+
+Anycast
+
+An anycast is a unicast assigned to several devices. In anycast packet is delivered to device that is configured with that address, the anycast packet will be routed to the nearest device.
+
+Multicast
+
+A muticast identifies a group of interfaces belonging to different devices. A packet delivered to multicast address will be delivered by all devices difference between multicast and unicast is that in uncast packets will be delivered to only one device while in multicast packet will be delivered and processed by all devices.
+
+There exists a broadcast in IPv4 addressing were packets will be delivered to all nodes in the system.
+
+
+IP transmission modes
+Global routing prefix
+
+Depends on the requirement IP allocation needs substantial planning. Such allocation is known as subnetting.
+
+
+Subnetting for IPv4
+A typical IPv6 site prefix will have a /48 assigned by its provider, usually from an ISP this creates 16-bit subnet ID allowing 65,536 subnets. Gives us 64 bits for interface ID(we are calling interface ID as each subnet will have interfaces) gives us 18 quintillion interfaces(hosts) per subnets.

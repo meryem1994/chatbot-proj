@@ -1,0 +1,72 @@
+Hello everyone. In this first chapter, we will see a brief introduction to AWS. These are key concepts that everyone should know, even for the AWS Cloud Practitioner Exam. If you already know how AWS works, I invite you to skip this chapter.
+
+AWS Solutions Architect Associate Complete Course.
+AWS Solutions Architect Associate Complete Course.
+Remember that all the chapters from the course can be found in the following link.
+
+CLOUD COMPUTING
+In the past, any company had its applications on its servers. This model has been evolving for some advantages until what we call Cloud Computing, which is where AWS comes into play. Let’s start by explaining the difference between these models:
+
+1. On-Premises → You are the owner of the infrastructure. You hire people to maintain it; you have to plan the storage capacity, fix bugs, etc. In other words, you take all the risks.
+
+2. Cloud → Someone owns the server, someone hires IT people, and you are responsible for setting up the cloud services and the code. Therefore, in a Cloud approach, you are in charge of maintaining your application, not maintaining the server or worrying about it failing. Some advantages of this approach:
+
+Pay on demand → You pay only for what you use. If you need your application to process 20GB of data, you only pay for this 20GB.
+Economy of scale → You pay with other consumers at a much lower price.
+Elasticity → No need to guess the capacity you need. Scale very easily
+Increase speed and agility → Just as an example, you can deploy your app in multiple regions in a few clicks.
+3. Hybrid → Mixing both On-Premise and Cloud approaches
+
+An example would be if we wanted to launch our application in another region. In the on-premise model, we would have to rent a locale in that region, buy servers by guessing the capacity, adapt the application to work in that region, etc. With Cloud Services, you could do this with a couple of clicks. Do you understand now why Cloud Computing is becoming more and more popular?
+
+Cloud Computing Types
+
+SaaS, PaaS, and IaaS are three ways to describe how you can use the cloud for your business. You can find more information at the following link https://aws.amazon.com/what-is-cloud-computing/ .
+
+1. IaaS → Infrastructure as a Service. Cloud-based services, pay-as-you-go for services such as storage, networking, etc. The user is responsible for managing the infrastructure, such as the server or the storage. AWS offers this kind of Computing Type.
+
+2. PaaS → Platform as a Service. Hardware and software tools available over the internet. The user is only responsible for the application’s code; he would not be responsible for the infrastructure underneath it. AWS offers this kind of Computing Type in some services, such as AWS Elastic Beanstalk, a service we will see along the course.
+
+3. SaaS → Software as a Service. Software that it’s available via a third party over the internet. It gives us everything; the final user does not have to worry about anything. An example would be Dropbox; you log in and use it.
+
+Cloud Computing Types
+Cloud Computing Types
+Having understood the advantages of Cloud Computing, let’s move on to AWS.
+
+AWS GLOBAL INFRASTRUCTURE
+The AWS network is composed of Regions, Availability Zones, and Edge Locations:
+
+1. Region → Distinct geographic areas. Each is composed of at least 2 Availability Zones. It is essential to know that most services are region-scoped, meaning that the resources are separated between regions. For example, if you create a server in Ireland, you won’t be able to use it from North Virginia.
+
+2. Availability Zones → Datacenters where AWS services run. These data centers are physically isolated from each other, i.e.; if a power failure occurs, it will not affect the other Availability Zone. Still, they are connected by bandwidth.
+
+3. Edge Location → AWS partner datacenter with direct connection to AWS network. This is the main difference with Availability Zones; in an Edge Location, the content is cached to go faster, but it does not allow hosting or running servers.
+
+AWS Global Infrastructure
+AWS Global Infrastructure
+AWS has 25 regions, with 80 Availability Zones and more to be launched soon. It also has more than 218 Edge Locations.
+
+https://aws.amazon.com/about-aws/global-infrastructure
+
+Each region has an identifier, and each Availability Zone is distinguished by a letter. For example:
+
+Region: us-east-1
+Availability Zone 1: us-east-1a
+Availability Zone 2: us-east-1b
+…
+AWS IAM
+We’ll look at this service in detail later, but let’s give a few hints, as it is needed to understand some of the services we will see later. AWS Identity and Access Management (IAM) enables you to securely manage AWS services and resource access. Using IAM, you can create and manage AWS users and groups and use permissions to allow and deny their access to AWS resources. It’s free.
+
+Within IAM, you can create:
+
+1. Users → Used for Authentication. People that will use AWS Services and Resources.
+
+2. Groups → Used for Authentication. A group is a set of users that have something in common. For example, we can have a group for all the Marketing users. It’s a good practice to attach policies to groups instead of users.
+
+3. Roles → Used for Authentication. We set roles in resources, and they are temporal. A role does not have any credentials (password or access keys) associated with it.
+
+4. Policies → Used for Authorization, and this is the difference from the previous concepts. Users, Groups, and Roles use policies. They indicate what the users, groups, and roles can do and are JSON documents. So, a policy could say that “User1 can write objects inside S3”. We have the following types of policies:
+
+AWS Managed Policies → Managed policies that are created and managed by AWS.
+Customer Managed Policies → Managed policies you create and manage in your AWS account. Customer-managed policies provide more precise control over your policies than AWS-managed policies.
+Inline Policies → Policy embedded in an IAM identity (a user, group, or role). That is, the policy is an inherent part of the identity.

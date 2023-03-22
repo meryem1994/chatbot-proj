@@ -1,0 +1,87 @@
+Deep Learning is one of the most exciting topic in Computer Science; an area of which that is of great interest to me. In this tutorial, I’m going to demonstrate how to create a simple feed forward Neural Network using Keras and TensorFlow in Python.
+
+
+If you’re reading this article, I’m assuming that you have some knowledge of Neural Networks and how they work. If not, I recommend watching this YouTube video by Siraj Raval, where he shows you how to create a simple feedforward Neural Network from scratch using Numpy in Python, and explains how a neural network works.
+
+Before we begin, let’s talk about what is TensorFlow and Keras. TensorFlow is an open source library that is used for large mathematical computation. It is very popular because of its ability to run on either the CPU or GPU; which therefor making this an efficient library to perform machine learning and deep learning algorithms. Keras is high level library made for deep learning. It used to be a separate library, but it has recently been adopted by TensorFlow on it’s latest release due to its popularity. It is built on top of TensorFlow and was developed to make it easier for developers to apply deep learning fast and easy. In this tutorial, I will show you how to do that.
+
+Prerequisites
+You must have Python 3.6 or later and TensorFlow installed. Refer to the following links for download and installation references:
+
+Python Installation
+TensorFlow Installation
+The Problem
+Suppose we want to understand when John will play basketball based on the weather.
+
+
+In this dataset, we have record of the outlook, humidity, wind and if he played or not.
+
+In the first entry of our data set, when it is sunny, high humidity and weak winds, he does not play basketball.
+
+Since we want to predict if John will play basketball or not, our inputs will be outlook, humidity, and wind; our output will be play. We want to represent our inputs and outputs numerically, and we will do them as followed:
+We will solve this problem by creating a simple feed forward neural network that will take in the weather conditions as our input and expect an output of whether John will play or not. We can also treat the outputs of our neural network as probabilities. More on that later.
+
+Building our Neural Network
+First, we need to import some modules. We will import tensorflow and keras.
+
+import tensorflow as tf
+from tensorflow import keras
+1. A feed forward neural network is also called a sequential neural network. In keras, it is defined as such.
+
+model = keras.Sequential()
+input_layer = keras.layers.Dense(3, input_shape=[3], activation='tanh')
+model.add(input_layer)
+Each layer of our neural network is defined as a dense layer in keras. The Dense function takes in 3 parameters. The number of nodes in the layer, the input shape, and activation function.
+
+The number of nodes is self-explanatory. I’m not sure why we have to specify the input shape in keras since it already knows the number of nodes it takes in, but we still have to define it anyways.
+
+The activation function will help us calculate the appropriate weights to make accurate predictions. There are a number of activation functions to choose from but the most common are sigmoid tanh and relu. Generally you select an activation function based on the input range. Sigmoid functions typically deal with outputs ranging from [0,1] while hyptertangent deals with and output range of [-1,1]. Relu is widely used in convolutional neural networks because it deals with outputs between [0,infinity].
+
+Our input layer will have 3 nodes in the network and will have an input shape of 3 since it will be taking 3 inputs. We will use the tanh activation function because we are dealing with numbers that range from -1 to 1.
+
+2. Now let’s create the output layer.
+
+output_layer = keras.layers.Dense(1, activation='sigmoid')
+model.add(output_layer)
+We don’t have to specify the input_shape because we are not expecting an input. Instead the data will come from our input layer which will automatically be connected. We do have 1 node because we will end up with 1 output. We will use the sigmoid function because our output is expected to be 0 or 1.
+
+3. Compile the network
+
+model.compile(optimizer='sgd',loss='mean_squared_error')
+Before we start training, we need to bring everything together by compiling our network. The compile function takes in two parameters optimizer and loss. What is that?
+
+A loss function, also known as cost function helps us reduce the error between calculated results with the true value. By calculating the loss value, we then look to our optimizer to make necessary adjustments to our weights.
+
+There are different types of optimizers and loss functions. Refer to the keras documentation for more details on these functions:
+4. Prepare our training data. We will format our data as a tensorflow variable. You can also format them as a numpy variable, but I like tensorflow so we will use that.
+5. Next we fit our data.
+
+model.fit(x, y ,epochs=1000, steps_per_epoch=10)
+Here we pass x as out test input and y as our test output. epoch is the number of iterations over the entire input data. The larger the epoch, the more memory you will require and the longer it will train. steps_per_epoch is the number of iterations per batch before the epoch is finished.
+
+6. After we train, we can test our data with our existing training input and compare that to our training output.
+
+model.predict(x)
+We input the x variable which is our input data. You can set verbose to 0, 1, or 2 to see how you want to visually see the progress. After running your code, you should have something like this.
+We can see that it’s not exactly like our expected outputs but it is fairly close. If you train it some more times, more than 1,000, then we might get something closer but we will never be able to approach the exact numbers because of the sigmoid function which only approaches 0 to 1. I’m not happy with these results so I’m going to increase the epoch to 5,000.
+
+Prediction
+Now lets figure out if John will play basketball when it is sunny, normal humidity, and weak wind. [1,0,0]
+
+Simply replace the input from our predict function with our test input.
+
+test = np.array([[1,0,0]])
+result = model.predict(test)
+The result I got is [[0.9614258]] therefor he will play!
+
+Note that the activation function we set for our output layer is a sigmoid function. Sigmoid functions return values between 0 and 1 and is used in probability to predict outcomes. We can also treat this result as probabilities! So there is a 96% chance that John will play basketball given the weather conditions.
+
+Saving your Weights
+If you want, you can save your weights which can act as our model so if you want to test your own data, you don’t have to go through training every time you run your program. After the training, call this function:
+
+model.save_weights('model_weights.h5')
+This will create an HDF5 file called ‘model_weight.h5’. To load the weights, simply call this function:
+
+model.load_weights('model_weights.h5')
+Conclusion
+That concludes this tutorial! You can apply this to other sorts of classifications. For more information about different activation functions and optimizers, refer to the Keras Documentation.
